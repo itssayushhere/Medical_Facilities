@@ -3,7 +3,6 @@ import img from "../assets/images/example.jpg";
 import { BASE_URL, token } from "../../config";
 import { toast } from "react-toastify";
 import { Alert } from "@mui/material";
-import { Check } from "@mui/icons-material";
 const Medicine = () => {
   const addToCart = async (m) => {
     try {
