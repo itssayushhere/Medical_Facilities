@@ -12,6 +12,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
+    username : "",
     email: "",
     password: "",
     photo: selectedfile,
@@ -84,6 +85,17 @@ const Signup = () => {
               </div>
               <div className="mb-5 mt-5">
                 <input
+                  type="text"
+                  placeholder="*️⃣Create an Username "
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  className="w-full pr-4 px-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-16px leading-7 placeholder:text-textColor rounded-md cursor-pointer"
+                  required
+                />
+              </div>
+              <div className="mb-5 mt-5">
+                <input
                   type="email"
                   placeholder="✉️Enter Your Email"
                   name="email"
@@ -113,8 +125,8 @@ const Signup = () => {
                     onChange={handleInputChange}
                     className="text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none"
                   >
-                    <option value="Patient">Patient</option>
-                    <option value="Doctor">Doctor</option>
+                    <option value="patient">Patient</option>
+                    <option value="doctor">Doctor</option>
                   </select>
                 </label>
                 <label className="text-headingColor font-bold text-[16px] leading-7 ">

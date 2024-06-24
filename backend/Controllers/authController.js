@@ -13,56 +13,67 @@ const generateToken = (user) => {
   );
 };
 export const register = async (req, res) => {
-  const { email, password, name, role, photo, gender } = req.body;
+  const { email, password, name, role, photo, gender, username } = req.body;
   try {
     let user = null;
-    //this set database who is interacting with database and what module should be use on this.
-    if (role == "patient") {
+    let check_add = null
+
+    // Check if the user already exists based on the role
+    if (role === "patient") {
       user = await User.findOne({ email });
-    } else if (role == "doctor") {
-      user = await User.findOne({ email });
+      check_add = await User.findOne({username})
+    } else if (role === "doctor") {
+      user = await Doctor.findOne({ email });
+      check_add = await Doctor.findOne({username})
     }
-    //for checking if user exist
+
+    if (check_add){
+      return res.status(400).json({message:'Username already exists'})
+    }
+
+    // Check if the user already exists
     if (user) {
-      return res.status(400).json({ message: "user already exist" });
+      return res.status(400).json({ message: "User already exists" });
     }
-    //hash password
+
+    // Hash password
     const salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(password, salt);
-    if (role == "patient") {
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Create a new user object based on the role
+    if (role === "patient") {
       user = new User({
         name,
+        username,
         email,
-        password: hashPassword,
+        password: hashedPassword,
         photo,
         gender,
         role,
       });
-    }
-    if (role == "doctor") {
+    } else if (role === "doctor") {
       user = new Doctor({
         name,
+        username,
         email,
-        password: hashPassword,
+        password: hashedPassword,
         photo,
         gender,
         role,
       });
     }
+
+    // Save the user to the database
     await user.save();
-    res
-    .status(200)
-    .json({ success: true, message: "user successfully created" });
-    
+    console.log(user)
+    res.status(200).json({ success: true, message: "User successfully created" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Internal server error , Try again " }); 
+    res.status(500).json({ success: false, message: "Internal server error, please try again" });
   }
 };
 
 export const login = async (req, res) => {
-  const { email } = req.body;
+  const { email , password } = req.body;
   try {
     let user = null;
     const patient = await User.findOne({ email });
@@ -74,24 +85,32 @@ export const login = async (req, res) => {
     if (doctor) {
       user = doctor;
     }
-    //check if user exist or not
+
+    // Check if user exists
     if (!user) {
-      return res.status(404).json({ message: " User not found " });
+      return res.status(404).json({ message: "User not found" });
     }
-    //compare password to database
-    const isPasswordMatch = await bcrypt.compare(req.body.password, user.password);
+
+    // Compare passwords
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
 
     if (!isPasswordMatch) {
-      return res
-        .status(400)
-        .json({ status: false, message: "Invalid Credentials" });
+      return res.status(400).json({ message: "Invalid Credentials" });
     }
+
     const token = generateToken(user);
 
-    const {password,role,appointment, ...rest} = user._doc
+    const { password: userPassword, role, appointment, ...userData } = user._doc;
 
-    res.status(200).json({status:true,message:"Sucessfully login",token,data:{...rest},role});
+    res.status(200).json({
+      status: true,
+      message: "Successfully logged in",
+      token,
+      data: { ...userData },
+      role,
+    });
   } catch (error) {
-    res.status(500).json({status:false,message:"Failed to login"});
+    console.log(error);
+    res.status(500).json({ status: false, message: "Failed to login" });
   }
 };

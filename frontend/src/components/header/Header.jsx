@@ -1,9 +1,11 @@
 import { useEffect, useRef, useContext } from "react";
 import logo from "../../assets/images/logo.png";
-import defaultPhoto from '../../assets/images/user.png'
-import { NavLink, Link } from "react-router-dom";
+import defaultPhoto from "../../assets/images/user.png";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
-import { authContext } from "../../../context/AuthContext";
+import { authContext } from "../../context/AuthContext";
+import Avatars from "../../Dashboard/user_account/Avatar";
+
 const navLinks = [
   {
     path: "/home",
@@ -26,10 +28,13 @@ const navLinks = [
     display: "Contact",
   },
 ];
+
 const Header = () => {
+  const navigate = useNavigate();
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   const { user, role, token } = useContext(authContext);
+
   const handleStickyHeader = () => {
     window.addEventListener("scroll", () => {
       if (
@@ -46,9 +51,17 @@ const Header = () => {
   useEffect(() => {
     handleStickyHeader();
     return () => window.removeEventListener("scroll", handleStickyHeader);
-  });
+  }, []);
 
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
+
+  const handleProfileClick = () => {
+    navigate(role === "doctor" ? "/doctors/profile/me" : "/users/profile/me", {
+      replace: true,
+    });
+    window.location.reload();
+  };
+
   return (
     <header className="header flex items-center" ref={headerRef}>
       <div className="container">
@@ -56,7 +69,7 @@ const Header = () => {
           {/*====logo===== */}
           <Link to={"/"}>
             <div>
-              <img src={logo} />
+              <img src={logo} alt="Logo" />
             </div>
           </Link>
           {/*===menu====*/}
@@ -83,13 +96,14 @@ const Header = () => {
             {token && user ? (
               <div>
                 <Link
-                  to={`${
-                    role == "doctor"
-                      ? "/doctors/profile/me"
-                      : "/users/profile/me"
-                  }`}
+                  // to={`${
+                  //   role === "doctor"
+                  //     ? "/doctors/profile/me"
+                  //     : "/users/profile/me"
+                  // }`}
+                  onClick={handleProfileClick}
                 >
-                  <figure className="w-[35px] h-[35px] rounded-full cursor-pointer  ">
+                  <figure className="w-[35px] h-[35px] rounded-full cursor-pointer overflow-hidden ">
                     {user?.photo ? (
                       <img
                         src={user.photo}
@@ -97,12 +111,8 @@ const Header = () => {
                         alt="User's Photo"
                       />
                     ) : (
-                      <img
-                        src={defaultPhoto}
-                        className="w-full rounded-full"
-                        alt="Default Photo"
-                      />
-                    )}{" "}
+                      <Avatars Fullname={user.name} size={34} />
+                    )}
                   </figure>
                 </Link>
               </div>

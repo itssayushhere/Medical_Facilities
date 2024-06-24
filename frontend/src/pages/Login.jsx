@@ -2,7 +2,7 @@ import React, { useState , useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../../config";
-import { authContext } from "../../context/AuthContext.jsx";
+import { authContext } from "../context/AuthContext.jsx";
 import  HashLoader from "react-spinners/HashLoader.js";
 const Login = () => {
   const [formData, setformData] = useState({ email: "", password: "" });
@@ -27,6 +27,7 @@ const Login = () => {
           body: JSON.stringify(formData),
         });
         const result = await res.json();
+ 
         if (!res.ok) {
           throw new Error(result.message);
   
