@@ -19,42 +19,40 @@ import { AuthContextProvider } from "../context/AuthContext";
 const Routers = () => {
   return (
     <>
-      <AuthContextProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/register" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/doctors" element={<Doctors />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/doctors/:id" element={<DoctorsDetails />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/medicine" element={<Medicine />} />
-          <Route path="/checkup" element={<Checkup />} />
-          <Route path="/mentalhealth" element={<MentalHealth />} />
-          <Route
-            path="/users/profile/me"
-            element={
-              <ProtectedRoute allowedRoles={["patient"]}>
-                <MyAccount />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/doctors/profile/me"
-            element={
-              <ProtectedRoute allowedRoles={["doctor"]}>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/users/profile/me/checkout_successs"
-            element={<Success />}
-          />
-        </Routes>
-      </AuthContextProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/register" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/doctors" element={<Doctors />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/doctors/:id" element={<DoctorsDetails />} />
+        <Route path="/community" element={<Community />} />
+        <Route path="/medicine" element={<Medicine />} />
+        <Route path="/checkup" element={<Checkup />} />
+        <Route path="/mentalhealth" element={<MentalHealth />} />
+        <Route
+          path="/users/profile/me"
+          element={
+            // <ProtectedRoute allowedRoles={["patient"]}>
+            //   </ProtectedRoute>
+            <MyAccount />
+          }
+        />
+        <Route
+          path="/doctors/profile/me"
+          element={
+            // <ProtectedRoute allowedRoles={["doctor"]}>
+            // </ProtectedRoute>
+            <Dashboard />
+          }
+        />
+        <Route
+          path="/users/profile/me/checkout_successs"
+          element={<Success />}
+        />
+      </Routes>
     </>
   );
 };
