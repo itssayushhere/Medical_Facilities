@@ -13,10 +13,10 @@ import Medicine from "../pages/Medicine";
 import Checkup from "../pages/medicalserviecs/Checkup";
 import MyAccount from "../Dashboard/user_account/MyAccount";
 import Dashboard from "../Dashboard/doctor-account/Dashboard";
-import ProtectedRoute from "../components/ProtectedRoute";
+// import ProtectedRoute from "../components/ProtectedRoute";
 import MentalHealth from "../pages/MentalHealth";
 import Success from "../pages/Success";
-import { AuthContextProvider } from "../context/AuthContext";
+// import { AuthContextProvider } from "../context/AuthContext";
 
 const Routers = () => {
   return (
