@@ -36,17 +36,17 @@ const Routers = () => {
       <Route
         path="/users/profile/me"
         element={
-          // <ProtectedRoute allowedRoles={["patient"]}>
-          // </ProtectedRoute>
+          <ProtectedRoute allowedRoles={["patient"]}>
           <MyAccount />
+          </ProtectedRoute>
         }
       />
       <Route
         path="/doctors/profile/me"
         element={
-          // <ProtectedRoute allowedRoles={["doctor"]}>
-          // </ProtectedRoute>
+          <ProtectedRoute allowedRoles={["doctor"]}>
           <Dashboard />
+          </ProtectedRoute>
         }
       />
       <Route path="/users/profile/me/checkout_success" element={<Success />} />

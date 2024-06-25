@@ -4,6 +4,25 @@
     {
       "src": "package.json",
       "use": "@vercel/node"
+    },
+    {
+      "routes": [
+        { "src": "/", "dest": "/index.html" },
+        { "src": "/home", "dest": "/index.html" },
+        { "src": "/register", "dest": "/index.html" },
+        { "src": "/login", "dest": "/index.html" },
+        { "src": "/services", "dest": "/index.html" },
+        { "src": "/doctors", "dest": "/index.html" },
+        { "src": "/contact", "dest": "/index.html" },
+        { "src": "/doctors/:id", "dest": "/index.html" },
+        { "src": "/community", "dest": "/index.html" },
+        { "src": "/medicine", "dest": "/index.html" },
+        { "src": "/checkup", "dest": "/index.html" },
+        { "src": "/mentalhealth", "dest": "/index.html" },
+        { "src": "/users/profile/me", "dest": "/index.html" },
+        { "src": "/doctors/profile/me", "dest": "/index.html" },
+        { "src": "/users/profile/me/checkout_success", "dest": "/index.html" }
+      ]
     }
   ]
 }
