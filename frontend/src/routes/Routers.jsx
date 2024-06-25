@@ -13,7 +13,7 @@ import Medicine from "../pages/Medicine";
 import Checkup from "../pages/medicalserviecs/Checkup";
 import MyAccount from "../Dashboard/user_account/MyAccount";
 import Dashboard from "../Dashboard/doctor-account/Dashboard";
-// import ProtectedRoute from "../components/ProtectedRoute";
+import ProtectedRoute from "../components/ProtectedRoute";
 import MentalHealth from "../pages/MentalHealth";
 import Success from "../pages/Success";
 // import { AuthContextProvider } from "../context/AuthContext";
@@ -37,7 +37,7 @@ const Routers = () => {
         path="/users/profile/me"
         element={
           <ProtectedRoute allowedRoles={["patient"]}>
-          <MyAccount />
+            <MyAccount />
           </ProtectedRoute>
         }
       />
@@ -45,7 +45,7 @@ const Routers = () => {
         path="/doctors/profile/me"
         element={
           <ProtectedRoute allowedRoles={["doctor"]}>
-          <Dashboard />
+            <Dashboard />
           </ProtectedRoute>
         }
       />
