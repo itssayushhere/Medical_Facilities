@@ -55,12 +55,12 @@ const Header = () => {
 
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
-  // const handleProfileClick = () => {
-  //   navigate(role === "doctor" ? "/doctors/profile/me" : "/users/profile/me", {
-  //     replace: true,
-  //   });
-  //   window.location.reload();
-  // };
+  const handleProfileClick = () => {
+    navigate(role === "doctor" ? "/doctors/profile/me" : "/users/profile/me", {
+      replace: true,
+    });
+    window.location.reload();
+  };
 
   return (
     <header className="header flex items-center" ref={headerRef}>
@@ -96,12 +96,12 @@ const Header = () => {
             {token && user ? (
               <div>
                 <Link
-                  to={`${
-                    role === "doctor"
-                      ? "/doctors/profile/me"
-                      : "/users/profile/me"
-                  }`}
-                  // onClick={handleProfileClick}
+                  // to={`${
+                  //   role === "doctor"
+                  //     ? "/doctors/profile/me"
+                  //     : "/users/profile/me"
+                  // }`}
+                  onClick={handleProfileClick}
                 >
                   <figure className="w-[35px] h-[35px] rounded-full cursor-pointer overflow-hidden ">
                     {user?.photo ? (
