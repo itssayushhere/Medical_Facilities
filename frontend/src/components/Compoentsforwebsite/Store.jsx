@@ -15,7 +15,7 @@ const reducer = (state = initialState, action) => {
       }
     case "Increase":
       return { ...state, number: state.number + action.payload };
-    case "Decraese":
+    case "Decrease":
       return { ...state, number: state.number - action.payload };
     default:
       return state;
