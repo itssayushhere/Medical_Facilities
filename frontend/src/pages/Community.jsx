@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import usefetchData from "../hooks/usefetchData.jsx";
 import { BASE_URL, role } from "../../config.js";
 import { toast } from "react-toastify";
+import { authContext } from "../context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Community = () => {
   const [reply, setReply] = useState(false);
   const [view, setView] = useState(false);
   const [currentQuestionId, setCurrentQuestionId] = useState(null);
+  const { user, role, token } = useContext(authContext);
   let roles = "";
   const [question, setQuestion] = useState({
     username: "",
@@ -23,6 +26,7 @@ const Community = () => {
   } else {
     roles = "doctors";
   }
+  const navigate = useNavigate()
   const [questions, setQuestions] = useState([]);
   const [userData, loading, error] = usefetchData(
     `${BASE_URL}/${roles}/profile/me`
@@ -40,12 +44,15 @@ const Community = () => {
     setView(true);
     setCurrentQuestionId(id);
   };
-
   const handleReply = (id) => {
-    setReply(true);
-    setCurrentQuestionId(id);
+    if(!user || !token ){
+      navigate('/login')
+      toast.error("Please Login ");
+    }else{
+      setReply(true);
+      setCurrentQuestionId(id);
+    }
   };
-
   const handleSubmitReply = async (currentQuestionId) => {
     const newReply = {
       username: userData.username,
@@ -83,10 +90,15 @@ const Community = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if(!user || !token ){
+      navigate('/login')
+    }
+
     if (loading || error || !userData) {
-      toast.error("User data not loaded or there is an error.");
+      toast.error("Please Login ");
       return;
     }
+    
 
     const newQuestion = {
       username: userData.username,
