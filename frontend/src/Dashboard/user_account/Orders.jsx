@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BASE_URL, token } from "../../../config";
-import usefetchData from "../../hooks/usefetchData.jsx";
-import Loading from "../../components/Loader/Loading.jsx";
-import { FaShoppingCart } from "react-icons/fa";
 import QuantityCounter from "../../components/Compoentsforwebsite/QunatityCounter.jsx";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import { useSelector, Provider, useDispatch } from "react-redux";
 import store from "../../components/Compoentsforwebsite/Store.jsx";
 import { toast } from "react-toastify";
@@ -13,16 +9,13 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import { Button } from "@mui/material";
 import { Tooltip } from "@mui/material";
-import { useRef } from "react";
-
-const Orders = () => {
+import CircularIndeterminate from "../../components/Loader/Circular.jsx";
+import { FaShoppingCart } from "react-icons/fa";
+const Orders = ({ ondelete }) => {
   const DisplayNumber = () => {
     const number = useSelector((state) => state.number); // Access the current state
     return <p>₹{number}</p>;
   };
-  const [userData, loading, error] = usefetchData(
-    `${BASE_URL}/users/profile/me`
-  );
   // const [error, setError] = useState(null);
   const [cartDetails, setCartDetails] = useState([]);
 
@@ -48,35 +41,14 @@ const Orders = () => {
       // setError(error.message);
     }
   };
-
-  // const Delete = async (id) => {
-  //   try {
-  //     const response = await fetch(`${BASE_URL}/users/cart/${id}`, {
-  //       method: "DELETE",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`, // Correctly place Authorization in headers
-  //         "Content-Type": "application/json", // Optional, but good practice
-  //       },
-  //     });
-
-  //     if (response.ok) {
-  //       toast.success("Removed from cart");
-  //       window.location.reload();
-  //     } else {
-  //       // Handle the case where the response is not ok
-  //       const errorMessage = await response.text();
-  //       toast.error(`Error removing item: ${errorMessage}`);
-  //     }
-  //   } catch (error) {
-  //     toast.error("Error removing item");
-  //   }
-  // };
-
   const navigate = useNavigate();
 
   const handleAddToCartClick = () => {
     navigate("/medicine");
   };
+  useEffect(() => {
+    fetchCartDetails();
+  }, []);
 
   return (
     <div className="container mx-auto p-4 w-[750px]">
@@ -100,9 +72,8 @@ const Orders = () => {
       </div>
 
       <div className="m-3 p-4 ">
-        {loading && !error && <Loading />}
-        {!loading && userData && userData.cart && userData.cart.length > 0 ? (
-          userData.cart.map((item) => (
+        {cartDetails && cartDetails.length > 0 ? (
+          cartDetails.map((item) => (
             <div key={item._id} className="flex items-center mb-3">
               <Provider store={store}>
                 <QuantityCounter
@@ -110,23 +81,19 @@ const Orders = () => {
                   price={item.price}
                   id={item._id}
                   photo={item.productphoto}
+                  onItemDeleted={fetchCartDetails} // Pass the callback function
                 />
               </Provider>
-              {/* <button className="ml-2">
-                <RiDeleteBin6Line
-                  size={25}
-                  className="text-red-300 hover:text-red-500"
-                  onClick={() => Delete(item._id)}
-                />
-              </button> */}
             </div>
           ))
         ) : (
           <div className="text-center">
-            <div> Your Cart is Empty...</div>
-            <div>
-              <button onClick={handleAddToCartClick}>Add to cart now</button>
-            </div>
+                <div> Your Cart is Empty...</div>
+                <div>
+                  <button onClick={handleAddToCartClick} className="p-2 bg-blue-500 text-white font-medium rounded-xl hover:bg-blue-700" >
+                    Add to cart now
+                  </button>
+                </div>
           </div>
         )}
       </div>
@@ -139,7 +106,7 @@ const Orders = () => {
           </Provider>
         </div>
         <div>
-          <Button variant="contained" size="medium" onClick={fetchCartDetails}>
+          <Button variant="contained" size="medium">
             Checkout
           </Button>
         </div>

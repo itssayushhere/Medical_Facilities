@@ -1,6 +1,5 @@
 import { useEffect, useRef, useContext } from "react";
 import logo from "../../assets/images/logo.png";
-import defaultPhoto from "../../assets/images/user.png";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import { authContext } from "../../context/AuthContext";
@@ -55,12 +54,12 @@ const Header = () => {
 
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
-  const handleProfileClick = () => {
-    navigate(role === "doctor" ? "/doctors/profile/me" : "/users/profile/me", {
-      replace: true,
-    });
-    window.location.reload();
-  };
+  // const handleProfileClick = () => {
+  //   navigate(role === "doctor" ? "/doctors/profile/me" : "/users/profile/me", {
+  //     replace: true,
+  //   });
+  //   window.location.reload();
+  // };
 
   return (
     <header className="header flex items-center" ref={headerRef}>
@@ -96,12 +95,11 @@ const Header = () => {
             {token && user ? (
               <div>
                 <Link
-                  // to={`${
-                  //   role === "doctor"
-                  //     ? "/doctors/profile/me"
-                  //     : "/users/profile/me"
-                  // }`}
-                  onClick={handleProfileClick}
+                  to={`${
+                    role === "doctor"
+                      ? "/doctors/profile/me"
+                      : "/users/profile/me"
+                  }`}
                 >
                   <figure className="w-[35px] h-[35px] rounded-full cursor-pointer overflow-hidden ">
                     {user?.photo ? (

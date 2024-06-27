@@ -14,7 +14,6 @@ const Checkup = () => {
   };
   return (
     <div>
-      {loading && !error && <Loading />}
       {!loading &&
       userData &&
       userData.Checkup &&
@@ -33,8 +32,17 @@ const Checkup = () => {
         ))
       ) : (
         <div>
-          <h1>You don't have any Checkup booking</h1>
-          <button onClick={handlenavigation}>Book Now</button>
+          {loading && !error ? (
+            <Loading />
+          ) : (
+            !loading &&
+            !userData && (
+              <div>
+                <h1>You don't have any Checkup booking</h1>
+                <button onClick={handlenavigation}>Book Now</button>
+              </div>
+            )
+          )}
         </div>
       )}
     </div>

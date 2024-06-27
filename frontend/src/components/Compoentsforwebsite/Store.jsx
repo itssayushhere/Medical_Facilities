@@ -1,7 +1,11 @@
 import { legacy_createStore } from "redux";
 import { toast } from "react-toastify";
+
 // Initial state
-const initialState = { number: 0 };
+const initialState = {
+  number: 0,
+  reloadKey: Date.now(), // Initialize reloadKey with the current timestamp
+};
 
 // Reducer function to handle state changes based on actions
 const reducer = (state = initialState, action) => {
@@ -17,6 +21,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, number: state.number + action.payload };
     case "Decrease":
       return { ...state, number: state.number - action.payload };
+    case "Reload":
+      return { ...state, number:state.number = 0 }; // Update reloadKey to current timestamp
     default:
       return state;
   }

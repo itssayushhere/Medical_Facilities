@@ -10,22 +10,26 @@ import Orders from "./Orders";
 import Profile from "./Profile";
 import useFetchData from "../../hooks/usefetchData";
 import { BASE_URL } from "../../../config";
-
+import { useDispatch , Provider } from "react-redux";
+import store from "../../components/Compoentsforwebsite/Store";
+const Handlestorereolad = () => {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch({ type: "Reload" });
+  }, [dispatch]);
+  return null; 
+};
 export default function Bar() {
   const [userData, loading, error] = useFetchData(
     `${BASE_URL}/users/profile/me`
   );
-
-  // Get the default value from local storage or set it to 2
-  //   const defaultValue = parseInt(localStorage.getItem("selectedTab") || "2");
+  const [tabKey, setTabKey] = React.useState(Date.now()); // Key to force re-render Orders
 
   const handleTabChange = (event, newValue) => {
     if (newValue === 2) {
-      //   localStorage.setItem("selectedTab", "2");
-      window.location.reload();
+      setTabKey(Date.now()); // Update the key to re-render Orders
     }
   };
-
   return (
     <Tabs defaultValue={2} onChange={handleTabChange}>
       <TabsList>
@@ -33,11 +37,14 @@ export default function Bar() {
         <Tab value={2}>Orders</Tab>
         <Tab value={3}>Profile</Tab>
       </TabsList>
-      <TabPanel value={1}>
+      <TabPanel value={1} >
         <MyBookings />
       </TabPanel>
       <TabPanel value={2}>
-        <Orders />
+        <Orders key={tabKey}  /> 
+        <Provider store={store}>
+          <Handlestorereolad/>
+        </Provider>
       </TabPanel>
       <TabPanel value={3}>
         <Profile user={userData} />

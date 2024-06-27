@@ -23,7 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const QuantityCounter = ({ productName, price, id }) => {
+const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -52,7 +52,8 @@ const QuantityCounter = ({ productName, price, id }) => {
 
       if (response.ok) {
         toast.success("Removed from cart");
-        window.location.reload();
+        onItemDeleted();
+        dispatch({ type: "Decrease", payload: price });
       } else {
         // Handle the case where the response is not ok
         const errorMessage = await response.text();
@@ -94,7 +95,10 @@ const QuantityCounter = ({ productName, price, id }) => {
     }
   }, [id]);
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
+  // const handledelete = (id, price) => {
+  //   Delete(id);
+  //   dispatch({ type: "Decrease", payload: price });
+  // };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid
