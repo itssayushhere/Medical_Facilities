@@ -51,13 +51,19 @@ const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
       });
 
       if (response.ok) {
-        toast.success("Removed from cart");
+        toast.success("Removed from cart", {
+          autoClose: 600, // Toast duration in milliseconds
+          position: "bottom-center",
+        });
         onItemDeleted();
         dispatch({ type: "Decrease", payload: price });
       } else {
         // Handle the case where the response is not ok
         const errorMessage = await response.text();
-        toast.error(`Error removing item: ${errorMessage}`);
+        toast.error(`Error removing item: ${errorMessage}`, {
+          autoClose: 600, // Toast duration in milliseconds
+          position: "bottom-center",
+        });
       }
     } catch (error) {
       toast.error("Error removing item");
@@ -155,6 +161,7 @@ const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
               size={25}
               className="text-red-300 hover:text-red-500"
               onClick={() => Delete(id)}
+              
             />
           </button>
         </Grid>
