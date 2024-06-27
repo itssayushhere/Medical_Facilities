@@ -54,13 +54,6 @@ const Header = () => {
 
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
-  // const handleProfileClick = () => {
-  //   navigate(role === "doctor" ? "/doctors/profile/me" : "/users/profile/me", {
-  //     replace: true,
-  //   });
-  //   window.location.reload();
-  // };
-
   return (
     <header className="header flex items-center" ref={headerRef}>
       <div className="container">

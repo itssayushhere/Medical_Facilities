@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import img from "../assets/images/example.jpg";
 import { BASE_URL, token } from "../../config";
 import { toast } from "react-toastify";
 import { Alert } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { authContext } from "../context/AuthContext";
 const Medicine = () => {
+  const { user, role, token } = useContext(authContext);
   const addToCart = async (m) => {
     try {
       const response = await fetch(`${BASE_URL}/users/addtocart`, {
@@ -49,7 +52,14 @@ const Medicine = () => {
       });
     }
   };
-
+  const navigate = useNavigate();
+  const handleCart = (m) => {
+    if (!user || !token) {
+      navigate("/login");
+    } else {
+      addToCart(m);
+    }
+  };
   // Medicine data
   const medicines = [
     {
@@ -196,7 +206,7 @@ const Medicine = () => {
                 <div className="flex justify-end ">
                   <button
                     className=" rounded-2xl bg-blue-600 p-2 text-white hover:text-cyan-300 font-serif hover:bg-blue-900 transition duration-300"
-                    onClick={() => addToCart(item)}
+                    onClick={() =>handleCart(item)}
                   >
                     Add to cart
                   </button>
