@@ -42,11 +42,10 @@ const Login = () => {
           }
         })
 
-        console.log(result,'login data')
-
         setLoading(false);
         toast.success(result.message);
         navigate("/home");
+        window.location.reload()
       } catch (err) {
         toast.error(err.message);
         setLoading(false);

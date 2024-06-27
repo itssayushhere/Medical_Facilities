@@ -17,6 +17,7 @@ const MyAccount = () => {
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" }); // logout
+    window.location.reload()
   };
 
   return (
