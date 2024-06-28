@@ -57,7 +57,7 @@ const Header = () => {
   return (
     <header className="header flex items-center" ref={headerRef}>
       <div className="container">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between ">
           {/*====logo===== */}
           <Link to={"/"}>
             <div>
@@ -84,7 +84,7 @@ const Header = () => {
             </ul>
           </div>
           {/*==nav right==*/}
-          <div className=" flex items.center gap-4">
+          <div className=" flex items-center gap-4">
             {token && user ? (
               <div>
                 <Link
