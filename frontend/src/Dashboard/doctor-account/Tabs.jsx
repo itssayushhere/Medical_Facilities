@@ -4,13 +4,13 @@ import { authContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Tabs = ({ tab, setTab }) => {
-
-    const { dispatch } = useContext(authContext); // Remove || and change || to =
+  const { dispatch } = useContext(authContext); // Remove || and change || to =
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch({ type: 'LOGOUT' }); // Corrected the syntax
-    navigate('/');
+    dispatch({ type: "LOGOUT" }); // Corrected the syntax
+    navigate("/");
+    window.location.reload();
   };
   return (
     <div>
@@ -49,8 +49,10 @@ const Tabs = ({ tab, setTab }) => {
           Profile
         </button>
         <div className="mt-[100px] w-full">
-          <button className="w-full bg-[#181A1E] p-3 text-[16px] leading-7 rounded-md text-white"
-          onClick={handleLogout}>
+          <button
+            className="w-full bg-[#181A1E] p-3 text-[16px] leading-7 rounded-md text-white"
+            onClick={handleLogout}
+          >
             Logout
           </button>
           <button className="w-full bg-red-600 mt-4 p-3 text-[16px] leading-7 rounded-md text-white">

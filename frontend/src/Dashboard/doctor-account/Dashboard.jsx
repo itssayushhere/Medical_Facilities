@@ -11,7 +11,6 @@ const Dashboard = () => {
   const [data, loading, error] = useFectchData(
     `${BASE_URL}/doctors/profile/me`
   );
-  console.log(data);
   const [tab, setTab] = useState("overview");
 
   return (
