@@ -10,8 +10,12 @@ const Profile = () => {
     gender: "",
     specialization: "",
     ticketPrice: null,
-    qualifications: [{ startingDate: "", endingDate: "", degree: "", university: "" }],
-    experiences: [{ startingDate: "", endingDate: "", position: "", hospitals: "" }],
+    qualifications: [
+      { startingDate: "", endingDate: "", degree: "", university: "" },
+    ],
+    experiences: [
+      { startingDate: "", endingDate: "", position: "", hospitals: "" },
+    ],
     timeslots: [{ day: "", startingTime: "", endingTime: "" }],
     about: "",
     photo: null,
@@ -36,12 +40,15 @@ const Profile = () => {
       [key]: [...prevFormData[key], item],
     }));
   };
-  
-  const handleDeleteItem = (key, index) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [key]: prevFormData[key].filter((_, i) => i !== index),
-    }));
+
+  const handleDeleteItem = (e, key, index) => {
+    e.preventDefault(); // Prevent the default button behavior
+    if (formData[key].length > 1) {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [key]: prevFormData[key].filter((_, i) => i !== index),
+      }));
+    }
   };
 
   const handleReusableInputChangeFunc = (event, index, key) => {
@@ -108,7 +115,9 @@ const Profile = () => {
             type="email"
             name="email"
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
             placeholder="Email"
             className="form__input"
             readOnly
@@ -122,7 +131,9 @@ const Profile = () => {
             type="tel"
             name="phone"
             value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, phone: e.target.value })
+            }
             placeholder="Phone Number"
             className="form__input"
           />
@@ -146,8 +157,10 @@ const Profile = () => {
               <select
                 name="gender"
                 value={formData.gender}
-                onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                className="form_input py-3.5"
+                onChange={(e) =>
+                  setFormData({ ...formData, gender: e.target.value })
+                }
+                className="form_input py-3.5 w-52"
               >
                 <option value="">Select</option>
                 <option value="male">Male</option>
@@ -159,8 +172,10 @@ const Profile = () => {
               <select
                 name="specialization"
                 value={formData.specialization}
-                onChange={(e) => setFormData({ ...formData, specialization: e.target.value })}
-                className="form_input py-3.5"
+                onChange={(e) =>
+                  setFormData({ ...formData, specialization: e.target.value })
+                }
+                className="form_input py-3.5 w-52"
               >
                 <option value="">Select</option>
                 <option value="Surgeon">Surgeon</option>
@@ -175,12 +190,14 @@ const Profile = () => {
                 placeholder="100"
                 name="ticketPrice"
                 value={formData.ticketPrice}
-                onChange={(e) => setFormData({ ...formData, ticketPrice: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, ticketPrice: e.target.value })
+                }
+                className="form_input p-2"
               />
             </div>
           </div>
         </div>
-
 
         {/* Qualifications */}
         <div className="mb-5">
@@ -196,7 +213,9 @@ const Profile = () => {
                       name="startingDate"
                       value={item.startingDate}
                       className="form__input w-full"
-                      onChange={(e) => handleInputChange(e, "qualifications", index)}
+                      onChange={(e) =>
+                        handleInputChange(e, "qualifications", index)
+                      }
                     />
                   </div>
                   <div>
@@ -206,7 +225,9 @@ const Profile = () => {
                       name="endingDate"
                       value={item.endingDate}
                       className="form__input w-full"
-                      onChange={(e) => handleInputChange(e, "qualifications", index)}
+                      onChange={(e) =>
+                        handleInputChange(e, "qualifications", index)
+                      }
                     />
                   </div>
                 </div>
@@ -218,7 +239,9 @@ const Profile = () => {
                       name="degree"
                       value={item.degree}
                       className="form__input w-full"
-                      onChange={(e) => handleInputChange(e, "qualifications", index)}
+                      onChange={(e) =>
+                        handleInputChange(e, "qualifications", index)
+                      }
                     />
                   </div>
                   <div>
@@ -228,13 +251,15 @@ const Profile = () => {
                       name="university"
                       value={item.university}
                       className="form__input w-full"
-                      onChange={(e) => handleInputChange(e, "qualifications", index)}
+                      onChange={(e) =>
+                        handleInputChange(e, "qualifications", index)
+                      }
                     />
                   </div>
                 </div>
                 <button
                   className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px]"
-                  onClick={() => handleDeleteItem("qualifications", index)}
+                  onClick={(e) => handleDeleteItem(e, "qualifications", index)}
                 >
                   <AiOutlineDelete />
                 </button>
@@ -263,7 +288,9 @@ const Profile = () => {
                       name="startingDate"
                       value={item.startingDate}
                       className="form__input w-full"
-                      onChange={(e) => handleInputChange(e, "experiences", index)}
+                      onChange={(e) =>
+                        handleInputChange(e, "experiences", index)
+                      }
                     />
                   </div>
                   <div>
@@ -273,7 +300,9 @@ const Profile = () => {
                       name="endingDate"
                       value={item.endingDate}
                       className="form__input w-full"
-                      onChange={(e) => handleInputChange(e, "experiences", index)}
+                      onChange={(e) =>
+                        handleInputChange(e, "experiences", index)
+                      }
                     />
                   </div>
                 </div>
@@ -285,7 +314,9 @@ const Profile = () => {
                       name="position"
                       value={item.position}
                       className="form__input w-full"
-                      onChange={(e) => handleInputChange(e, "experiences", index)}
+                      onChange={(e) =>
+                        handleInputChange(e, "experiences", index)
+                      }
                     />
                   </div>
                   <div>
@@ -295,13 +326,15 @@ const Profile = () => {
                       name="hospitals"
                       value={item.hospitals}
                       className="form__input w-full"
-                      onChange={(e) => handleInputChange(e, "experiences", index)}
+                      onChange={(e) =>
+                        handleInputChange(e, "experiences", index)
+                      }
                     />
                   </div>
                 </div>
                 <button
                   className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px]"
-                  onClick={() => handleDeleteItem("experiences", index)}
+                  onClick={(e) => handleDeleteItem(e, "experiences", index)}
                 >
                   <AiOutlineDelete />
                 </button>
@@ -361,13 +394,13 @@ const Profile = () => {
                       onChange={(e) => handleInputChange(e, "timeslots", index)}
                     />
                   </div>
-                  <button
-                    className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px]"
-                    onClick={() => handleDeleteItem("timeslots", index)}
-                  >
-                    <AiOutlineDelete />
-                  </button>
                 </div>
+                <button
+                  className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px]"
+                  onClick={(e) => handleDeleteItem(e, "timeslots", index)}
+                >
+                  <AiOutlineDelete />
+                </button>
               </div>
             </div>
           ))}
@@ -386,14 +419,20 @@ const Profile = () => {
             rows="5"
             value={formData.about}
             placeholder="Write About yourself"
-            onChange={(e) => setFormData({ ...formData, about: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, about: e.target.value })
+            }
             className="form__input"
           ></textarea>
         </div>
         <div className="mb-5 flex items-center gap-3">
           {formData.photo && (
             <figure className="w-[60px] h-[60px] rounded-full border-2 border-solid border-primaryColor flex-items">
-              <img src={formData.photo} className="w-full rounded-full" alt="User" />
+              <img
+                src={formData.photo}
+                className="w-full rounded-full"
+                alt="User"
+              />
             </figure>
           )}
           <div className="relative w-[130px] h-[50px]">

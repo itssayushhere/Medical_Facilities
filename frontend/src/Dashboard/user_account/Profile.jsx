@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import bcrypt from 'bcryptjs'; // Ensure bcryptjs is installed and imported
+import bcrypt from "bcryptjs"; // Ensure bcryptjs is installed and imported
 import uploadImageToCloudinary from "../../utils/uploadCLoudinary.js";
 import { BASE_URL, token } from "../../../config.js";
 import { toast } from "react-toastify";
@@ -14,9 +14,9 @@ const Profile = ({ user }) => {
     name: "",
     email: "",
     password: "",
-    photo: '',
+    photo: "",
     gender: "male",
-    bloodType: '',
+    bloodType: "",
   });
   const navigate = useNavigate();
   // const { dispatch } = useContext(authContext); // If you have a dispatch method from context
@@ -25,11 +25,11 @@ const Profile = ({ user }) => {
     if (user) {
       const { name, email, photo, gender, bloodType } = user;
       setFormData({
-        name: name || '',
-        email: email || '',
-        photo: photo || '',
-        gender: gender || 'male',
-        bloodType: bloodType || '',
+        name: name || "",
+        email: email || "",
+        photo: photo || "",
+        gender: gender || "male",
+        bloodType: bloodType || "",
       });
     }
   }, [user]);
@@ -58,6 +58,31 @@ const Profile = ({ user }) => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ ...formData, password: hashedPassword }),
+      });
+
+      const { message } = await res.json();
+      if (!res.ok) {
+        throw new Error(message);
+      }
+      setLoading(false);
+      toast.success(message);
+      navigate("/users/profile/me");
+    } catch (err) {
+      toast.error(err.message);
+      setLoading(false);
+    }
+  };
+
+  const deleteHandler = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/users/${user._id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       const { message } = await res.json();
@@ -154,7 +179,7 @@ const Profile = ({ user }) => {
               htmlFor="customFile"
               className="absolute top-0 left-0 w-full h-full flex items-center px-[0.75rem] py-[0.375rem] text-[15px] leading-6 overflow-hidden bg-[#0066ff46] text-headingColor font-semibold rounded-lg truncate cursor-pointer "
             >
-              {selectedFile ? selectedFile.name : 'Upload Photo'}
+              {selectedFile ? selectedFile.name : "Upload Photo"}
             </label>
           </div>
         </div>
@@ -164,14 +189,17 @@ const Profile = ({ user }) => {
             type="submit"
             className="w-full bg-primaryColor text-white text-18px leading-30px rounded-lg px-4 py-4"
           >
-            {loading ? (
-              <HashLoader size={25} color="#ffffff" />
-            ) : (
-              "Update"
-            )}
+            {loading ? <HashLoader size={25} color="#ffffff" /> : "Update"}
           </button>
         </div>
       </form>
+      <button
+        onClick={deleteHandler}
+        className="w-full bg-red-600 text-white text-18px leading-30px rounded-lg px-4 py-4 mt-4"
+        disabled={loading}
+      >
+        {loading ? <HashLoader size={25} color="#ffffff" /> : "Delete Profile"}
+      </button>
     </div>
   );
 };
