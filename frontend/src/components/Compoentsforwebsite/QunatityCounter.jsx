@@ -161,7 +161,6 @@ const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
               size={25}
               className="text-red-300 hover:text-red-500"
               onClick={() => Delete(id)}
-              
             />
           </button>
         </Grid>
