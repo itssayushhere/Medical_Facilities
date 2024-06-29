@@ -62,7 +62,9 @@ const Profile = () => {
       };
     });
   };
-
+  const submithandler = () =>{
+    
+  }
   const addQualification = (e) => {
     e.preventDefault();
     addItem("qualifications", {

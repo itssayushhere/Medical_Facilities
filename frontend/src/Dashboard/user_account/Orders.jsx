@@ -18,7 +18,7 @@ const Orders = ({ ondelete }) => {
   };
   // const [error, setError] = useState(null);
   const [cartDetails, setCartDetails] = useState([]);
-
+  const [loading, setloading] = useState(true);
   const fetchCartDetails = async () => {
     try {
       const response = await fetch(`${BASE_URL}/users/cart/getcart`, {
@@ -32,12 +32,15 @@ const Orders = ({ ondelete }) => {
       if (response.ok) {
         const data = await response.json();
         setCartDetails(data); // Assuming data is an array of cart items
+        setloading(false);
       } else {
         throw new Error("Failed to fetch cart details");
+        setloading(false);
       }
     } catch (error) {
       console.error("Error fetching cart details:", error);
       toast.error("Failed to fetch cart details");
+      setloading(false);
       // setError(error.message);
     }
   };
@@ -87,13 +90,24 @@ const Orders = ({ ondelete }) => {
             </div>
           ))
         ) : (
-          <div className="text-center">
+          <div>
+            {loading ? (
+              <div className="flex items-center w-full h-full justify-center">
+                <CircularIndeterminate/>
+              </div>
+            ) : (
+              <div className="text-center">
                 <div> Your Cart is Empty...</div>
                 <div>
-                  <button onClick={handleAddToCartClick} className="p-2 bg-blue-500 text-white font-medium rounded-xl hover:bg-blue-700" >
+                  <button
+                    onClick={handleAddToCartClick}
+                    className="p-2 bg-blue-500 text-white font-medium rounded-xl hover:bg-blue-700"
+                  >
                     Add to cart now
                   </button>
                 </div>
+              </div>
+            )}
           </div>
         )}
       </div>

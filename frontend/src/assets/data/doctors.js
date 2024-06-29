@@ -4,7 +4,7 @@ import doctorImg03 from "../images/doctor-img03.png";
 
 export const doctors = [
   {
-    id: "01",
+    id: "1",
     name: "Dr. Williams Karan",
     specialization: "Surgeon",
     avgRating: 4.8,
@@ -12,10 +12,10 @@ export const doctors = [
     photo: doctorImg01,
     totalPatients: 1500,
     hospital: "Mount Adora Hospital, Sylhet.",
-    link:'/doctors/2'
+    link:'/doctors/1'
   },
   {
-    id: "02",
+    id: "2",
     name: "Dr. Harry Lewis",
     specialization: "Neurologist",
     avgRating: 4.8,
@@ -23,10 +23,10 @@ export const doctors = [
     photo: doctorImg02,
     totalPatients: 1500,
     hospital: "Mount Adora Hospital, Sylhet.",
-    link:'/doctors/1'
+    link:'/doctors/2'
   },
   {
-    id: "03",
+    id: "3",
     name: "Dr. Ethan Parker",
     specialization: "Dermatologist",
     avgRating: 4.8,
