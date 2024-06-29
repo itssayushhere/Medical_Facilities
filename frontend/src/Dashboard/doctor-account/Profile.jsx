@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
+import { BASE_URL } from "../../../config";
 
-const Profile = () => {
+const Profile = ({ user }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,11 +17,48 @@ const Profile = () => {
     experiences: [
       { startingDate: "", endingDate: "", position: "", hospitals: "" },
     ],
-    timeslots: [{ day: "", startingTime: "", endingTime: "" }],
+    timeSlots: [{ day: "", startingTime: "", endingTime: "" }],
     about: "",
     photo: null,
   });
 
+  useEffect(() => {
+    if (user) {
+      const {
+        about,
+        name,
+        email,
+        photo,
+        gender,
+        bio,
+        specialization,
+        ticketPrice,
+        phone,
+        qualifications,
+        experiences,
+        timeSlots,
+      } = user;
+      setFormData({
+        name: name || "",
+        email: email || "",
+        photo: photo || "",
+        gender: gender || "male",
+        bio: bio || "",
+        specialization: specialization || "",
+        about: about || "",
+        ticketPrice: ticketPrice || "",
+        phone: phone || "",
+        qualifications: qualifications || [
+          { startingDate: "", endingDate: "", degree: "", university: "" },
+        ],
+        experiences: experiences || [
+          { startingDate: "", endingDate: "", position: "", hospitals: "" },
+        ],
+        timeSlots: timeSlots || [{ day: "", startingTime: "", endingTime: "" }],
+      });
+    }
+  }, [user]);
+  console.log(user);
   const handleInputChange = (e, section, index) => {
     const { name, value } = e.target;
     const updatedFormData = { ...formData };
@@ -62,9 +100,9 @@ const Profile = () => {
       };
     });
   };
-  const submithandler = () =>{
-    
-  }
+  const submithandler = async () => {
+    const res = await fetch(`${BASE_URL}/doctors/${id}`);
+  };
   const addQualification = (e) => {
     e.preventDefault();
     addItem("qualifications", {
@@ -87,13 +125,13 @@ const Profile = () => {
 
   const addTimeslot = (e) => {
     e.preventDefault();
-    addItem("timeslots", {
+    addItem("timeSlots", {
       day: "",
       startingTime: "",
       endingTime: "",
     });
   };
-
+  console.log(formData);
   return (
     <div>
       <h2 className="text-headingColor font-bold text-[24px] leading-9 mb-10">
@@ -170,7 +208,7 @@ const Profile = () => {
               </select>
             </div>
             <div>
-              <p className="form_label">Specialization*</p>
+              <p className="form_label">specialization*</p>
               <select
                 name="specialization"
                 value={formData.specialization}
@@ -354,7 +392,7 @@ const Profile = () => {
         {/* Timeslots */}
         <div className="mb-5">
           <p className="form_label">Time Slots*</p>
-          {formData.timeslots.map((item, index) => (
+          {formData.timeSlots.map((item, index) => (
             <div key={`timeslot-${index}`}>
               <div>
                 <div className="grid grid-cols-2 md-gird-cols-4 mb-[30px] gap-5">
@@ -363,7 +401,7 @@ const Profile = () => {
                     <select
                       name="day"
                       value={item.day}
-                      onChange={(e) => handleInputChange(e, "timeslots", index)}
+                      onChange={(e) => handleInputChange(e, "timeSlots", index)}
                       className="form__input py-3.5"
                     >
                       <option value="">Select</option>
@@ -383,7 +421,7 @@ const Profile = () => {
                       name="startingTime"
                       value={item.startingTime}
                       className="form__input w-full"
-                      onChange={(e) => handleInputChange(e, "timeslots", index)}
+                      onChange={(e) => handleInputChange(e, "timeSlots", index)}
                     />
                   </div>
                   <div>
@@ -393,13 +431,13 @@ const Profile = () => {
                       name="endingTime"
                       value={item.endingTime}
                       className="form__input w-full"
-                      onChange={(e) => handleInputChange(e, "timeslots", index)}
+                      onChange={(e) => handleInputChange(e, "timeSlots", index)}
                     />
                   </div>
                 </div>
                 <button
                   className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px]"
-                  onClick={(e) => handleDeleteItem(e, "timeslots", index)}
+                  onClick={(e) => handleDeleteItem(e, "timeSlots", index)}
                 >
                   <AiOutlineDelete />
                 </button>
