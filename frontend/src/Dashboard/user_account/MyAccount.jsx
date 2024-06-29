@@ -17,7 +17,7 @@ const MyAccount = () => {
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" }); // logout
-    window.location.reload()
+    window.location.reload();
   };
 
   return (
@@ -27,7 +27,7 @@ const MyAccount = () => {
         {error && <Error errMessage={error} />}
         {!loading && !error && (
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="pb-10 px-6 rounded-md bg-white shadow">
+            <div className="pb-10 px-6 rounded-md bg-white shadow w-full md:w-auto">
               <div className="flex items-center justify-center">
                 <figure className="w-[100px] h-[100px] rounded-full border-2 border-solid border-primaryColor overflow-hidden">
                   {userData.photo === "" ? (
@@ -72,7 +72,7 @@ const MyAccount = () => {
                 </button>
               </div>
             </div>
-            <div className="md:col-span-2 px-4 py-6 bg-white shadow rounded-md">
+            <div className="md:col-span-2 px-4 py-6 bg-white shadow rounded-md w-full md:w-auto">
               <Bar />
             </div>
           </div>

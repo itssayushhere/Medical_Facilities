@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
-import { BASE_URL } from "../../../config";
+import { BASE_URL, token } from "../../../config";
+import uploadImageToCloudinary from "../../utils/uploadCLoudinary";
+import { toast } from "react-toastify";
 
 const Profile = ({ user }) => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -58,19 +61,23 @@ const Profile = ({ user }) => {
       });
     }
   }, [user]);
-  console.log(user);
   const handleInputChange = (e, section, index) => {
     const { name, value } = e.target;
     const updatedFormData = { ...formData };
     updatedFormData[section][index][name] = value;
     setFormData({ ...updatedFormData });
   };
-
-  const handleFileInputChange = (e) => {};
-
-  const updateProfileHandler = async (e) => {
-    e.preventDefault();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const handleFileInputChange = async (event) => {
+    const file = event.target.files[0];
+    const data = await uploadImageToCloudinary(file);
+    setSelectedFile(data.url);
+    setFormData({ ...formData, photo: data.url });
   };
+
+  // const updateProfileHandler = async (e) => {
+  //   e.preventDefault();
+  // };
 
   const addItem = (key, item) => {
     setFormData((prevFormData) => ({
@@ -89,20 +96,45 @@ const Profile = ({ user }) => {
     }
   };
 
-  const handleReusableInputChangeFunc = (event, index, key) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => {
-      const updatedItems = [...prevFormData[key]];
-      updatedItems[index][name] = value;
-      return {
-        ...prevFormData,
-        [key]: updatedItems,
-      };
-    });
+  // const handleReusableInputChangeFunc = (event, index, key) => {
+  //   const { name, value } = event.target;
+  //   setFormData((prevFormData) => {
+  //     const updatedItems = [...prevFormData[key]];
+  //     updatedItems[index][name] = value;
+  //     return {
+  //       ...prevFormData,
+  //       [key]: updatedItems,
+  //     };
+  //   });
+  // };
+  const submithandler = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${BASE_URL}/doctors/${user._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await res.json();
+      toast.success("Updated the Profile");
+      window.location.reload();
+    } catch (error) {
+      toast.error("Error updating, please try again");
+    } finally {
+      setLoading(false);
+    }
   };
-  const submithandler = async () => {
-    const res = await fetch(`${BASE_URL}/doctors/${id}`);
-  };
+
   const addQualification = (e) => {
     e.preventDefault();
     addItem("qualifications", {
@@ -131,7 +163,6 @@ const Profile = ({ user }) => {
       endingTime: "",
     });
   };
-  console.log(formData);
   return (
     <div>
       <h2 className="text-headingColor font-bold text-[24px] leading-9 mb-10">
@@ -496,7 +527,7 @@ const Profile = ({ user }) => {
         <div className="mt-7">
           <button
             type="submit"
-            onClick={updateProfileHandler}
+            onClick={submithandler}
             className="bg-primaryColor text-white text-18px leading-[30px] w-full py-3 px-4"
           >
             Update profile

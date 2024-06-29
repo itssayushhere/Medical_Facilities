@@ -10,15 +10,17 @@ import Orders from "./Orders";
 import Profile from "./Profile";
 import useFetchData from "../../hooks/usefetchData";
 import { BASE_URL } from "../../../config";
-import { useDispatch , Provider } from "react-redux";
+import { useDispatch, Provider } from "react-redux";
 import store from "../../components/Compoentsforwebsite/Store";
+
 const Handlestorereolad = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch({ type: "Reload" });
   }, [dispatch]);
-  return null; 
+  return null;
 };
+
 export default function Bar() {
   const [userData, loading, error] = useFetchData(
     `${BASE_URL}/users/profile/me`
@@ -30,6 +32,7 @@ export default function Bar() {
       setTabKey(Date.now()); // Update the key to re-render Orders
     }
   };
+
   return (
     <Tabs defaultValue={2} onChange={handleTabChange}>
       <TabsList>
@@ -37,13 +40,13 @@ export default function Bar() {
         <Tab value={2}>Orders</Tab>
         <Tab value={3}>Profile</Tab>
       </TabsList>
-      <TabPanel value={1} >
+      <TabPanel value={1}>
         <MyBookings />
       </TabPanel>
       <TabPanel value={2}>
-        <Orders key={tabKey} /> 
+        <Orders key={tabKey} />
         <Provider store={store}>
-          <Handlestorereolad/>
+          <Handlestorereolad />
         </Provider>
       </TabPanel>
       <TabPanel value={3}>
@@ -110,7 +113,8 @@ const TabPanel = styled(BaseTabPanel)`
 
 const TabsList = styled(BaseTabsList)(
   ({ theme }) => `
-  min-width: 400px;
+  width: 100%;
+  max-width: 360px;
   background-color: ${blue[500]};
   border-radius: 12px;
   margin-bottom: 16px;

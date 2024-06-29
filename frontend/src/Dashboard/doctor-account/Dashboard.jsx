@@ -53,7 +53,7 @@ const Dashboard = () => {
                       </figure>
                       <div>
                         <span className="bg-[#CCF0F3] text-irisBlueColor py-1 px-4 lg:py-2 lg:px-6 rounded text-[12px] leading-4 lg:text-[16px] lg:leading-6 font-semibold">
-                          Surgeon
+                          {data.specialization}
                         </span>
                         <h3 className="text-[22px] leading-9 font-bold text-headingColor mt-3">
                           {data.name}

@@ -113,9 +113,11 @@ const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
         alignItems="center"
         className="p-4 border-x-2 border-x-slate-400 mb-4 rounded-2xl "
       >
-        <Grid item xs={6} sm={4}>
-          <h2 className="font-bold text-lg">{productName}</h2>
-          <p className="text-sm text-gray-600">Price: {price}</p>
+        <Grid item xs={12} sm={4} container justifyContent={"center"}>
+          <div>
+            <h2 className="font-bold text-lg">{productName}</h2>
+            <p className="text-sm text-gray-600">Price: {price}</p>
+          </div>
         </Grid>
         <Grid item xs={6} sm={3}>
           <div className="mr-8">
@@ -147,7 +149,7 @@ const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
             </div>
           </div>
         </Grid>
-        <Grid item xs={10} sm={3} container justifyContent={"center"}>
+        <Grid item xs={6} sm={3} container justifyContent={"end"}>
           <Grid item>
             <p className="font-bold text-lg">₹{price * quantity}</p>
             <Provider store={store}>
@@ -155,7 +157,7 @@ const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
             </Provider>
           </Grid>
         </Grid>
-        <Grid item xs={2} sm={2} container justifyContent={"end"}>
+        <Grid item xs={12} sm={2} container justifyContent={"center"}>
           <button className="ml-2">
             <RiDeleteBin6Line
               size={25}

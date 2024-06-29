@@ -19,7 +19,6 @@ const Profile = ({ user }) => {
     bloodType: "",
   });
   const navigate = useNavigate();
-  // const { dispatch } = useContext(authContext); // If you have a dispatch method from context
 
   useEffect(() => {
     if (user) {
@@ -73,30 +72,30 @@ const Profile = ({ user }) => {
     }
   };
 
-  const deleteHandler = async (event) => {
-    event.preventDefault();
-    setLoading(true);
-    try {
-      const res = await fetch(`${BASE_URL}/users/${user._id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  // const deleteHandler = async (event) => {
+  //   event.preventDefault();
+  //   setLoading(true);
+  //   try {
+  //     const res = await fetch(`${BASE_URL}/users/${user._id}`, {
+  //       method: "DELETE",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
 
-      const { message } = await res.json();
-      if (!res.ok) {
-        throw new Error(message);
-      }
-      setLoading(false);
-      toast.success(message);
-      navigate("/users/profile/me");
-    } catch (err) {
-      toast.error(err.message);
-      setLoading(false);
-    }
-  };
+  //     const { message } = await res.json();
+  //     if (!res.ok) {
+  //       throw new Error(message);
+  //     }
+  //     setLoading(false);
+  //     toast.success(message);
+  //     navigate("/users/profile/me");
+  //   } catch (err) {
+  //     toast.error(err.message);
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div className="mt-10">
@@ -193,13 +192,6 @@ const Profile = ({ user }) => {
           </button>
         </div>
       </form>
-      <button
-        onClick={deleteHandler}
-        className="w-full bg-red-600 text-white text-18px leading-30px rounded-lg px-4 py-4 mt-4"
-        disabled={loading}
-      >
-        {loading ? <HashLoader size={25} color="#ffffff" /> : "Delete Profile"}
-      </button>
     </div>
   );
 };
