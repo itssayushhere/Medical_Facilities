@@ -48,8 +48,7 @@ const DoctorAbout = ({ name, about, qualifications, experiences }) => {
             experiences.map((item) => (
               <li className="p-4 rounded bg-[#fff9ea]">
                 <span className="text-yellowColor text-[15px] leading-6 font-semibold">
-                  {formatDate(item.startingDate)}
-                  {formatDate(item.endingDate)}
+                  {formatDate(item.startingDate)} -{formatDate(item.endingDate)}
                 </span>
                 <p className="text-[16px] leading-6 font-medium text-textColor">
                   {item.position}
