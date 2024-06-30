@@ -170,7 +170,7 @@ const Profile = ({ user }) => {
       </h2>
       <form>
         <div className="mb-5">
-          <p className="form_label">Name*</p>
+          <p className="form_label font-semibold">Name*</p>
           <input
             type="text"
             name="name"
