@@ -16,19 +16,19 @@ export const register = async (req, res) => {
   const { email, password, name, role, photo, gender, username } = req.body;
   try {
     let user = null;
-    let check_add = null
+    let check_add = null;
 
     // Check if the user already exists based on the role
     if (role === "patient") {
       user = await User.findOne({ email });
-      check_add = await User.findOne({username})
+      check_add = await User.findOne({ username });
     } else if (role === "doctor") {
       user = await Doctor.findOne({ email });
-      check_add = await Doctor.findOne({username})
+      check_add = await Doctor.findOne({ username });
     }
 
-    if (check_add){
-      return res.status(400).json({message:'Username already exists'})
+    if (check_add) {
+      return res.status(400).json({ message: "Username already exists" });
     }
 
     // Check if the user already exists
@@ -65,15 +65,22 @@ export const register = async (req, res) => {
 
     // Save the user to the database
     await user.save();
-    console.log(user)
-    res.status(200).json({ success: true, message: "User successfully created" });
+    console.log(user);
+    res
+      .status(200)
+      .json({ success: true, message: "User successfully created" });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Internal server error, please try again" });
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "Internal server error, please try again",
+      });
   }
 };
 
 export const login = async (req, res) => {
-  const { email , password } = req.body;
+  const { email, password } = req.body;
   try {
     let user = null;
     const patient = await User.findOne({ email });
@@ -100,7 +107,12 @@ export const login = async (req, res) => {
 
     const token = generateToken(user);
 
-    const { password: userPassword, role, appointment, ...userData } = user._doc;
+    const {
+      password: userPassword,
+      role,
+      appointment,
+      ...userData
+    } = user._doc;
 
     res.status(200).json({
       status: true,

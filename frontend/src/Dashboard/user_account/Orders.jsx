@@ -51,8 +51,9 @@ const Orders = ({ ondelete }) => {
   };
   useEffect(() => {
     fetchCartDetails();
-  }, []);
-
+    console.log(cartDetails)
+  }, [cartDetails]);
+  
   return (
     <div className="container mx-auto p-4 w-[750px]">
       <div className="flex items-center m-3 p-4 border-x-gray-900 rounded-xl border-t-2 shadow-xl gap-4 justify-between">
@@ -93,7 +94,7 @@ const Orders = ({ ondelete }) => {
           <div>
             {loading ? (
               <div className="flex items-center w-full h-full justify-center">
-                <CircularIndeterminate/>
+                <CircularIndeterminate />
               </div>
             ) : (
               <div className="text-center">
@@ -120,7 +121,7 @@ const Orders = ({ ondelete }) => {
           </Provider>
         </div>
         <div>
-          <Button variant="contained" size="medium">
+          <Button variant="contained" size="medium" >
             Checkout
           </Button>
         </div>
