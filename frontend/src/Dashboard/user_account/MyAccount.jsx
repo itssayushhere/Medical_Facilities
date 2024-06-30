@@ -73,7 +73,7 @@ const MyAccount = () => {
               </div>
             </div>
             <div className="md:col-span-2 px-4 py-6 bg-white shadow rounded-md w-full md:w-auto">
-              <Bar />
+              <Bar userData={userData} />
             </div>
           </div>
         )}

@@ -5,6 +5,7 @@ import { Stripe } from "stripe";
 export const getCheckoutSession = async (req, res) => {
   const userId = req.userId;
   const items = req.body; // assuming body contains an array of items
+
   try {
     // Fetch the user
     const user = await User.findById(userId);
@@ -33,7 +34,7 @@ export const getCheckoutSession = async (req, res) => {
       payment_method_types: ["card"],
       mode: "payment",
       success_url: `${process.env.CLIENT_SITE_URL}`,
-      cancel_url: "http://localhost:5173/users/profile/me",
+      cancel_url: `http://localhost:5173/users/profile/me`,
       customer_email: user.email,
       line_items: lineItems,
     });
@@ -48,9 +49,11 @@ export const getCheckoutSession = async (req, res) => {
       session: session.id,
     });
     await checkout.save();
+
+    // Return the session URL to the client
     res
       .status(200)
-      .json({ success: true, message: "Successfully paid", session });
+      .json({ success: true, message: "Session created", url: session.url });
   } catch (error) {
     res
       .status(400)

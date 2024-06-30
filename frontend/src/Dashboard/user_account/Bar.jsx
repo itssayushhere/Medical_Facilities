@@ -21,10 +21,10 @@ const Handlestorereolad = () => {
   return null;
 };
 
-export default function Bar() {
-  const [userData, loading, error] = useFetchData(
-    `${BASE_URL}/users/profile/me`
-  );
+export default function Bar({ userData }) {
+  // const [userData, loading, error] = useFetchData(
+  //   `${BASE_URL}/users/profile/me`
+  // );
   const [tabKey, setTabKey] = React.useState(Date.now()); // Key to force re-render Orders
 
   const handleTabChange = (event, newValue) => {
@@ -44,7 +44,7 @@ export default function Bar() {
         <MyBookings />
       </TabPanel>
       <TabPanel value={2}>
-        <Orders key={tabKey} />
+        <Orders key={tabKey} id={userData._id} />
         <Provider store={store}>
           <Handlestorereolad />
         </Provider>

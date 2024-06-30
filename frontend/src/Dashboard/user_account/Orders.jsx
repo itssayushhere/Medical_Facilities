@@ -11,14 +11,16 @@ import { Button } from "@mui/material";
 import { Tooltip } from "@mui/material";
 import CircularIndeterminate from "../../components/Loader/Circular.jsx";
 import { FaShoppingCart } from "react-icons/fa";
-const Orders = ({ ondelete }) => {
+const Orders = ({ id }) => {
   const DisplayNumber = () => {
     const number = useSelector((state) => state.number); // Access the current state
     return <p>₹{number}</p>;
   };
+  console.log(id);
   // const [error, setError] = useState(null);
   const [cartDetails, setCartDetails] = useState([]);
   const [loading, setloading] = useState(true);
+
   const fetchCartDetails = async () => {
     try {
       const response = await fetch(`${BASE_URL}/users/cart/getcart`, {
@@ -51,8 +53,33 @@ const Orders = ({ ondelete }) => {
   };
   useEffect(() => {
     fetchCartDetails();
-    console.log(cartDetails)
-  }, [cartDetails]);
+  }, []);
+
+  const checkoutStripe = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/buyout/${id}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cartDetails)
+      });
+  
+      if (res.ok) {
+        const data = await res.json(); // Parse the response body
+        toast.success("Checkout Successful");
+        // Redirect to Stripe checkout
+        window.location.href = data.url;
+      } else {
+        const errorData = await res.json(); // Parse the error response
+        toast.error(errorData.message || "Some weird error");
+      }
+    } catch (error) {
+      console.error(error); // Log the error for debugging
+      toast.error("Checkout Error");
+    }
+  };
   
   return (
     <div className="container mx-auto p-4 w-[750px]">
@@ -85,7 +112,7 @@ const Orders = ({ ondelete }) => {
                   price={item.price}
                   id={item._id}
                   photo={item.productphoto}
-                  onItemDeleted={fetchCartDetails} // Pass the callback function
+                  onItemDeleted={fetchCartDetails}
                 />
               </Provider>
             </div>
@@ -121,7 +148,7 @@ const Orders = ({ ondelete }) => {
           </Provider>
         </div>
         <div>
-          <Button variant="contained" size="medium" >
+          <Button variant="contained" size="medium" onClick={checkoutStripe}>
             Checkout
           </Button>
         </div>
