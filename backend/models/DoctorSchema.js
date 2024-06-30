@@ -17,7 +17,7 @@ const DoctorSchema = new mongoose.Schema({
   qualifications: {
     type: Array,
   },
-
+  hospital:{type:String},
   experiences: {
     type: Array,
   },

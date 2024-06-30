@@ -13,7 +13,7 @@ const Profile = ({ user }) => {
     bio: "",
     gender: "",
     specialization: "",
-    ticketPrice: null,
+    ticketPrice: "",
     qualifications: [
       { startingDate: "", endingDate: "", degree: "", university: "" },
     ],
@@ -23,6 +23,7 @@ const Profile = ({ user }) => {
     timeSlots: [{ day: "", startingTime: "", endingTime: "" }],
     about: "",
     photo: null,
+    hospital: "",
   });
 
   useEffect(() => {
@@ -40,11 +41,12 @@ const Profile = ({ user }) => {
         qualifications,
         experiences,
         timeSlots,
+        hospital,
       } = user;
       setFormData({
         name: name || "",
         email: email || "",
-        photo: photo || "",
+        photo: photo || null,
         gender: gender || "male",
         bio: bio || "",
         specialization: specialization || "",
@@ -58,6 +60,7 @@ const Profile = ({ user }) => {
           { startingDate: "", endingDate: "", position: "", hospitals: "" },
         ],
         timeSlots: timeSlots || [{ day: "", startingTime: "", endingTime: "" }],
+        hospital: hospital || "",
       });
     }
   }, [user]);
@@ -124,9 +127,8 @@ const Profile = ({ user }) => {
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
-
-      const data = await res.json();
       toast.success("Updated the Profile");
+      const data = await res.json();
       window.location.reload();
     } catch (error) {
       toast.error("Error updating, please try again");
@@ -219,6 +221,18 @@ const Profile = ({ user }) => {
             placeholder="Bio"
             className="form__input"
             maxLength={800}
+          />
+        </div>
+        <div className="mb-5">
+          <p className="form_label font-semibold">Current Hospital*</p>
+          <input
+            type="text"
+            name="hospital"
+            value={formData.hospital}
+            onChange={(e) => setFormData({ ...formData, hospital: e.target.value })}
+            placeholder="Your Workplace"
+            className="form__input"
+            maxLength={50}
           />
         </div>
         <div className="mb-5">
