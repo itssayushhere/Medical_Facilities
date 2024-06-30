@@ -181,7 +181,7 @@ const Profile = ({ user }) => {
           />
         </div>
         <div className="mb-5">
-          <p className="form_label">Email*</p>
+          <p className="form_label font-semibold">Email*</p>
           <input
             type="email"
             name="email"
@@ -197,7 +197,7 @@ const Profile = ({ user }) => {
           />
         </div>
         <div className="mb-5">
-          <p className="form_label">Phone Number*</p>
+          <p className="form_label font-semibold">Phone Number*</p>
           <input
             type="tel"
             name="phone"
@@ -210,7 +210,7 @@ const Profile = ({ user }) => {
           />
         </div>
         <div className="mb-5">
-          <p className="form_label">Bio*</p>
+          <p className="form_label font-semibold">Bio*</p>
           <input
             type="text"
             name="bio"
@@ -224,7 +224,7 @@ const Profile = ({ user }) => {
         <div className="mb-5">
           <div className="grid grid-cols-3 gap-5 mb-[30px]">
             <div>
-              <p className="form_label">Gender*</p>
+              <p className="form_label font-semibold">Gender*</p>
               <select
                 name="gender"
                 value={formData.gender}
@@ -239,7 +239,7 @@ const Profile = ({ user }) => {
               </select>
             </div>
             <div>
-              <p className="form_label">specialization*</p>
+              <p className="form_label font-semibold">specialization*</p>
               <select
                 name="specialization"
                 value={formData.specialization}
@@ -255,7 +255,7 @@ const Profile = ({ user }) => {
               </select>
             </div>
             <div>
-              <p className="form_label">Charges*</p>
+              <p className="form_label font-semibold">Charges*</p>
               <input
                 type="number"
                 placeholder="100"
@@ -272,7 +272,7 @@ const Profile = ({ user }) => {
 
         {/* Qualifications */}
         <div className="mb-5">
-          <p className="form_label">Qualifications*</p>
+          <p className="form_label font-semibold">Qualifications*</p>
           {formData.qualifications.map((item, index) => (
             <div key={`qualification-${index}`}>
               <div>
@@ -347,7 +347,7 @@ const Profile = ({ user }) => {
 
         {/* Experiences */}
         <div className="mb-5">
-          <p className="form_label">Experiences*</p>
+          <p className="form_label font-semibold">Experiences*</p>
           {formData.experiences.map((item, index) => (
             <div key={`experience-${index}`}>
               <div>
@@ -422,7 +422,7 @@ const Profile = ({ user }) => {
 
         {/* Timeslots */}
         <div className="mb-5">
-          <p className="form_label">Time Slots*</p>
+          <p className="form_label font-semibold">Time Slots*</p>
           {formData.timeSlots.map((item, index) => (
             <div key={`timeslot-${index}`}>
               <div>
