@@ -4,11 +4,11 @@ const DoctorSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   name: { type: String, required: true },
-  username: { type:String,required:true },
+  username: { type: String, required: true },
   phone: { type: Number },
   photo: { type: String },
   ticketPrice: { type: Number },
-  gender:{type:String},
+  gender: { type: String },
   role: {
     type: String,
   },
@@ -18,7 +18,7 @@ const DoctorSchema = new mongoose.Schema({
   qualifications: {
     type: Array,
   },
-  hospital:{type:String},
+  hospital: { type: String },
   experiences: {
     type: Array,
   },
