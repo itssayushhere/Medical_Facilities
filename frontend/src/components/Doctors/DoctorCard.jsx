@@ -2,6 +2,9 @@ import React from "react";
 import starIcon from "../../assets/images/Star.png";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
+import doctorImg01 from "../../assets/images/doctor-img01.png";
+import doctorImg02 from "../../assets/images/hero-img01.png";
+
 const DoctorCard = ({ doctor }) => {
   const {
     name,
@@ -11,14 +14,20 @@ const DoctorCard = ({ doctor }) => {
     totalRating,
     hospital,
     totalPatients,
+    gender
   } = doctor;
   return (
     <div className="p-3 lg:p-5 ">
       <div>
-        <img src={photo} className="" alt="" />
+        {photo == null ? (
+          gender == "female" ? (<img src={doctorImg01} className="" alt="" />):(<img src={doctorImg02} className="" alt="" />)
+          
+        ) : (
+          <img src={photo} className="" alt="" />
+        )}
       </div>
 
-      <h2 className="text-[18px] leading-[30px] lg:text-[20px] lg:leading-9 Otext-headingColor font-[700] mt-3 lg:mt-5 " >
+      <h2 className="text-[18px] leading-[30px] lg:text-[20px] lg:leading-9 Otext-headingColor font-[700] mt-3 lg:mt-5 ">
         {name}
       </h2>
       <div className="mt-2 lg:mt-2 flex items-center justify-between ">
@@ -45,11 +54,11 @@ const DoctorCard = ({ doctor }) => {
           </p>
         </div>
         <Link
-                  to={'doctors'}
-                  className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E]  flex items-center justify-center group hover:bg-primaryColor hover:border-none"
-                >
-                  <BsArrowRight className="group-hover:text-white w-6 h-5" />
-                </Link>
+          to={"doctors"}
+          className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E]  flex items-center justify-center group hover:bg-primaryColor hover:border-none"
+        >
+          <BsArrowRight className="group-hover:text-white w-6 h-5" />
+        </Link>
       </div>
     </div>
   );

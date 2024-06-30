@@ -8,6 +8,7 @@ const DoctorSchema = new mongoose.Schema({
   phone: { type: Number },
   photo: { type: String },
   ticketPrice: { type: Number },
+  gender:{type:String},
   role: {
     type: String,
   },
