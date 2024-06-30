@@ -12,7 +12,6 @@ const Doctors = () => {
   const [doctor, setDoctor] = useState([]);
 
   const [data, loading, error] = useFectchData(`${BASE_URL}/doctors`);
-  console.log(data);
   return (
     <>
       {/* Search Section */}
@@ -40,7 +39,7 @@ const Doctors = () => {
             <div className="container">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
                 {data.map((doctor) => (
-                  <DoctorCard key={doctor.id} doctor={doctor} />
+                  <DoctorCard key={doctor._id} doctor={doctor} />
                 ))}
               </div>
             </div>

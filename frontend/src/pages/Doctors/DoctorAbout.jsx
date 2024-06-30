@@ -20,8 +20,8 @@ const DoctorAbout = ({ name, about, qualifications, experiences }) => {
         </h3>
         <ul className="pt-4 md:p-5">
           {qualifications &&
-            qualifications.map((item) => (
-              <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px] bg-slate-100 p-4 rounded">
+            qualifications.map((item,index) => (
+              <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px] bg-slate-100 p-4 rounded" key={index}>
                 <div>
                   <span className="text-irisBlueColor text-[15px] leading-6 font-bold">
                     {formatDate(item.startingDate)} -{" "}
@@ -45,8 +45,8 @@ const DoctorAbout = ({ name, about, qualifications, experiences }) => {
         </h3>
         <ul className="grid sm:grid-cols-2 gap-[30px] pt-4 md:p-5">
           {experiences &&
-            experiences.map((item) => (
-              <li className="p-4 rounded bg-[#fff9ea]">
+            experiences.map((item,index) => (
+              <li className="p-4 rounded bg-[#fff9ea]" key={index}>
                 <span className="text-yellowColor text-[15px] leading-6 font-semibold">
                   {formatDate(item.startingDate)} -{formatDate(item.endingDate)}
                 </span>

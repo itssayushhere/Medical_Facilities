@@ -14,14 +14,18 @@ const DoctorCard = ({ doctor }) => {
     totalRating,
     hospital,
     totalPatients,
-    gender
+    gender,
+    _id,
   } = doctor;
   return (
     <div className="p-3 lg:p-5 ">
       <div>
         {photo == null ? (
-          gender == "female" ? (<img src={doctorImg01} className="" alt="" />):(<img src={doctorImg02} className="" alt="" />)
-          
+          gender == "male" ? (
+            <img src={doctorImg01} className="" alt="doctor Image" />
+          ) : (
+            <img src={doctorImg02} className="" alt="doctor Image" />
+          )
         ) : (
           <img src={photo} className="" alt="" />
         )}
@@ -54,7 +58,7 @@ const DoctorCard = ({ doctor }) => {
           </p>
         </div>
         <Link
-          to={"doctors"}
+          to={`/doctors/${_id}`}
           className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E]  flex items-center justify-center group hover:bg-primaryColor hover:border-none"
         >
           <BsArrowRight className="group-hover:text-white w-6 h-5" />

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useContext } from "react";
 import logo from "../../assets/images/logo.png";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import { authContext } from "../../context/AuthContext";
 import Avatars from "../../Dashboard/user_account/Avatar";
@@ -30,6 +30,7 @@ const navLinks = [
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   const { user, role, token } = useContext(authContext);
@@ -84,7 +85,7 @@ const Header = () => {
             </ul>
           </div>
           {/*==nav right==*/}
-          <div className=" flex items-center gap-4">
+          <div className="flex items-center gap-4">
             {token && user ? (
               <div>
                 <Link
@@ -108,11 +109,13 @@ const Header = () => {
                 </Link>
               </div>
             ) : (
-              <Link to={"/login"}>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 font-bold">
-                  Login
-                </button>
-              </Link>
+              location.pathname !== "/login" && (
+                <Link to={"/login"}>
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 font-bold">
+                    Login
+                  </button>
+                </Link>
+              )
             )}
 
             <span className="md:hidden" onClick={toggleMenu}>
