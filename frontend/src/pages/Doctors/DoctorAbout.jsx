@@ -21,9 +21,9 @@ const DoctorAbout = ({ name, about, qualifications, experiences }) => {
         <ul className="pt-4 md:p-5">
           {qualifications &&
             qualifications.map((item) => (
-              <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
+              <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px] bg-slate-100 p-4 rounded">
                 <div>
-                  <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
+                  <span className="text-irisBlueColor text-[15px] leading-6 font-bold">
                     {formatDate(item.startingDate)} -{" "}
                     {formatDate(item.endingDate)}
                   </span>
