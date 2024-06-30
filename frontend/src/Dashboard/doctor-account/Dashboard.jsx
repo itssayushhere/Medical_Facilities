@@ -68,7 +68,7 @@ const Dashboard = () => {
                           </span>
                         </div>
                         <p className="text_para font-[15px] lg:max-w-[390px] leading-6">
-                          Doctor Bio
+                          {data.bio}
                         </p>
                       </div>
                     </div>
