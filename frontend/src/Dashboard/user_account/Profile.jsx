@@ -65,6 +65,7 @@ const Profile = ({ user }) => {
       }
       setLoading(false);
       toast.success(message);
+      window.location.reload()
       navigate("/users/profile/me");
     } catch (err) {
       toast.error(err.message);
