@@ -17,18 +17,20 @@ const Profile = ({ user }) => {
     photo: "",
     gender: "male",
     bloodType: "",
+    username:""
   });
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
-      const { name, email, photo, gender, bloodType } = user;
+      const { name, email, photo, gender, bloodType ,username } = user;
       setFormData({
         name: name || "",
         email: email || "",
         photo: photo || "",
         gender: gender || "male",
         bloodType: bloodType || "",
+        username : username || ""
       });
     }
   }, [user]);
@@ -130,6 +132,16 @@ const Profile = ({ user }) => {
             placeholder="🔐Password"
             name="password"
             value={formData.password}
+            onChange={handleInputChange}
+            className="w-full pr-4 px-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-16px leading-7 placeholder:text-textColor rounded-md cursor-pointer"
+            required
+          />
+        </div><div className="mb-5 mt-5">
+          <input
+            type="text"
+            placeholder="username"
+            name="username"
+            value={formData.username}
             onChange={handleInputChange}
             className="w-full pr-4 px-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-16px leading-7 placeholder:text-textColor rounded-md cursor-pointer"
             required

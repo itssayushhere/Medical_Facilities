@@ -17,7 +17,7 @@ export const getCheckoutSession = async (req, res) => {
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-    const lineItems = items.map(item => ({
+    const lineItems = items.map((item) => ({
       price_data: {
         currency: "usd",
         unit_amount: item.price * 100,
@@ -33,17 +33,20 @@ export const getCheckoutSession = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: `${process.env.CLIENT_SITE_URL}`,
-      cancel_url: `http://localhost:5173/users/profile/me`,
+      success_url: `${process.env.SUCCESS_SITE_URL}`,
+      cancel_url: `${process.env.CANCEL_SITE_URL}`,
       customer_email: user.email,
       line_items: lineItems,
     });
 
     // Create new booking
-    const totalAmount = items.reduce((total, item) => total + item.price * item.quantity, 0);
+    const totalAmount = items.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
     const checkout = new Checkout({
       user: user._id,
-      Medicine: items.map(item => item.productName).join(", "), // concatenating product names
+      Medicine: items.map((item) => item.productName).join(", "), // concatenating product names
       Quantity: items.reduce((total, item) => total + item.quantity, 0), // summing up quantities
       Total: totalAmount,
       session: session.id,
@@ -55,8 +58,10 @@ export const getCheckoutSession = async (req, res) => {
       .status(200)
       .json({ success: true, message: "Session created", url: session.url });
   } catch (error) {
-    res
-      .status(400)
-      .json({ success: false, message: "Error creating checkout session", error });
+    res.status(400).json({
+      success: false,
+      message: "Error creating checkout session",
+      error,
+    });
   }
 };
