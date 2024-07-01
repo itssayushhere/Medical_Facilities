@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { BASE_URL, token } from "../../../config";
-import QuantityCounter from "../../components/Compoentsforwebsite/QunatityCounter.jsx";
+import { BASE_URL, token } from "../../config.js";
+import QuantityCounter from "../components/Compoentsforwebsite/QunatityCounter.jsx";
 import { useSelector, Provider, useDispatch } from "react-redux";
-import store from "../../components/Compoentsforwebsite/Store.jsx";
+import store from "../components/Compoentsforwebsite/Store.jsx";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import { Button } from "@mui/material";
 import { Tooltip } from "@mui/material";
-import CircularIndeterminate from "../../components/Loader/Circular.jsx";
+import CircularIndeterminate from "../components/Loader/Circular.jsx";
 import { FaShoppingCart } from "react-icons/fa";
-const Orders = ({ id }) => {
+const Orders = () => {
   const DisplayNumber = () => {
     const number = useSelector((state) => state.number); // Access the current state
     return <p>₹{number}</p>;
   };
-  console.log(id);
+
   // const [error, setError] = useState(null);
   const [cartDetails, setCartDetails] = useState([]);
   const [loading, setloading] = useState(true);
@@ -57,15 +57,15 @@ const Orders = ({ id }) => {
 
   const checkoutStripe = async () => {
     try {
-      const res = await fetch(`${BASE_URL}/buyout/${id}`, {
+      const res = await fetch(`${BASE_URL}/buyout/now`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(cartDetails)
+        body: JSON.stringify(cartDetails),
       });
-  
+
       if (res.ok) {
         const data = await res.json(); // Parse the response body
         toast.success("Checkout Successful");
@@ -80,7 +80,7 @@ const Orders = ({ id }) => {
       toast.error("Checkout Error");
     }
   };
-  
+
   return (
     <div className="container mx-auto p-4 w-[750px]">
       <div className="flex items-center m-3 p-4 border-x-gray-900 rounded-xl border-t-2 shadow-xl gap-4 justify-between">

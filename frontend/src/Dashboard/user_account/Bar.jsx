@@ -6,12 +6,10 @@ import { TabPanel as BaseTabPanel } from "@mui/base/TabPanel";
 import { buttonClasses } from "@mui/base/Button";
 import { Tab as BaseTab, tabClasses } from "@mui/base/Tab";
 import MyBookings from "./MyBookings";
-import Orders from "./Orders";
+
 import Profile from "./Profile";
-import useFetchData from "../../hooks/usefetchData";
-import { BASE_URL } from "../../../config";
+
 import { useDispatch, Provider } from "react-redux";
-import store from "../../components/Compoentsforwebsite/Store";
 
 const Handlestorereolad = () => {
   const dispatch = useDispatch();
@@ -22,35 +20,17 @@ const Handlestorereolad = () => {
 };
 
 export default function Bar({ userData }) {
-  // const [userData, loading, error] = useFetchData(
-  //   `${BASE_URL}/users/profile/me`
-  // );
-  const [tabKey, setTabKey] = React.useState(Date.now()); // Key to force re-render Orders
-
-  const handleTabChange = (event, newValue) => {
-    if (newValue === 2) {
-      setTabKey(Date.now()); // Update the key to re-render Orders
-    }
-  };
-
   return (
-    <Tabs defaultValue={2} onChange={handleTabChange}>
+    <Tabs defaultValue={1} >
       <TabsList>
-        <Tab value={1}>Bookings</Tab>
-        <Tab value={2}>Orders</Tab>
-        <Tab value={3}>Profile</Tab>
+        <Tab value={1}>Profile</Tab>
+        <Tab value={2}>Bookings</Tab>
       </TabsList>
       <TabPanel value={1}>
-        <MyBookings />
+        <Profile user={userData} />
       </TabPanel>
       <TabPanel value={2}>
-        <Orders key={tabKey} id={userData._id} />
-        <Provider store={store}>
-          <Handlestorereolad />
-        </Provider>
-      </TabPanel>
-      <TabPanel value={3}>
-        <Profile user={userData} />
+        <MyBookings />
       </TabPanel>
     </Tabs>
   );

@@ -4,7 +4,7 @@ import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import { authContext } from "../../context/AuthContext";
 import Avatars from "../../Dashboard/user_account/Avatar";
-
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 const navLinks = [
   {
     path: "/home",
@@ -55,16 +55,26 @@ const Header = () => {
 
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
+  const handlecart = () => {
+    navigate("/orders");
+    window.location.reload();
+  };
   return (
     <header className="header flex items-center" ref={headerRef}>
       <div className="container">
         <div className="flex items-center justify-between ">
           {/*====logo===== */}
+          <div className="flex items-center justify-center gap-2">
+          <span className="md:hidden" onClick={toggleMenu}>
+              <BiMenu className="w-7 h-11 cursor-pointer " />
+            </span>
           <Link to={"/"}>
             <div>
               <img src={logo} alt="Logo" />
             </div>
           </Link>
+
+          </div>
           {/*===menu====*/}
           <div className="navigation" ref={menuRef} onClick={toggleMenu}>
             <ul className="menu flex items-center gap-[2.7rem] ">
@@ -87,7 +97,10 @@ const Header = () => {
           {/*==nav right==*/}
           <div className="flex items-center gap-4">
             {token && user ? (
-              <div>
+              <div className="flex items-center justify-center gap-4">
+                <button onClick={handlecart}>
+                  <ShoppingCartIcon color="primary" sx={{ fontSize: 27 }} />
+                </button>
                 <Link
                   to={`${
                     role === "doctor"
@@ -117,10 +130,6 @@ const Header = () => {
                 </Link>
               )
             )}
-
-            <span className="md:hidden" onClick={toggleMenu}>
-              <BiMenu className="w-7 h-11 cursor-pointer " />
-            </span>
           </div>
         </div>
       </div>
