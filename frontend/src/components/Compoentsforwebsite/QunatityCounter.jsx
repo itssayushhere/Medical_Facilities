@@ -56,7 +56,7 @@ const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
           position: "bottom-center",
         });
         onItemDeleted();
-        dispatch({ type: "Decrease", payload: price });
+        dispatch({ type: "Decrease", payload: price * quantity });
       } else {
         // Handle the case where the response is not ok
         const errorMessage = await response.text();
