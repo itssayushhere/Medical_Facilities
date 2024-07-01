@@ -5,6 +5,7 @@ import { BiMenu } from "react-icons/bi";
 import { authContext } from "../../context/AuthContext";
 import Avatars from "../../Dashboard/user_account/Avatar";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Tooltip } from "@mui/material";
 const navLinks = [
   {
     path: "/home",
@@ -65,15 +66,16 @@ const Header = () => {
         <div className="flex items-center justify-between ">
           {/*====logo===== */}
           <div className="flex items-center justify-center gap-2">
-          <span className="md:hidden" onClick={toggleMenu}>
-              <BiMenu className="w-7 h-11 cursor-pointer " />
-            </span>
-          <Link to={"/"}>
-            <div>
-              <img src={logo} alt="Logo" />
-            </div>
-          </Link>
-
+            <Tooltip title="Menu">
+              <span className="md:hidden" onClick={toggleMenu}>
+                <BiMenu className="w-7 h-11 cursor-pointer " />
+              </span>
+            </Tooltip>
+            <Link to={"/"}>
+              <div>
+                <img src={logo} alt="Logo" />
+              </div>
+            </Link>
           </div>
           {/*===menu====*/}
           <div className="navigation" ref={menuRef} onClick={toggleMenu}>
@@ -98,28 +100,32 @@ const Header = () => {
           <div className="flex items-center gap-4">
             {token && user ? (
               <div className="flex items-center justify-center gap-4">
-                <button onClick={handlecart}>
-                  <ShoppingCartIcon color="primary" sx={{ fontSize: 27 }} />
-                </button>
-                <Link
-                  to={`${
-                    role === "doctor"
-                      ? "/doctors/profile/me"
-                      : "/users/profile/me"
-                  }`}
-                >
-                  <figure className="w-[35px] h-[35px] rounded-full cursor-pointer overflow-hidden ">
-                    {user?.photo ? (
-                      <img
-                        src={user.photo}
-                        className="w-full rounded-full"
-                        alt="User's Photo"
-                      />
-                    ) : (
-                      <Avatars Fullname={user.name} size={34} />
-                    )}
-                  </figure>
-                </Link>
+                <Tooltip title="Cart">
+                  <button onClick={handlecart}>
+                    <ShoppingCartIcon color="primary" sx={{ fontSize: 27 }} />
+                  </button>
+                </Tooltip>
+                <Tooltip title="Profile">
+                  <Link
+                    to={`${
+                      role === "doctor"
+                        ? "/doctors/profile/me"
+                        : "/users/profile/me"
+                    }`}
+                  >
+                    <figure className="w-[35px] h-[35px] rounded-full cursor-pointer overflow-hidden ">
+                      {user?.photo ? (
+                        <img
+                          src={user.photo}
+                          className="w-full rounded-full"
+                          alt="User's Photo"
+                        />
+                      ) : (
+                        <Avatars Fullname={user.name} size={34} />
+                      )}
+                    </figure>
+                  </Link>
+                </Tooltip>
               </div>
             ) : (
               location.pathname !== "/login" && (

@@ -5,14 +5,12 @@ import { Provider, useDispatch } from "react-redux";
 import { BASE_URL, token } from "../../../config";
 import { toast } from "react-toastify";
 import { RiDeleteBin6Line } from "react-icons/ri";
-
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import { Tooltip } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -157,15 +155,13 @@ const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
           </Grid>
         </Grid>
         <Grid item xs={12} sm={2} container justifyContent={"center"}>
-          <Tooltip title="Delete">
           <button className="ml-2">
             <RiDeleteBin6Line
               size={25}
               className="text-red-300 hover:text-red-500"
               onClick={() => Delete(id)}
-              />
+            />
           </button>
-              </Tooltip>
         </Grid>
       </Grid>
     </Box>
