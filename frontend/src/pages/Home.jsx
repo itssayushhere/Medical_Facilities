@@ -9,7 +9,7 @@ import icon02 from "../assets/images/icon02.png";
 import videoIcon from "../assets/images/video-icon.png";
 import featureImg from "../assets/images/feature-img.png";
 import avatarIcon from "../assets/images/avatar-icon.png";
-import faqImg from '../assets/images/faq-img.png';
+import faqImg from "../assets/images/faq-img.png";
 import About from "../components/about/About";
 import { BsArrowRight } from "react-icons/bs";
 import ServicesList from "../components/services/ServicesList";
@@ -68,14 +68,21 @@ const Home = () => {
             <div className="flex gap-[40px] justify-end">
               <div className=" ">
                 <img
+                  loading="lazy"
                   src={heroImg02}
                   alt=""
                   className="w-full mb-[30px] rounded-2xl  object-cover "
                 />
-                <img loading="lazy" src={heroImg03} alt="" className="w-full  rounded-2xl " />
+                <img
+                  loading="lazy"
+                  src={heroImg03}
+                  alt=""
+                  className="w-full  rounded-2xl "
+                />
               </div>
               <div className="">
                 <img
+                  loading="lazy"
                   src={heroImg01}
                   alt=""
                   className=" rounded-3xl mt-[40px] "
@@ -210,6 +217,7 @@ const Home = () => {
             {/* ===================feature img===================== */}
             <div className="relative z-10 xl:w-[770px] flex justify-center mt-[50px] lg:mt-0 mr-7">
               <img
+                loading="lazy"
                 src={featureImg}
                 alt=""
                 className="lg:w-3/5 w-3/4 rounded-full shadow-panelShadow"
@@ -265,11 +273,18 @@ const Home = () => {
         <div className="contianer">
           <div className="flex justify-between gap-[50px] lg:gap-0">
             <div className="w-1/2 hidden md:block ml-8 px-5">
-              <img loading="lazy" src={faqImg} alt="" className="ml-10 size-18"/>
+              <img
+                loading="lazy"
+                src={faqImg}
+                alt=""
+                className="ml-10 size-18"
+              />
             </div>
             <div className="w-full md:w-1/2 ">
-              <h2 className="heading  lg:ml-0 ml-14">Most ask questions by patients</h2>
-              <FaqList/>
+              <h2 className="heading  lg:ml-0 ml-14">
+                Most ask questions by patients
+              </h2>
+              <FaqList />
             </div>
           </div>
         </div>
@@ -287,7 +302,7 @@ const Home = () => {
               unmatched, Expert health care.
             </p>
           </div>
-            <Testimonial/>
+          <Testimonial />
         </div>
       </section>
       {/* ===============testimonial end ============== */}
