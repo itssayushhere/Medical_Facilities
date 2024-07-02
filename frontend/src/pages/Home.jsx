@@ -72,7 +72,7 @@ const Home = () => {
                   alt=""
                   className="w-full mb-[30px] rounded-2xl  object-cover "
                 />
-                <img src={heroImg03} alt="" className="w-full  rounded-2xl " />
+                <img loading="lazy" src={heroImg03} alt="" className="w-full  rounded-2xl " />
               </div>
               <div className="">
                 <img
@@ -99,7 +99,7 @@ const Home = () => {
             {/* ========Doctor======= */}
             <div className="py-[30px] px-5 ">
               <div className="flex items-center justify-center">
-                <img src={icon01} alt="" />
+                <img loading="lazy" src={icon01} alt="" />
               </div>
               <div className="mt-[30px]">
                 <h2 className="text-[26px] leading-9 text-headingColor font-[600] text-center">
@@ -120,7 +120,7 @@ const Home = () => {
             {/* =======Services====== */}
             <div className="py-[30px] px-5 ">
               <div className="flex items-center justify-center">
-                <img src={icon02} alt="" />
+                <img loading="lazy" src={icon02} alt="" />
               </div>
               <div className="mt-[30px]">
                 <h2 className="text-[26px] leading-9 text-headingColor font-[600] text-center">
@@ -141,7 +141,7 @@ const Home = () => {
             {/* ===========Book health checkup====== */}
             <div className="py-[30px] px-5 ">
               <div className="flex items-center justify-center">
-                <img src={icon03} alt="" />
+                <img loading="lazy" src={icon03} alt="" />
               </div>
               <div className="mt-[30px]">
                 <h2 className="text-[26px] leading-9 text-headingColor font-[600] text-center">
@@ -226,14 +226,14 @@ const Home = () => {
                     </p>
                   </div>
                   <span className="w-5 h-5 lg:w-[34px] lg:h-[34px] flex items-center justify-center bg-yellowColor rounded py-1 px-[6px] lg:py-3  ">
-                    <img src={videoIcon} alt="" className="" />
+                    <img loading="lazy" src={videoIcon} alt="" className="" />
                   </span>
                 </div>
                 <div className="w-[115px] lg:w-[96px] bg-[#CCf0F3] py-1 px-2 lg:px-[10px] text-[8px]leading-[8px] lg:text-[12px] lg:leading-4 text-irisBlueColor font-[500] mt-2 lg:mt-4 rounded-full">
                   Consultation
                 </div>
                 <div className="flex items-center gap-[6px] lg:gap-[10px] mt-2 lg:mt-[18px]">
-                  <img src={avatarIcon} alt="" />
+                  <img loading="lazy" src={avatarIcon} alt="" />
                   <h4 className="text-[13px] leading-3 lg:text-[16px] lg:leading-[22px] font-[700]text-headingColor">
                     Adiyta Thakur
                   </h4>
@@ -265,7 +265,7 @@ const Home = () => {
         <div className="contianer">
           <div className="flex justify-between gap-[50px] lg:gap-0">
             <div className="w-1/2 hidden md:block ml-8 px-5">
-              <img src={faqImg} alt="" className="ml-10 size-18"/>
+              <img loading="lazy" src={faqImg} alt="" className="ml-10 size-18"/>
             </div>
             <div className="w-full md:w-1/2 ">
               <h2 className="heading  lg:ml-0 ml-14">Most ask questions by patients</h2>
