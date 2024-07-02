@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import { formatDate } from "../../utils/formatDate";
 
 const DoctorAbout = ({ name, about, qualifications, experiences }) => {

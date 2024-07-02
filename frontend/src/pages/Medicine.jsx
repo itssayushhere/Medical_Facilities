@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
-import img from "../assets/images/example.jpg";
 import { BASE_URL, token } from "../../config";
 import { toast } from "react-toastify";
-import { Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../context/AuthContext";
 const Medicine = () => {

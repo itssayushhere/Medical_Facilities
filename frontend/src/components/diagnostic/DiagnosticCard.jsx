@@ -1,6 +1,5 @@
 import React from "react";
-import starIcon from "../../assets/images/Star.png";
-import { feature } from "../../assets/data/feature";
+import starIcon from "../../assets/images/Star.webp";
 const DiagnosticCard = ({ feature }) => {
   const { Name, Description, photo, person, totalrating } = feature;
 

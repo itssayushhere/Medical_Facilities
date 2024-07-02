@@ -1,5 +1,5 @@
 import React from 'react'
-import photo from '../../assets/images/eye.png'
+import photo from '../../assets/images/eye.webp'
 const CheckupCard = () => {
   // const {id,Name,photo,price} = details
   return (

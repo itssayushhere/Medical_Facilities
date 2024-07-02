@@ -1,6 +1,6 @@
-import xray from "../images/x-ray.png";
-import blood from "../images/blood-test.png";
-import eye from "../images/eye.png";
+import xray from "../images/x-ray.webp";
+import blood from "../images/blood-test.webp";
+import eye from "../images/eye.webp";
 import { BsMenuButton } from "react-icons/bs";
 export const feature = [
   {

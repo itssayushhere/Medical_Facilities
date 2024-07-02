@@ -1,6 +1,6 @@
 import React from 'react';
-import articleImg1 from '../assets/images/anxiety_disorders.jpg'
-import articleImg2 from '../assets/images/stress.jpg'
+import articleImg1 from '../assets/images/anxiety_disorders.webp'
+import articleImg2 from '../assets/images/stress.webp'
 const MentalHealthPage = () => {
   return (
     <div className="container mx-auto px-4 py-8">
@@ -60,17 +60,17 @@ const MentalHealthPage = () => {
         <h2 className="text-2xl font-semibold text-headingColor mb-4">Recommended Books</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-            <img src="/book1.jpg" alt="Book 1" className="w-full h-64 object-cover rounded-md mb-4" />
+            <img src="/book1.webp" alt="Book 1" className="w-full h-64 object-cover rounded-md mb-4" />
             <p className="text-lg font-semibold mb-2">Book Title 1</p>
             <p className="text-gray-700">Author Name</p>
           </div>
           <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-            <img src="/book2.jpg" alt="Book 2" className="w-full h-64 object-cover rounded-md mb-4" />
+            <img src="/book2.webp" alt="Book 2" className="w-full h-64 object-cover rounded-md mb-4" />
             <p className="text-lg font-semibold mb-2">Book Title 2</p>
             <p className="text-gray-700">Author Name</p>
           </div>
           <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-            <img src="/book3.jpg" alt="Book 3" className="w-full h-64 object-cover rounded-md mb-4" />
+            <img src="/book3.webp" alt="Book 3" className="w-full h-64 object-cover rounded-md mb-4" />
             <p className="text-lg font-semibold mb-2">Book Title 3</p>
             <p className="text-gray-700">Author Name</p>
           </div>

@@ -1,9 +1,9 @@
 import React from "react";
-import starIcon from "../../assets/images/Star.png";
+import starIcon from "../../assets/images/Star.webp";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
-import doctorImg01 from "../../assets/images/doctor-img01.png";
-import doctorImg02 from "../../assets/images/hero-img01.png";
+import doctorImg01 from "../../assets/images/doctor-img01.webp";
+import doctorImg02 from "../../assets/images/hero-img01.webp";
 
 const DoctorCard = ({ doctor }) => {
   const {

@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
-import Services from "../pages/Services";
 import Doctors from "../pages/Doctors/Doctors";
 import DoctorsDetails from "../pages/Doctors/DoctorsDetails";
 import Signup from "../pages/Signup";
@@ -17,7 +16,6 @@ import ProtectedRoute from "../routes/Protectedroute.jsx";
 import MentalHealth from "../pages/MentalHealth";
 import Success from "../pages/Success";
 import { AuthContextProvider } from "../context/AuthContext";
-import Orders from "../pages/Orders/Orders.jsx";
 import OrderTabs from "../pages/Orders/OrderTabs.jsx";
 
 const Routers = () => {
@@ -28,7 +26,7 @@ const Routers = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/services" element={<Services />} />
+        {/* <Route path="/services" element={<Services />} /> */}
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/orders" element={<OrderTabs />} />
         <Route path="/contact" element={<Contact />} />

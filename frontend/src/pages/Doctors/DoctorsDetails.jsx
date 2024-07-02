@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { doctors } from "../../assets/data/doctors.js"; // Adjust the path as necessary
-import starIcon from "../../assets/images/Star.png";
+import starIcon from "../../assets/images/Star.webp";
 import DoctorAbout from "./DoctorAbout";
 import Feedback from "./Feedback";
 import SidePanel from "./SidePanel";

@@ -4,7 +4,7 @@ import Error from "../../components/Error/Error";
 import useFectchData from "../../hooks/usefetchData";
 import { BASE_URL } from "../../../config";
 import Tabs from "./Tabs";
-import starIcon from "../../assets/images/Star.png";
+import starIcon from "../../assets/images/Star.webp";
 import DoctorAbout from "../../pages/Doctors/DoctorAbout.jsx";
 import Profile from "./Profile.jsx";
 const Dashboard = () => {

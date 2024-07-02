@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import checkupImage1 from "../../assets/images/example.jpg"; // Import your checkup images
-import checkupImage2 from "../../assets/images/example.jpg";
-import checkupImage3 from "../../assets/images/example.jpg";
+import checkupImage1 from "../../assets/images/example.webp"; // Import your checkup images
+import checkupImage2 from "../../assets/images/example.webp";
+import checkupImage3 from "../../assets/images/example.webp";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";

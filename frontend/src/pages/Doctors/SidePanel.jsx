@@ -1,4 +1,3 @@
-import { formatDate } from "../../utils/formatDate";
 
 const SidePanel = ({ timeslots, ticketPrice }) => {
   return (

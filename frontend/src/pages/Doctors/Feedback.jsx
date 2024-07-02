@@ -3,7 +3,7 @@ import { formatDate } from '../../utils/formatDate'
 import { AiFillStar } from 'react-icons/ai'
 import FeedbackForm from './FeedbackForm'
 
-import avatar from '../../assets/images/avatar-icon.png'
+import avatar from '../../assets/images/avatar-icon.webp'
 
 const Feedback = () => {
 

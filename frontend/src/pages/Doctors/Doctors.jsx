@@ -1,10 +1,8 @@
 import DoctorCard from "./../../components/Doctors/DoctorCard";
-import { doctors } from "./../../assets/data/doctors";
 import Testimonial from "../../components/Testimonial/Testimonial";
-import { Link } from "react-router-dom";
 import { BASE_URL } from "../../../config";
 import useFectchData from "../../hooks/usefetchData";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Loading from "../../components/Loader/Loading";
 import Error from "../../components/Error/Error";
 
