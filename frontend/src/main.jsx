@@ -13,10 +13,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <AuthContextProvider>
         <ToastContainer
           theme="dark"
-          position="top-right"
-          autoClose={5000}
+          position="bottom-center"
+          autoClose={3000}
           closeOnClick
-          pauseOnHover={false}
+          pauseOnHover={true}
         />
         <App />
       </AuthContextProvider>

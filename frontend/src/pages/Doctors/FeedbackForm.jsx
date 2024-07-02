@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { AiFillStar } from 'react-icons/ai';
-
+import StarIcon from '@mui/icons-material/Star';
 const FeedbackForm = () => {
 
     const [rating, setRating] = useState(0);
@@ -42,7 +41,7 @@ const FeedbackForm = () => {
                             }}
                             >
                             <span>
-                                <AiFillStar/>
+                                <StarIcon/>
                             </span>
                         </button>
                     );

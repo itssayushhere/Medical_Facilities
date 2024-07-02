@@ -1,7 +1,6 @@
 import xray from "../images/x-ray.webp";
 import blood from "../images/blood-test.webp";
 import eye from "../images/eye.webp";
-import { BsMenuButton } from "react-icons/bs";
 export const feature = [
   {
     Name: " X-ray ",

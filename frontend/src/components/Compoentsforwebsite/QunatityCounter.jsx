@@ -4,7 +4,7 @@ import store from "./Store";
 import { Provider, useDispatch } from "react-redux";
 import { BASE_URL, token } from "../../../config";
 import { toast } from "react-toastify";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -156,8 +156,7 @@ const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
         </Grid>
         <Grid item xs={12} sm={2} container justifyContent={"center"}>
           <button className="ml-2">
-            <RiDeleteBin6Line
-              size={25}
+            <DeleteIcon
               className="text-red-300 hover:text-red-500"
               onClick={() => Delete(id)}
             />

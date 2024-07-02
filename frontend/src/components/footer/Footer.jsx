@@ -1,24 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../..//assets/images/logo.webp";
-import { RiLinkedinFill } from "react-icons/ri";
-import {
-  AiFillYoutube,
-  AiFillGithub,
-  AiOutlineInstagram,
-} from "react-icons/ai";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import GitHubIcon from "@mui/icons-material/GitHub";
 const socialLinks = [
   {
     path: "https://youtube.com/@ayushmanyadav723?si=0bvSbTGKL8n3FSeC",
-    icon: <AiFillYoutube className="group-hover:text-white w-4 h-5" />,
+    icon: <YouTubeIcon className="group-hover:text-white w-4 h-5" />,
   },
   {
     path: "",
-    icon: <AiOutlineInstagram className="group-hover:text-white w-4 h-5" />,
+    icon: <InstagramIcon className="group-hover:text-white w-4 h-5" />,
   },
   {
     path: "https://github.com/itssayushhere",
-    icon: <AiFillGithub className="group-hover:text-white w-4 h-5" />,
+    icon: <GitHubIcon className="group-hover:text-white w-4 h-5" />,
   },
 ];
 const quicklinks1 = [

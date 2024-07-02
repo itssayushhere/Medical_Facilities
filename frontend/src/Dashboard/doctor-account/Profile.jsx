@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineDelete } from "react-icons/ai";
 import { BASE_URL, token } from "../../../config";
 import uploadImageToCloudinary from "../../utils/uploadCLoudinary";
 import { toast } from "react-toastify";
-
+import DeleteIcon from "@mui/icons-material/Delete";
 const Profile = ({ user }) => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -346,7 +345,7 @@ const Profile = ({ user }) => {
                   className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px]"
                   onClick={(e) => handleDeleteItem(e, "qualifications", index)}
                 >
-                  <AiOutlineDelete />
+                  <DeleteIcon />
                 </button>
               </div>
             </div>
@@ -421,7 +420,7 @@ const Profile = ({ user }) => {
                   className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px]"
                   onClick={(e) => handleDeleteItem(e, "experiences", index)}
                 >
-                  <AiOutlineDelete />
+                  <DeleteIcon />
                 </button>
               </div>
             </div>
@@ -484,7 +483,7 @@ const Profile = ({ user }) => {
                   className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px]"
                   onClick={(e) => handleDeleteItem(e, "timeSlots", index)}
                 >
-                  <AiOutlineDelete />
+                  <DeleteIcon />
                 </button>
               </div>
             </div>

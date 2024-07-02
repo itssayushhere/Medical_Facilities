@@ -11,7 +11,7 @@ import featureImg from "../assets/images/feature-img.webp";
 import avatarIcon from "../assets/images/avatar-icon.webp";
 import faqImg from "../assets/images/faq-img.webp";
 import About from "../components/about/About";
-import { BsArrowRight } from "react-icons/bs";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ServicesList from "../components/services/ServicesList";
 import DiagnosticList from "../components/diagnostic/DiagnosticList";
 import FaqList from "../components/faqs section/FaqList";
@@ -120,7 +120,7 @@ const Home = () => {
                   to={"/doctors"}
                   className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
                 >
-                  <BsArrowRight className="group-hover:text-white w-6 h-5" />
+                  <ArrowForwardIcon className="group-hover:text-white w-6 h-5" />
                 </Link>
               </div>
             </div>
@@ -141,7 +141,7 @@ const Home = () => {
                   to={"/services"}
                   className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
                 >
-                  <BsArrowRight className="group-hover:text-white w-6 h-5" />
+                  <ArrowForwardIcon className="group-hover:text-white w-6 h-5" />
                 </Link>
               </div>
             </div>
@@ -161,7 +161,7 @@ const Home = () => {
                   to={"/Checkup"}
                   className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
                 >
-                  <BsArrowRight className="group-hover:text-white w-6 h-5" />
+                  <ArrowForwardIcon className="group-hover:text-white w-6 h-5" />
                 </Link>
               </div>
             </div>

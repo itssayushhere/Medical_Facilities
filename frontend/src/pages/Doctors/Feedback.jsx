@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { formatDate } from '../../utils/formatDate'
-import { AiFillStar } from 'react-icons/ai'
+import StarIcon from '@mui/icons-material/Star';
 import FeedbackForm from './FeedbackForm'
 
 import avatar from '../../assets/images/avatar-icon.webp'
@@ -36,7 +36,7 @@ const Feedback = () => {
                 </div>
                 <div className='flex gap-1'>
                     {[...Array(5).keys()].map((_,index) => (
-                      <AiFillStar key={index} color='#0067ff' />
+                      <StarIcon key={index} color='#0067ff' />
                      ))}
                 </div>
             </div>

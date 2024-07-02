@@ -19,7 +19,7 @@
         @apply text-[44px] leading-[54px] font-[700] text-headingColor;
     }
     .text_para{
-        @apply text-[18px] leading-[30px] font-[400] text-textColor mt-[18px] font-medium;
+        @apply text-[18px] leading-[30px] font-[400] text-textColor mt-[18px] ;
     }
     .header{
         @apply bg-[url('./assets/images/mask.webp')] bg-no-repeat bg-center bg-cover w-full h-[70px] leading-normal font-serif; 

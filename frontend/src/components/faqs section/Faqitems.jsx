@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 const Faqitems = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -21,7 +21,7 @@ const Faqitems = ({ item }) => {
             ' w-7 h-7 lg:w-8 lg:h-8 border border-soild border-[#141F21] rounded flex items-center justify-center'
           }
         >
-          {isOpen ? <AiOutlineMinus /> : <AiOutlinePlus />}
+          {isOpen ? <RemoveIcon /> : <AddIcon />}
         </div>
       </div>
       {isOpen && <div className="mt-4">

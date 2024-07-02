@@ -10,7 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { Button } from "@mui/material";
 import { Tooltip } from "@mui/material";
 import CircularIndeterminate from "../../components/Loader/Circular.jsx";
-import { FaShoppingCart } from "react-icons/fa";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 const Orders = () => {
   const DisplayNumber = () => {
     const number = useSelector((state) => state.number); // Access the current state
@@ -85,7 +85,7 @@ const Orders = () => {
     <div className="container mx-auto p-4 w-[750px]">
       <div className="flex items-center m-3 p-4 border-x-gray-900 rounded-xl border-t-2 shadow-xl gap-4 justify-between">
         <div className="flex gap-3 justify-normal items-center">
-          <FaShoppingCart color="lightblue" size={30} />
+          <ShoppingCartIcon color="lightblue" size={30} />
           <h1 className="font-bold text-xl">Medicine Cart</h1>
         </div>
         <div className="mr-4">
