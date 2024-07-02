@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { Radio, Tabs } from "antd";
 import { useMediaQuery } from "@mui/system";
 import Orders from "./Orders.jsx";
-import Checkup from '../Community.jsx'
+import Ordered from "./Ordered.jsx";
 const items = [
   {
     key: "1",
@@ -13,7 +13,7 @@ const items = [
   {
     key: "2",
     label: "Orderd",
-    children: <Checkup/>,
+    children:<Ordered/>,
   },
 ];
 const OrderTabs = () => {
