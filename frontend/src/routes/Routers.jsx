@@ -17,7 +17,8 @@ import ProtectedRoute from "../routes/Protectedroute.jsx";
 import MentalHealth from "../pages/MentalHealth";
 import Success from "../pages/Success";
 import { AuthContextProvider } from "../context/AuthContext";
-import Orders from "../pages/Orders.jsx";
+import Orders from "../pages/Orders/Orders.jsx";
+import OrderTabs from "../pages/Orders/OrderTabs.jsx";
 
 const Routers = () => {
   return (
@@ -29,7 +30,7 @@ const Routers = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/services" element={<Services />} />
         <Route path="/doctors" element={<Doctors />} />
-        <Route path="/orders" element={<Orders />} />
+        <Route path="/orders" element={<OrderTabs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/doctors/:id" element={<DoctorsDetails />} />
         <Route path="/community" element={<Community />} />

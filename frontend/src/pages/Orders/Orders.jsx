@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { BASE_URL, token } from "../../config.js";
-import QuantityCounter from "../components/Compoentsforwebsite/QunatityCounter.jsx";
+import { BASE_URL, token } from "../../../config.js";
+import QuantityCounter from "../../components/Compoentsforwebsite/QunatityCounter.jsx";
 import { useSelector, Provider, useDispatch } from "react-redux";
-import store from "../components/Compoentsforwebsite/Store.jsx";
+import store from "../../components/Compoentsforwebsite/Store.jsx";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import { Button } from "@mui/material";
 import { Tooltip } from "@mui/material";
-import CircularIndeterminate from "../components/Loader/Circular.jsx";
+import CircularIndeterminate from "../../components/Loader/Circular.jsx";
 import { FaShoppingCart } from "react-icons/fa";
 const Orders = () => {
   const DisplayNumber = () => {
@@ -102,7 +102,7 @@ const Orders = () => {
         </div>
       </div>
 
-      <div className="m-3 p-4 ">
+      <div className="m-3 p-4 h-96 overflow-y-auto hide-scrollbar">
         {cartDetails && cartDetails.length > 0 ? (
           cartDetails.map((item) => (
             <div key={item._id} className="flex items-center mb-3">

@@ -13,17 +13,13 @@ export default function DrawerMobileNavigation({ navLinks1, navLinks2 }) {
   const [open, setOpen] = React.useState(false);
   const [services, setServices] = React.useState(false);
 
-  useEffect(() => {
-    if (!open) {
-      setServices(false);
-    }
-  }, [open]);
+  // useEffect(() => {
+  //   if (!open) {
+  //     setServices(false);
+  //   }
+  // }, [open]);
 
   const navLinks = [
-    {
-      path: "/doctors",
-      display: "Find a Doctor",
-    },
     {
       path: "/medicine",
       display: "Order Medicine",
@@ -101,9 +97,9 @@ export default function DrawerMobileNavigation({ navLinks1, navLinks2 }) {
                 Services
               </button>
               {services && (
-                <div className="ml-4">
+                <div className=" ml-20">
                   {navLinks.map((link, index) => (
-                    <ListItemButton key={index}>
+                    <ListItemButton key={index}>-
                       <NavLink
                         to={link.path}
                         className={(navClass) =>
@@ -112,7 +108,6 @@ export default function DrawerMobileNavigation({ navLinks1, navLinks2 }) {
                             : "text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor "
                         }
                         onClick={() => {
-                          setServices(false);
                           setOpen(false);
                         }}
                       >

@@ -16,7 +16,7 @@ export default function MenuSimple() {
     <Dropdown>
       <MenuButton>Services</MenuButton>
       <Menu slots={{ listbox: Listbox }}>
-        <MenuItem onClick={createHandleMenuClick('/doctors')}>Find a Doctor</MenuItem>
+
         <MenuItem onClick={createHandleMenuClick('/medicine')}>
         Order Medicine
         </MenuItem>
@@ -110,7 +110,7 @@ const MenuButton = styled(BaseMenuButton)(
   transition: all 150ms ease;
   cursor: pointer;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[700]};
   
   &:hover {
     background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
