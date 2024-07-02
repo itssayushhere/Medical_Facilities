@@ -256,8 +256,6 @@ const Checkup = () => {
                       Cancel
                     </button>
                   </div>
-                  {/* <div>{checkupdetails.time}</div>
-                  <div>{checkupdetails.date}</div> */}
                 </div>
               )}
             </div>
