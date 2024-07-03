@@ -11,6 +11,7 @@ import featureImg from "../assets/images/feature-img.webp";
 import avatarIcon from "../assets/images/avatar-icon.webp";
 import faqImg from "../assets/images/faq-img.webp";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Helmet } from "react-helmet";
 
 // Lazy load components that are not critical for initial render
 const About = lazy(() => import("../components/about/About"));
