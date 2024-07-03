@@ -39,7 +39,7 @@ const Checkup = () => {
             !userData && (
               <div>
                 <h1>You don't have any Checkup booking</h1>
-                <button onClick={handlenavigation}>Book Now</button>
+                <button type="button" onClick={handlenavigation}>Book Now</button>
               </div>
             )
           )}

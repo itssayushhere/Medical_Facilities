@@ -63,12 +63,12 @@ const Header = () => {
         <div className="flex items-center justify-between ">
           {/*====logo===== */}
           <div className="flex items-center justify-center gap-2">
-              <div className="md:hidden">
-                <DrawerMobileNavigation
-                  navLinks1={navLinks1}
-                  navLinks2={navLinks2}
-                />
-              </div>
+            <div className="md:hidden">
+              <DrawerMobileNavigation
+                navLinks1={navLinks1}
+                navLinks2={navLinks2}
+              />
+            </div>
             <Link to={"/"}>
               <div>
                 <img src={logo} alt="Logo" />
@@ -117,7 +117,7 @@ const Header = () => {
               <div className="flex items-center justify-center gap-4">
                 <Tooltip title="Cart">
                   <div>
-                    <button onClick={handlecart}>
+                    <button type="button" onClick={handlecart}>
                       <ShoppingCartIcon color="primary" sx={{ fontSize: 27 }} />
                     </button>
                   </div>
@@ -149,7 +149,10 @@ const Header = () => {
             ) : (
               location.pathname !== "/login" && (
                 <Link to={"/login"}>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 font-bold">
+                  <button
+                    type="button"
+                    className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 font-bold"
+                  >
                     Login
                   </button>
                 </Link>

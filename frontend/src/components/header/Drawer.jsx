@@ -91,6 +91,7 @@ export default function DrawerMobileNavigation({ navLinks1, navLinks2 }) {
           <ListItemButton>
             <div className="w-full">
               <button
+              type="button"
                 className="w-full text-textColor text-[16px] leading-7 font-[500]"
                 onClick={() => setServices((prev) => !prev)}
               >

@@ -35,7 +35,7 @@ const Home = () => {
                   and resources for health improvement and treatment.
                 </p>
                 <Link to={"/community"}>
-                  <button className="btn font-semibold mt-3">
+                  <button type="button" className="btn font-semibold mt-3">
                     Join Community
                   </button>
                 </Link>
@@ -211,7 +211,7 @@ const Home = () => {
                 </li>
               </ul>
               <Link>
-                <button className="btn mt-3">Learn more</button>
+                <button type="button" className="btn mt-3">Learn more</button>
               </Link>
             </div>
             {/* ===================feature img===================== */}

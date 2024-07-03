@@ -26,7 +26,7 @@ const Community = () => {
   } else {
     roles = "doctors";
   }
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
   const [userData, loading, error] = usefetchData(
     `${BASE_URL}/${roles}/profile/me`
@@ -45,10 +45,10 @@ const Community = () => {
     setCurrentQuestionId(id);
   };
   const handleReply = (id) => {
-    if(!user || !token ){
-      navigate('/login')
+    if (!user || !token) {
+      navigate("/login");
       toast.error("Please Login ");
-    }else{
+    } else {
       setReply(true);
       setCurrentQuestionId(id);
     }
@@ -90,15 +90,14 @@ const Community = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(!user || !token ){
-      navigate('/login')
+    if (!user || !token) {
+      navigate("/login");
     }
 
     if (loading || error || !userData) {
       toast.error("Please Login ");
       return;
     }
-    
 
     const newQuestion = {
       username: userData.username,
@@ -217,6 +216,7 @@ const Community = () => {
                     view && currentQuestionId === q._id ? (
                       <div className="p-2">
                         <button
+                          type="button"
                           className="underline italic"
                           onClick={() => setView(false)}
                         >
@@ -226,6 +226,7 @@ const Community = () => {
                     ) : (
                       <div className="p-2">
                         <button
+                          type="button"
                           className="underline italic"
                           onClick={() => handleView(q._id)}
                         >
@@ -239,6 +240,7 @@ const Community = () => {
                   <div className="">
                     {q.username === userData.username ? (
                       <button
+                        type="button"
                         className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:scale-105"
                         onClick={() => handleDelete(q._id)}
                       >
@@ -248,6 +250,7 @@ const Community = () => {
                       <div></div>
                     ) : (
                       <button
+                        type="button"
                         className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:scale-105"
                         onClick={() => handleReply(q._id)}
                       >

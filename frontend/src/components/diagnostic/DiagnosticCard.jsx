@@ -25,7 +25,7 @@ const DiagnosticCard = ({ feature }) => {
           </div>
         </div>
         <div className=" justify-center items-center mt-2">
-          <button className=" bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300  ">
+          <button type="button" className=" bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300  ">
             Book Now
           </button>
           <span className="text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-[400] text-textColor ">

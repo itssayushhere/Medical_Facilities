@@ -193,6 +193,7 @@ const Checkup = () => {
                   <div></div>
                 ) : (
                   <button
+                    type="button"
                     className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
                     onClick={() => handleBookNow(checkup.id)}
                   >
@@ -244,12 +245,13 @@ const Checkup = () => {
                   </div>
                   <div className="mt-10 flex justify-center items-center gap-4">
                     <button
+                      type="button"
                       className="bg-green-500 px-5 py-3 text-white font-bold  transition duration-300 rounded-xl "
                       onClick={() => createcheckup(checkup.name, checkup.price)}
                     >
                       Confirm
                     </button>
-                    <button
+                    <button type="button"
                       className="bg-red-500 text-white px-5 py-3 rounded-xl font-bold hover:bg-red-600 transition duration-300"
                       onClick={() => setBooking(false)}
                     >
