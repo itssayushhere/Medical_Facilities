@@ -41,6 +41,14 @@
   z-index: 99999;
   box-shadow: 3px 3px --8px 3px #ddd;
 }
+.service-img {
+  width: 300px; /* Ensures image is responsive within the container */
+  height: 300px; /* Maintains aspect ratio */
+  object-fit: cover; /* Ensures image covers the specified dimensions without distortion */
+  max-width: 300px; /* Ensure max width to prevent overflow */
+  max-height: 300px; /* Ensure max height to prevent overflow */
+  margin: auto;
+}
 
 @media only screen and (max-width: 768px) {
   .navigation {

@@ -11,11 +11,35 @@ import featureImg from "../assets/images/feature-img.webp";
 import avatarIcon from "../assets/images/avatar-icon.webp";
 import faqImg from "../assets/images/faq-img.webp";
 import About from "../components/about/About";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ServicesList from "../components/services/ServicesList";
 import DiagnosticList from "../components/diagnostic/DiagnosticList";
 import FaqList from "../components/faqs section/FaqList";
 import Testimonial from "../components/Testimonial/Testimonial";
+const services = [
+  {
+    name: "Find a Doctor",
+    description:
+      "Best Doctor in the whole country and different specialist available.",
+    path: "/doctors",
+    src: icon01,
+  },
+  {
+    name: "Order Medicine",
+    description:
+      "Get best offer and affordable price for your medicine at your doorstep",
+    path: "/orders",
+    src: icon02,
+  },
+  {
+    name: "Book Various Checkup",
+    description:
+      "Book Various checkup at your doorstep with affordable prices.",
+    path: "/checkup",
+    src: icon03,
+  },
+];
+
 const Home = () => {
   return (
     <>
@@ -71,12 +95,16 @@ const Home = () => {
                   loading="lazy"
                   src={heroImg02}
                   alt=""
+                  width="270"
+                  height="300"
                   className="w-full mb-[30px] rounded-2xl  object-cover "
                 />
                 <img
                   loading="lazy"
                   src={heroImg03}
-                  alt=""
+                  alt="heroImg"
+                  width="270"
+                  height="300"
                   className="w-full  rounded-2xl "
                 />
               </div>
@@ -85,6 +113,8 @@ const Home = () => {
                   loading="lazy"
                   src={heroImg01}
                   alt=""
+                  width="270"
+                  height="370"
                   className=" rounded-3xl mt-[40px] "
                 />
               </div>
@@ -104,72 +134,38 @@ const Home = () => {
           </div>
           <div className="grid gird-cols-1 md:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px] ">
             {/* ========Doctor======= */}
-            <div className="py-[30px] px-5 ">
-              <div className="flex items-center justify-center">
-                <img loading="lazy" src={icon01} alt="" />
+            {services.map((item, index) => (
+              <div className="py-[30px] px-5" key={index}>
+                <div className="service-img flex items-center justify-center">
+                  <img
+                    loading="lazy"
+                    src={item.src}
+                    alt="doctor"
+                    width="300px" // Set a consistent width
+                    height="300px" // Set a consistent height
+                  />
+                </div>
+                <div className="mt-[30px]">
+                  <h2 className="text-[26px] leading-9 text-headingColor font-[600] text-center">
+                    {item.name}
+                  </h2>
+                  <p className="text-[16px] leading-5 text-textColor font-[400] mt-4 text-center">
+                    {item.description}
+                  </p>
+                  <Link
+                    to={item.path}
+                    className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
+                  >
+                    <ArrowForwardIcon className="group-hover:text-white w-6 h-5" />
+                  </Link>
+                </div>
               </div>
-              <div className="mt-[30px]">
-                <h2 className="text-[26px] leading-9 text-headingColor font-[600] text-center">
-                  Find a Doctor
-                </h2>
-                <p className="text-[16px] leading-5 text-textColor font-[400] mt-4 text-center">
-                  Best Doctor in the whole country and differnet specialist
-                  available.
-                </p>
-                <Link
-                  to={"/doctors"}
-                  className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
-                >
-                  <ArrowForwardIcon className="group-hover:text-white w-6 h-5" />
-                </Link>
-              </div>
-            </div>
-            {/* =======Services====== */}
-            <div className="py-[30px] px-5 ">
-              <div className="flex items-center justify-center">
-                <img loading="lazy" src={icon02} alt="" />
-              </div>
-              <div className="mt-[30px]">
-                <h2 className="text-[26px] leading-9 text-headingColor font-[600] text-center">
-                  Order Medicine .
-                </h2>
-                <p className="text-[16px] leading-5 text-textColor font-[400] mt-4 text-center">
-                  Get best offer and affordable price for your medicine at your
-                  doorstep.
-                </p>
-                <Link
-                  to={"/services"}
-                  className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
-                >
-                  <ArrowForwardIcon className="group-hover:text-white w-6 h-5" />
-                </Link>
-              </div>
-            </div>
-            {/* ===========Book health checkup====== */}
-            <div className="py-[30px] px-5 ">
-              <div className="flex items-center justify-center">
-                <img loading="lazy" src={icon03} alt="" />
-              </div>
-              <div className="mt-[30px]">
-                <h2 className="text-[26px] leading-9 text-headingColor font-[600] text-center">
-                  Book Various checkup
-                </h2>
-                <p className="text-[16px] leading-5 text-textColor font-[400] mt-4 text-center">
-                  Book Various checkup at your doorstep with affordable prices.
-                </p>
-                <Link
-                  to={"/Checkup"}
-                  className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
-                >
-                  <ArrowForwardIcon className="group-hover:text-white w-6 h-5" />
-                </Link>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
       <About />
-      {/* =======sevices section======= */}
+      {/* =======services section======= */}
       <section>
         <div className="container">
           <div className="xl:w-[470px] mx-auto">
@@ -199,19 +195,21 @@ const Home = () => {
                   1. Make an appointment online or by calling us.
                 </li>
                 <li className="text_para">
-                  2.Search for your physician here, and contact their office.
+                  2. Search for your physician here, and contact their office.
                 </li>
                 <li className="text_para">
-                  3.Get a virtual consultation with the doctor through our
+                  3. Get a virtual consultation with the doctor through our
                   platform.
                 </li>
                 <li className="text_para">
-                  4.Community support is available to help you recover from
-                  illness .
+                  4. Community support is available to help you recover from
+                  illness.
                 </li>
               </ul>
               <Link>
-                <button type="button" className="btn mt-3">Learn more</button>
+                <button type="button" className="btn mt-3">
+                  Learn more
+                </button>
               </Link>
             </div>
             {/* ===================feature img===================== */}
@@ -220,6 +218,8 @@ const Home = () => {
                 loading="lazy"
                 src={featureImg}
                 alt=""
+                width="480"
+                height="480"
                 className="lg:w-3/5 w-3/4 rounded-full shadow-panelShadow"
               />
               <div className="w-[150px] lg:w-[180px] bg-white absolute bottom-[-20px] left-0 md:bottom-[100px] md:left-5pb z-20 p-2 lg:pt-4 lg-px-4 lg:pb-[16px] rounder-[10px] rounded-r-xl">
@@ -227,23 +227,36 @@ const Home = () => {
                   <div className="flex items-center gap-[6px] lg:gap-3">
                     <p className="text-[10px] leading-[10px] lg:text-[14px] lg:leading-5 text-headingColor font-[600] ml-2">
                       {" "}
-                      Tue , 24{" "}
+                      Tue, 24{" "}
                     </p>
                     <p className="text-[10px] leading-[10px] lg:text-[14px] lg:leading-5 text-headingColor font-[400]">
                       10:00
                     </p>
                   </div>
-                  <span className="w-5 h-5 lg:w-[34px] lg:h-[34px] flex items-center justify-center bg-yellowColor rounded py-1 px-[6px] lg:py-3  ">
-                    <img loading="lazy" src={videoIcon} alt="" className="" />
+                  <span className="w-5 h-5 lg:w-[34px] lg:h-[34px] flex items-center justify-center bg-yellowColor rounded py-1 px-[6px] lg:py-3">
+                    <img
+                      loading="lazy"
+                      src={videoIcon}
+                      alt=""
+                      width="24"
+                      height="24"
+                      className=""
+                    />
                   </span>
                 </div>
-                <div className="w-[115px] lg:w-[96px] bg-[#CCf0F3] py-1 px-2 lg:px-[10px] text-[8px]leading-[8px] lg:text-[12px] lg:leading-4 text-irisBlueColor font-[500] mt-2 lg:mt-4 rounded-full">
+                <div className="w-[115px] lg:w-[96px] bg-[#CCf0F3] py-1 px-2 lg:px-[10px] text-[8px] leading-[8px] lg:text-[12px] lg:leading-4 text-irisBlueColor font-[500] mt-2 lg:mt-4 rounded-full">
                   Consultation
                 </div>
                 <div className="flex items-center gap-[6px] lg:gap-[10px] mt-2 lg:mt-[18px]">
-                  <img loading="lazy" src={avatarIcon} alt="" />
-                  <h4 className="text-[13px] leading-3 lg:text-[16px] lg:leading-[22px] font-[700]text-headingColor">
-                    Adiyta Thakur
+                  <img
+                    loading="lazy"
+                    src={avatarIcon}
+                    alt=""
+                    width="32"
+                    height="32"
+                  />
+                  <h4 className="text-[13px] leading-3 lg:text-[16px] lg:leading-[22px] font-[700] text-headingColor">
+                    Aditya Thakur
                   </h4>
                 </div>
               </div>
@@ -252,11 +265,11 @@ const Home = () => {
         </div>
       </section>
       {/* ======================feature section end=============================== */}
-      {/* =============================diagonstic feature================== */}
+      {/* =============================diagnostic feature================== */}
       <section>
         <div className="container">
           <div className="xl-w-[470px] mx-auto">
-            <h2 className="heading text-center ">
+            <h2 className="heading text-center">
               Our Best <br /> Diagnostic Services
             </h2>
             <p className="text_para text-center">
@@ -267,7 +280,7 @@ const Home = () => {
           <DiagnosticList />
         </div>
       </section>
-      {/* =================================diagonstic feature end====================== */}
+      {/* =================================diagnostic feature end====================== */}
       {/* =====================================faqs section=================== */}
       <section>
         <div className="contianer">
@@ -277,12 +290,14 @@ const Home = () => {
                 loading="lazy"
                 src={faqImg}
                 alt=""
+                width="300"
+                height="300"
                 className="ml-10 size-18"
               />
             </div>
-            <div className="w-full md:w-1/2 ">
-              <h2 className="heading  lg:ml-0 ml-14">
-                Most ask questions by patients
+            <div className="w-full md:w-1/2">
+              <h2 className="heading lg:ml-0 ml-14">
+                Most asked questions by patients
               </h2>
               <FaqList />
             </div>
