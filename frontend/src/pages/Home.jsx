@@ -15,26 +15,31 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 // Lazy load components that are not critical for initial render
 const About = lazy(() => import("../components/about/About"));
 const ServicesList = lazy(() => import("../components/services/ServicesList"));
-const DiagnosticList = lazy(() => import("../components/diagnostic/DiagnosticList"));
+const DiagnosticList = lazy(() =>
+  import("../components/diagnostic/DiagnosticList")
+);
 const FaqList = lazy(() => import("../components/faqs section/FaqList"));
 const Testimonial = lazy(() => import("../components/Testimonial/Testimonial"));
 
 const services = [
   {
     name: "Find a Doctor",
-    description: "Best Doctor in the whole country and different specialist available.",
+    description:
+      "Best Doctor in the whole country and different specialist available.",
     path: "/doctors",
     src: icon01,
   },
   {
     name: "Order Medicine",
-    description: "Get best offer and affordable price for your medicine at your doorstep",
+    description:
+      "Get best offer and affordable price for your medicine at your doorstep",
     path: "/orders",
     src: icon02,
   },
   {
     name: "Book Various Checkup",
-    description: "Book Various checkup at your doorstep with affordable prices.",
+    description:
+      "Book Various checkup at your doorstep with affordable prices.",
     path: "/checkup",
     src: icon03,
   },
@@ -43,6 +48,11 @@ const services = [
 const Home = () => {
   return (
     <>
+      <Helmet>
+        <link rel="preload" href={heroImg01} as="image" />
+        <link rel="preload" href={heroImg02} as="image" />
+        <link rel="preload" href={heroImg03} as="image" />
+      </Helmet>
       {/*========hero section========*/}
       <section className="hero_section pt-[20px] 2xl:h-[800px]">
         <div className="container">
@@ -54,7 +64,8 @@ const Home = () => {
                   We help patients get better and best.
                 </h1>
                 <p className="text_para">
-                  My website connects people with tuberculosis, offering support and resources for health improvement and treatment.
+                  My website connects people with tuberculosis, offering support
+                  and resources for health improvement and treatment.
                 </p>
                 <Link to={"/community"}>
                   <button type="button" className="btn font-semibold mt-3">
@@ -126,7 +137,8 @@ const Home = () => {
           <div className="lg:w-[870px] mx-auto">
             <h3 className="heading text-center">Do what best for you</h3>
             <p className="text_para text-center">
-              This website is made for sole purpose for having the best and make you better
+              This website is made for sole purpose for having the best and make
+              you better
             </p>
           </div>
           <div className="grid gird-cols-1 md:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">
@@ -171,7 +183,8 @@ const Home = () => {
                 Our medical services
               </h2>
               <p className="text_para text-center">
-                World-class care for everyone. Our health System offers unmatched, Expert health care.
+                World-class care for everyone. Our health System offers
+                unmatched, Expert health care.
               </p>
             </div>
             <ServicesList />
@@ -195,10 +208,12 @@ const Home = () => {
                     2. Search for your physician here, and contact their office.
                   </li>
                   <li className="text_para">
-                    3. Get a virtual consultation with the doctor through our platform.
+                    3. Get a virtual consultation with the doctor through our
+                    platform.
                   </li>
                   <li className="text_para">
-                    4. Community support is available to help you recover from illness.
+                    4. Community support is available to help you recover from
+                    illness.
                   </li>
                 </ul>
                 <Link to="/learn-more">
@@ -266,7 +281,8 @@ const Home = () => {
                 Our Best <br /> Diagnostic Services
               </h2>
               <p className="text_para text-center">
-                We offer a wide range of diagnostics to help you make informed decisions about your health.
+                We offer a wide range of diagnostics to help you make informed
+                decisions about your health.
               </p>
             </div>
             <DiagnosticList />
@@ -305,7 +321,8 @@ const Home = () => {
                 What our users say about us.
               </h2>
               <p className="text_para text-center">
-                World-class care for everyone. Our health System offers unmatched, Expert health care.
+                World-class care for everyone. Our health System offers
+                unmatched, Expert health care.
               </p>
             </div>
             <Testimonial />
