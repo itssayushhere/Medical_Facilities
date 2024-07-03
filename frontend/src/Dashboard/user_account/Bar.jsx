@@ -94,7 +94,7 @@ const TabPanel = styled(BaseTabPanel)`
 const TabsList = styled(BaseTabsList)(
   ({ theme }) => `
   width: 100%;
-  min-width: 360px;
+  min-width: 300px;
   background-color: ${blue[500]};
   border-radius: 12px;
   margin-bottom: 16px;

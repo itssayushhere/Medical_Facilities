@@ -75,30 +75,6 @@ const Profile = ({ user }) => {
     }
   };
 
-  // const deleteHandler = async (event) => {
-  //   event.preventDefault();
-  //   setLoading(true);
-  //   try {
-  //     const res = await fetch(`${BASE_URL}/users/${user._id}`, {
-  //       method: "DELETE",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-
-  //     const { message } = await res.json();
-  //     if (!res.ok) {
-  //       throw new Error(message);
-  //     }
-  //     setLoading(false);
-  //     toast.success(message);
-  //     navigate("/users/profile/me");
-  //   } catch (err) {
-  //     toast.error(err.message);
-  //     setLoading(false);
-  //   }
-  // };
 
   return (
     <div className="mt-10">
