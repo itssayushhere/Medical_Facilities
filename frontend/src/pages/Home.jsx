@@ -92,7 +92,7 @@ const Home = () => {
             <div className="flex gap-[40px] justify-end">
               <div className=" ">
                 <img
-                  loading="lazy"
+                  loading="eager"
                   src={heroImg02}
                   alt=""
                   width="270"
@@ -100,7 +100,7 @@ const Home = () => {
                   className="w-full mb-[30px] rounded-2xl  object-cover "
                 />
                 <img
-                  loading="lazy"
+                  loading="eagar"
                   src={heroImg03}
                   alt="heroImg"
                   width="270"
@@ -110,7 +110,7 @@ const Home = () => {
               </div>
               <div className="">
                 <img
-                  loading="lazy"
+                  loading="eagar"
                   src={heroImg01}
                   alt=""
                   width="270"
