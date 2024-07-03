@@ -11,7 +11,6 @@ import featureImg from "../assets/images/feature-img.webp";
 import avatarIcon from "../assets/images/avatar-icon.webp";
 import faqImg from "../assets/images/faq-img.webp";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { Helmet } from "react-helmet";
 
 // Lazy load components that are not critical for initial render
 const About = lazy(() => import("../components/about/About"));
@@ -49,11 +48,6 @@ const services = [
 const Home = () => {
   return (
     <>
-      <Helmet>
-        <link rel="preload" href={heroImg01} as="image" />
-        <link rel="preload" href={heroImg02} as="image" />
-        <link rel="preload" href={heroImg03} as="image" />
-      </Helmet>
       {/*========hero section========*/}
       <section className="hero_section pt-[20px] 2xl:h-[800px]">
         <div className="container">
