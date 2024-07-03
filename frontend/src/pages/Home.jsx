@@ -94,7 +94,7 @@ const Home = () => {
                 <img
                   loading="eager"
                   src={heroImg02}
-                  alt=""
+                  alt="heroImg"
                   width="270"
                   height="300"
                   className="w-full mb-[30px] rounded-2xl  object-cover "
@@ -112,7 +112,7 @@ const Home = () => {
                 <img
                   loading="eagar"
                   src={heroImg01}
-                  alt=""
+                  alt="HeroImg"
                   width="270"
                   height="370"
                   className=" rounded-3xl mt-[40px] "
