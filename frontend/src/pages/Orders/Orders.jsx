@@ -101,28 +101,27 @@ const Orders = () => {
           </Tooltip>
         </div>
       </div>
-
-      <div className="m-3 p-4 h-96 overflow-y-auto hide-scrollbar">
-        {cartDetails && cartDetails.length > 0 ? (
-          cartDetails.map((item) => (
-            <div key={item._id} className="flex items-center mb-3">
-              <Provider store={store}>
-                <QuantityCounter
-                  productName={item.productName}
-                  price={item.price}
-                  id={item._id}
-                  photo={item.productphoto}
-                  onItemDeleted={fetchCartDetails}
-                />
-              </Provider>
-            </div>
-          ))
+      <div>
+        {loading ? (
+          <div className="flex items-center w-full h-full justify-center">
+            <CircularIndeterminate />
+          </div>
         ) : (
-          <div>
-            {loading ? (
-              <div className="flex items-center w-full h-full justify-center">
-                <CircularIndeterminate />
-              </div>
+          <div className="m-3 p-4 h-96 overflow-y-auto hide-scrollbar">
+            {cartDetails && cartDetails.length > 0 ? (
+              cartDetails.map((item) => (
+                <div key={item._id} className="flex items-center mb-3">
+                  <Provider store={store}>
+                    <QuantityCounter
+                      productName={item.productName}
+                      price={item.price}
+                      id={item._id}
+                      photo={item.productphoto}
+                      onItemDeleted={fetchCartDetails}
+                    />
+                  </Provider>
+                </div>
+              ))
             ) : (
               <div className="text-center">
                 <div> Your Cart is Empty...</div>

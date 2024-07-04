@@ -1,24 +1,15 @@
 import * as React from "react";
-import Box from "@mui/joy/Box";
-import IconButton from "@mui/joy/IconButton";
-import Drawer from "@mui/joy/Drawer";
-import List from "@mui/joy/List";
-import ListItemButton from "@mui/joy/ListItemButton";
-import ModalClose from "@mui/joy/ModalClose";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
 import Menu from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
-import { useEffect } from "react";
 
 export default function DrawerMobileNavigation({ navLinks1, navLinks2 }) {
   const [open, setOpen] = React.useState(false);
   const [services, setServices] = React.useState(false);
-
-  // useEffect(() => {
-  //   if (!open) {
-  //     setServices(false);
-  //   }
-  // }, [open]);
-
   const navLinks = [
     {
       path: "/medicine",
@@ -43,7 +34,7 @@ export default function DrawerMobileNavigation({ navLinks1, navLinks2 }) {
       >
         <Menu />
       </IconButton>
-      <Drawer open={open} onClose={() => setOpen(false)}>
+      <Drawer open={open} onClose={() => setOpen(false)}  >
         <Box
           sx={{
             display: "flex",
@@ -52,9 +43,10 @@ export default function DrawerMobileNavigation({ navLinks1, navLinks2 }) {
             ml: "auto",
             mt: 1,
             mr: 2,
+            width:220,
           }}
         >
-          <ModalClose id="close-icon" sx={{ position: "initial" }} />
+          
         </Box>
 
         <List
@@ -92,13 +84,13 @@ export default function DrawerMobileNavigation({ navLinks1, navLinks2 }) {
             <div className="w-full">
               <button
               type="button"
-                className="w-full text-textColor text-[16px] leading-7 font-[500]"
+                className="w-full text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor"
                 onClick={() => setServices((prev) => !prev)}
               >
                 Services
               </button>
               {services && (
-                <div className=" ml-20">
+                <div className=" ml-12">
                   {navLinks.map((link, index) => (
                     <ListItemButton key={index}>-
                       <NavLink

@@ -18,7 +18,7 @@ const DoctorCard = ({ doctor }) => {
   } = doctor;
   return (
     <div className="p-3 lg:p-5 ">
-      <div>
+      <div className="w-80 h-80 object-cover overflow-hidden rounded-lg">
         {photo == null ? (
           gender == "male" ? (
             <img src={doctorImg01} className="" alt="doctor Image" />

@@ -228,7 +228,9 @@ const Profile = ({ user }) => {
             type="text"
             name="hospital"
             value={formData.hospital}
-            onChange={(e) => setFormData({ ...formData, hospital: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, hospital: e.target.value })
+            }
             placeholder="Your Workplace"
             className="form__input"
             maxLength={50}
@@ -265,6 +267,12 @@ const Profile = ({ user }) => {
                 <option value="Surgeon">Surgeon</option>
                 <option value="Neurologist">Neurologist</option>
                 <option value="Dermatologist">Dermatologist</option>
+                <option value="Pediatrician">Pediatrician</option>
+                <option value="Cardiologist">Cardiologist</option>
+                <option value="Psychiatrist">Psychiatrist</option>
+                <option value="Ophthalmologist">Ophthalmologist</option>
+                <option value="Oncologist">Oncologist</option>
+                <option value="Sexologist">Sexologist</option>
               </select>
             </div>
             <div>

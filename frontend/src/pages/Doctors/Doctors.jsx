@@ -35,7 +35,7 @@ const Doctors = () => {
         {!loading && !error && (
           <section>
             <div className="container">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
+              <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
                 {data.map((doctor) => (
                   <DoctorCard key={doctor._id} doctor={doctor} />
                 ))}

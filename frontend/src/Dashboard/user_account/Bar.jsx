@@ -9,15 +9,8 @@ import MyBookings from "./MyBookings";
 
 import Profile from "./Profile";
 
-import { useDispatch, Provider } from "react-redux";
+import { useDispatch } from "react-redux";
 
-const Handlestorereolad = () => {
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch({ type: "Reload" });
-  }, [dispatch]);
-  return null;
-};
 
 export default function Bar({ userData }) {
   return (
