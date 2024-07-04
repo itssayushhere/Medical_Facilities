@@ -49,6 +49,7 @@
   max-height: 300px; /* Ensure max height to prevent overflow */
   margin: auto;
 }
+
 @media only screen and (max-width: 768px) {
   .navigation {
     width: 100%;

@@ -1,8 +1,8 @@
 import React from "react";
 import starIcon from "../../assets/images/Star.webp";
 import { Link } from "react-router-dom";
-import doctorImg01 from "../../assets/images/doctor-img01.webp";
-import doctorImg02 from "../../assets/images/hero-img01.webp";
+import doctor_male from '../../assets/images/doctor_male.avif'
+import doctor_female from '../../assets/images/doctor_female.avif'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 const DoctorCard = ({ doctor }) => {
   const {
@@ -17,13 +17,13 @@ const DoctorCard = ({ doctor }) => {
     _id,
   } = doctor;
   return (
-    <div className="p-3 lg:p-5 ">
-      <div className="w-80 h-80 object-cover overflow-hidden rounded-lg">
+    <div className="p-3 lg:p-5  border rounded-3xl shadow-2xl shadow-sky-100  bg-sky-50 ">
+      <div className="w-80 h-80 object-cover overflow-hidden rounded-lg mx-auto">
         {photo == null ? (
           gender == "male" ? (
-            <img src={doctorImg01} className="" alt="doctor Image" />
+            <img src={doctor_male} className="" alt="doctor Image" />
           ) : (
-            <img src={doctorImg02} className="" alt="doctor Image" />
+            <img src={doctor_female} className="" alt="doctor Image" />
           )
         ) : (
           <img src={photo} className="" alt="" />

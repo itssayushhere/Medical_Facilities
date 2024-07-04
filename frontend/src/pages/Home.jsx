@@ -140,7 +140,7 @@ const Home = () => {
             {/* ========Doctor======= */}
             {services.map((item, index) => (
               <div className="py-[30px] px-5" key={index}>
-                <div className="flex items-center justify-center ">
+                <div className= "service-img flex items-center justify-center ">
                   <img
                     loading="lazy"
                     src={item.src}

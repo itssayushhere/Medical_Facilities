@@ -20,9 +20,7 @@ const OrderTabs = () => {
   const theme = useTheme();
   const [mode, setMode] = useState("top");
   const [direction, setDirection] = useState("left");
-  const handleModeChange = (e) => {
-    setMode(e.target.value);
-  };
+  
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   useEffect(() => {
     if (isSmallScreen) {

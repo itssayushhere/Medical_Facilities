@@ -2,16 +2,41 @@ import DoctorCard from "./../../components/Doctors/DoctorCard";
 import Testimonial from "../../components/Testimonial/Testimonial";
 import { BASE_URL } from "../../../config";
 import useFectchData from "../../hooks/usefetchData";
-import {  useState } from "react";
+import { useState } from "react";
 import Loading from "../../components/Loader/Loading";
 import Error from "../../components/Error/Error";
-
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 const Doctors = () => {
-  const [doctor, setDoctor] = useState([]);
-
+  const theme = useTheme();
   const [data, loading, error] = useFectchData(`${BASE_URL}/doctors`);
+  //pagination function [*==========================
+  const [currentpage, setCurrentpage] = useState(1);
+  const [Itemsperpage] = useState(6);
+  const totalpage = Math.ceil(data.length / Itemsperpage);
+  const end = currentpage * Itemsperpage;
+  const start = end - Itemsperpage;
+  const currentdata = data.slice(start, end);
+  const pagenumber = [];
+  for (let i = 1; i <= totalpage; i++) {
+    pagenumber.push(i);
+  }
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const pagination = (pagenumber) => {
+    setCurrentpage(pagenumber);
+    if (isSmallScreen) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (isMediumScreen) {
+      window.scrollTo({ top: 200, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 430, behavior: "smooth" });
+    }
+  };
+  // ===========================*]Pagination fucntion
   return (
-    <>
+    <div className="">
       {/* Search Section */}
       <section className="bg-[#fff9ea]">
         <div className="container text-center">
@@ -34,12 +59,30 @@ const Doctors = () => {
         {error && <Error errMessage={error} />}
         {!loading && !error && (
           <section>
-            <div className="container">
-              <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
-                {data.map((doctor) => (
+            <div className="container mb-40">
+              <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
+                {currentdata.map((doctor) => (
                   <DoctorCard key={doctor._id} doctor={doctor} />
                 ))}
               </div>
+              <ul>
+                <div className={isMediumScreen?"flex justify-center mt-10 items-center gap-8 border-b-2 border-t-2 p-5  border-gray-700":"flex justify-center mt-10 items-center gap-8 border-b-2 border-t-2 p-5 m-72 border-gray-700"}>
+                  {pagenumber.map((items, index) => (
+                    <button type="button" onClick={() => pagination(items)}>
+                      <li
+                        key={index}
+                        className={
+                          items == currentpage
+                            ? "border px-5 py-3 rounded-full border-black bg-blue-500 text-white  text-xl"
+                            : "border px-5 py-3 rounded-full text-xl border-black hover:bg-gray-400"
+                        }
+                      >
+                        {items}
+                      </li>
+                    </button>
+                  ))}
+                </div>
+              </ul>
             </div>
 
             <div className="container">
@@ -56,7 +99,7 @@ const Doctors = () => {
           </section>
         )}
       </section>
-    </>
+    </div>
   );
 };
 
