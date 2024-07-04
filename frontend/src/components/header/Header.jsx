@@ -69,7 +69,7 @@ const Header = () => {
                 navLinks2={navLinks2}
               />
             </div>
-            <Link to={"/"}>
+            <Link to={"/home"}>
               <div>
                 <img src={logo} alt="Logo" />
               </div>

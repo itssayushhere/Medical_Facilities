@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import signupImg from "../assets/images/signup.gif";
 import { Link, useNavigate } from "react-router-dom";
 import uploadImageToCloudinary from "../utils/uploadCLoudinary.js";
-import {BASE_URL}  from "../../config.js";
+import { BASE_URL } from "../../config.js";
 import { toast } from "react-toastify";
 import HashLoader from "react-spinners/HashLoader.js";
 const Signup = () => {
@@ -11,15 +11,41 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
-    username : "",
+    username: "",
     email: "",
     password: "",
     photo: selectedfile,
     gender: "male",
     role: "patient",
   });
-  const navigate = useNavigate();
+  const [formError, setFormError] = useState({
+    name: "",
+    password: "",
+  });
+  const validateForm = () => {
+    const errors = {};
 
+    // Validate full name
+    if (!formData.name) {
+      errors.name = "Full name is required";
+    } else if (!/^[a-zA-Z]+ [a-zA-Z]+$/.test(formData.name)) {
+      errors.name = "Full name must include first and last name";
+    }
+
+    // Validate password
+    if (!formData.password) {
+      errors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+    }
+
+    setFormError(errors);
+
+    // Return true if no errors
+    return Object.keys(errors).length === 0;
+  };
+
+  const navigate = useNavigate();
   const handleInputChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -32,27 +58,27 @@ const Signup = () => {
   };
   const submitHandler = async (event) => {
     event.preventDefault();
-    setLoading(true);
-    try {
-
-      const res = await fetch(`${BASE_URL}/auth/register`, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const { message } = await res.json();
-      if (!res.ok) {
-        throw new Error(message);
-
+    if (validateForm()) {
+      setLoading(true);
+      try {
+        const res = await fetch(`${BASE_URL}/auth/register`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const { message } = await res.json();
+        if (!res.ok) {
+          throw new Error(message);
+        }
+        setLoading(false);
+        toast.success(message);
+        navigate("/login");
+      } catch (err) {
+        toast.error(err.message);
+        setLoading(false);
       }
-      setLoading(false);
-      toast.success(message);
-      navigate("/login");
-    } catch (err) {
-      toast.error(err.message);
-      setLoading(false);
     }
   };
   return (
@@ -62,7 +88,11 @@ const Signup = () => {
           {/* ======================img box ================= */}
           <div className="hidden lg:block bg-primaryColor rounded-l-lg ">
             <figure className="rounded-l-lg">
-              <img src={signupImg} className="w-full rounded-l-lg" />
+              <img
+                loading="lazy"
+                src={signupImg}
+                className="w-full rounded-l-lg"
+              />
             </figure>
           </div>
           {/* ===================sign up form ==================================== */}
@@ -81,6 +111,7 @@ const Signup = () => {
                   className="w-full pr-4 px-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-16px leading-7 placeholder:text-textColor rounded-md cursor-pointer"
                   required
                 />
+                {formError.name && <p className="ml-2 text-red-800 text-sm">*{formError.name}</p>}
               </div>
               <div className="mb-5 mt-5">
                 <input
@@ -103,6 +134,7 @@ const Signup = () => {
                   className="w-full pr-4 px-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-16px leading-7 placeholder:text-textColor rounded-md cursor-pointer"
                   required
                 />
+                
               </div>
               <div className="mb-5 mt-5">
                 <input
@@ -114,6 +146,7 @@ const Signup = () => {
                   className="w-full pr-4 px-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-16px leading-7 placeholder:text-textColor rounded-md cursor-pointer"
                   required
                 />
+                {formError.password && <p className="ml-2 text-red-800 text-sm">*{formError.password}</p>}
               </div>
               <div className="mb-5 flex items-center justify-between">
                 <label className="text-headingColor font-bold text-[16px] leading-7 ">
@@ -178,7 +211,7 @@ const Signup = () => {
                   )}
                 </button>
               </div>
-              <p className="mt-4 text-  text-center">
+              <p className="mt-4 text-center">
                 Already have an account?
                 <Link
                   to={"/login"}

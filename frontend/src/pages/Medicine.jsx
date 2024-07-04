@@ -1,63 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { BASE_URL, token } from "../../config";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../context/AuthContext";
 const Medicine = () => {
-  const { user, role, token } = useContext(authContext);
-  const addToCart = async (m) => {
-    try {
-      const response = await fetch(`${BASE_URL}/users/addtocart`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          productName: m.name, // Include the product name
-          quantity: 1, // Assuming quantity is 1 for now, you can modify this if needed
-          price: m.price,
-          productphoto: m.photo,
-        }),
-      });
-      const result = await response.json();
-      if (response.ok) {
-        if (response.status == 200) {
-          toast.success("Added to your cart", {
-            autoClose: 600, // Toast duration in milliseconds
-            position: "bottom-center",
-            closeOnClick: true,
-          });
-        } else {
-          toast.success("Item already exists in the cart", {
-            autoClose: 600, // Toast duration in milliseconds
-            position: "bottom-center",
-          });
-        }
-        // Item added to cart successfully
-      } else {
-        // Handle error
-        toast.error("Failed to add item to cart", {
-          autoClose: 600, // Toast duration in milliseconds
-          position: "bottom-center",
-        });
-        console.log(result);
-      }
-    } catch (error) {
-      toast.error("Error adding item to cart:", error, {
-        autoClose: 600, // Toast duration in milliseconds
-        position: "bottom-center",
-      });
-    }
-  };
-  const navigate = useNavigate();
-  const handleCart = (m) => {
-    if (!user || !token) {
-      navigate("/login");
-    } else {
-      addToCart(m);
-    }
-  };
   // Medicine data
   const medicines = [
     {
@@ -169,7 +115,66 @@ const Medicine = () => {
         "Gabapentin is used with other medications to prevent and control seizures. It is also used to relieve nerve pain following shingles (a painful rash due to herpes zoster infection) in adults. Gabapentin works by affecting the transmission of nerve signals in the brain. It is important to follow the prescribed dosing schedule and not abruptly discontinue the medication to avoid withdrawal symptoms and potential seizure recurrence.",
     },
   ];
-
+  const { user, role, token } = useContext(authContext);
+  const [loading, setLoading] = useState(false);
+  const [currentId, setCurrentId] = useState("");
+  const addToCart = async (m) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${BASE_URL}/users/addtocart`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          productName: m.name, // Include the product name
+          quantity: 1, // Assuming quantity is 1 for now, you can modify this if needed
+          price: m.price,
+          productphoto: m.photo,
+        }),
+      });
+      if (response.ok) {
+        if (response.status == 200) {
+          toast.success("Added to your cart", {
+            autoClose: 600, // Toast duration in milliseconds
+            position: "bottom-center",
+            closeOnClick: true,
+          });
+          setLoading(false);
+        } else {
+          toast.success("Item already exists in the cart", {
+            autoClose: 600, // Toast duration in milliseconds
+            position: "bottom-center",
+          });
+          setLoading(false);
+        }
+        // Item added to cart successfully
+      } else {
+        // Handle error
+        toast.error("Failed to add item to cart", {
+          autoClose: 600, // Toast duration in milliseconds
+          position: "bottom-center",
+        });
+        setLoading(false);
+      }
+    } catch (error) {
+      toast.error("Error adding item to cart:", error, {
+        autoClose: 600, // Toast duration in milliseconds
+        position: "bottom-center",
+      });
+      setLoading(false);
+    }
+  };
+  const navigate = useNavigate();
+  const handleCart = (m) => {
+    if (!user || !token) {
+      navigate("/login");
+    } else {
+      setCurrentId(m.id)
+      addToCart(m);
+    }
+  };
   return (
     <div className="container">
       <h2 className="heading text-center">Order Medicine Now:</h2>
@@ -203,10 +208,15 @@ const Medicine = () => {
                 </div>
                 <div className="flex justify-end ">
                   <button
+                    disabled={loading && true}
                     className=" rounded-2xl bg-blue-600 p-2 text-white hover:text-cyan-300 font-serif hover:bg-blue-900 transition duration-300"
-                    onClick={() =>handleCart(item)}
+                    onClick={() => handleCart(item)}
                   >
-                    Add to cart
+                    {currentId == item.id && loading ? (
+                      <div>Adding...</div>
+                    ) : (
+                      <div>Add to cart</div>
+                    )}
                   </button>
                 </div>
               </div>
