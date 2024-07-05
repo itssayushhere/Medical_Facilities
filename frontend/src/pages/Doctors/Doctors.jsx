@@ -19,6 +19,8 @@ const Doctors = () => {
   const [searched, setSearched] = useState(false);
 
   const handlesearch = () => {
+
+    setCurrentpage(1)
     setSearched(true);
     const filtered = data.filter((item) => {
       if (searchby === "name") {
