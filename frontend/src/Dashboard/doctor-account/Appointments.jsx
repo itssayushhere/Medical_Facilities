@@ -9,8 +9,8 @@ const Appointments = () => {
   const [data, loading, error] = useFetchData(`${BASE_URL}/book/doctor`);
 
   return (
-    <section className=" object-cover bg-gray-100 ">
-      <div className="container mx-auto">
+    <section className="container bg-gray-100 ">
+      <div className=" mx-auto">
         {loading && !error && <Loading />}
         {error && !loading && <Error errMessage={error} />}
         {!loading && !error && (
