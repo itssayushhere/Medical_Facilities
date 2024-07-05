@@ -104,7 +104,7 @@ const Doctors = () => {
           </div>
         </div>
         <div className="container text-center mt-3">
-          <label htmlFor="1" className="font-semibold">
+          <label  className="font-semibold">
             Search by :{" "}
           </label>
           <div className="flex gap-2 items-center justify-center font-serif">
@@ -112,14 +112,14 @@ const Doctors = () => {
               type="radio"
               name="search"
               value="name"
-              id="1"
+
               checked={searchby === "name"}
               onChange={handleOptionChange}
             />
             <span className="">Name</span>
             <input
               type="radio"
-              id="1"
+
               name="search"
               value="specialization"
               checked={searchby === "specialization"}

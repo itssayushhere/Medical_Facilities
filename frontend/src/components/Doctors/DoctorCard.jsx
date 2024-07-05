@@ -23,7 +23,7 @@ const DoctorCard = ({ doctor }) => {
           gender == "male" ? (
             <img src={doctor_male} className=" rounded-lg" alt="doctor Image" />
           ) : (
-            <img src={doctor_female} className="rounded-lg" alt="doctor Image" />
+            <img src={doctor_female} className="rounded-lg" alt="doctor Image mx-auto" />
           )
         ) : (
           <img src={photo} className="" alt="" />
