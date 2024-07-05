@@ -166,7 +166,7 @@ const Community = () => {
   useEffect(() => {
     fetchQuestions();
   }, []);
-
+  console.log(questions)
   return (
     <div className="container mx-auto p-4">
       <div className="text-center font-bold p-12">

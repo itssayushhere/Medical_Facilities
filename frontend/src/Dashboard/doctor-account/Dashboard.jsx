@@ -7,6 +7,7 @@ import Tabs from "./Tabs";
 import starIcon from "../../assets/images/Star.webp";
 import DoctorAbout from "../../pages/Doctors/DoctorAbout.jsx";
 import Profile from "./Profile.jsx";
+import Appointments from "./Appointments.jsx";
 const Dashboard = () => {
   const [data, loading, error] = useFectchData(
     `${BASE_URL}/doctors/profile/me`
@@ -80,7 +81,7 @@ const Dashboard = () => {
                     />
                   </div>
                 )}
-                {tab == "appointments" && <div>Appointment</div>}
+                {tab == "appointments" && <Appointments/>}
                 {tab == "settings" && <Profile user={data} />}
               </div>
             </div>
