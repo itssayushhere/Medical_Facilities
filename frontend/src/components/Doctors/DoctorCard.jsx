@@ -17,13 +17,13 @@ const DoctorCard = ({ doctor }) => {
     _id,
   } = doctor;
   return (
-    <div className="p-3 lg:p-5  border rounded-3xl shadow-2xl shadow-sky-100  bg-sky-50 ">
-      <div className="w-80 h-80 object-cover overflow-hidden rounded-lg mx-auto">
+    <div className="p-3 lg:p-5  border rounded-3xl shadow-2xl shadow-sky-50  bg-sky-100 ">
+      <div className="w-70 h-80 object-cover overflow-hidden rounded-lg mx-auto">
         {photo == null ? (
           gender == "male" ? (
-            <img src={doctor_male} className="" alt="doctor Image" />
+            <img src={doctor_male} className=" rounded-lg" alt="doctor Image" />
           ) : (
-            <img src={doctor_female} className="" alt="doctor Image" />
+            <img src={doctor_female} className="rounded-lg" alt="doctor Image" />
           )
         ) : (
           <img src={photo} className="" alt="" />
