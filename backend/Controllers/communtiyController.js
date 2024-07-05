@@ -1,6 +1,4 @@
 import Question from '../models/CommunitySchema.js';
-import User from "../models/UserSchema.js";
-import Doctor from "../models/DoctorSchema.js";
 
 // Create a new question
 export const createQuestion = async (req, res) => {

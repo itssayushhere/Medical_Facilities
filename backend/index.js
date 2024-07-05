@@ -9,6 +9,7 @@ import DoctorRoute from "./Routes/doctor.js";
 import reviewRoute from "./Routes/review.js";
 import questionRoute from "./Routes/question.js";
 import buyoutRoute from "./Routes/buyout.js";
+import bookRoute from './Routes/book.js'
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
@@ -40,6 +41,7 @@ app.use("/api/v1/doctors", DoctorRoute); ///imp
 app.use("/api/v1/reviews", reviewRoute);
 app.use("/api/v1/questions", questionRoute);
 app.use("/api/v1/buyout", buyoutRoute);
+app.use("/api/v1/book", bookRoute);
 
 app.listen(port, () => {
   connectDB();

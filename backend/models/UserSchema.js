@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import Booking from "./BookingSchema.js";
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
@@ -16,7 +16,7 @@ const UserSchema = new Schema({
   },
   gender: { type: String, enum: ["male", "female", "other"] },
   bloodType: { type: String },
-  appointments: [{ type: Schema.Types.ObjectId, ref: "Appointment" }],
+  appointments: [{ type: mongoose.Types.ObjectId, ref: "Booking" }],
   cart: [
     {
       productphoto: { type: String },
