@@ -13,19 +13,19 @@ const Appointments = () => {
       <div className=" mx-auto">
         {loading && !error && <Loading />}
         {error && !loading && <Error errMessage={error} />}
-        {!loading && !error && (
-          <div className="overflow-x-auto bg-white shadow-md rounded-lg">
+        {!loading && !error && data.length > 0 ?(
+          <div className="bg-white shadow-md rounded-lg">
             <table className="table-auto w-full text-center">
               <thead className="bg-sky-200">
                 <tr>
-                  <th className="px-4 py-3 font-bold">Patient Name</th>
+                  <th className="px-4 py-3 font-bold">Patient </th>
                   <th className="px-4 py-3 font-bold">Date</th>
                   <th className="px-4 py-3 font-bold">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {data.map((item, index) => (
-                  <tr key={index} className="border-b border-gray-200">
+                  <tr key={index} className="border-b border-gray-200 ">
                     <td className="px-4 py-4">{item.user.name}</td>
                     <td className="px-4 py-4">{formatDate(item.appointmentDate)}</td>
                     <td className="px-4 py-4">
@@ -41,7 +41,9 @@ const Appointments = () => {
               </tbody>
             </table>
           </div>
-        )}
+        ):(<div>
+          <h1 className="text-2xl font-bold text-center">No Appointments</h1>
+        </div>)}
       </div>
     </section>
   );

@@ -2,27 +2,20 @@ import React from 'react'
 import Loading from '../../components/Loader/Loading';
 import { BASE_URL } from '../../../config';
 import useFetchData from '../../hooks/usefetchData';
+import Error from '../../components/Error/Error';
+import AppointmentCard from './AppointmentCard';
 const Doctorsapp = () => {
-  const [
-    appointments,
-    loading,
-    error,
-  ] = useFetchData(`${BASE_URL}/users/appointments/my-appointments`);
-
+  const [data, loading, error] = useFetchData(`${BASE_URL}/book/user`);
+  console.log(data)
+  if(loading){
+    return <Loading/>
+  }
+  if(error){
+    return <Error errMessage={error}/>
+  }
   return (
-    <div>
-      {loading && !error && <Loading />}
-      {error && !loading && <Error errMessage={error} />}
-      {!loading && !error && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          {appointments.map((doctor) => (
-            <DoctorCard doctor={doctor} key={doctor._id} />
-          ))}
-        </div>
-      )}
-      {!loading && !error && appointments.length === 0 && (
-        <h2 className="mt-8 text-center ☐ leading-7 text-[20px] font-semibold text-primaryColor ">You did not have any doctor appointments yet! </h2>
-      )}
+    <div className='container'>
+      <AppointmentCard/>
     </div>
   );
 }

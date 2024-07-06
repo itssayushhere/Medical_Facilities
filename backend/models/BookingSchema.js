@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import User from './UserSchema.js'
-import Doctor from './DoctorSchema.js'
 const bookingSchema = new mongoose.Schema(
   {
     doctor: {
@@ -14,21 +12,27 @@ const bookingSchema = new mongoose.Schema(
       required: true,
     },
     ticketPrice: { type: String, required: true },
+    meeting: {
+      type: String,
+      enum: ["video", "hospital"],
+      required: true,
+    },
+    time: { type: String, required: true },
     appointmentDate: {
       type: Date,
       required: true,
     },
     status: {
       type: String,
-      enum: ["pending", "approved", "cancelled"],
+      enum: ["pending", "attended","missed", "cancelled"],
       default: "pending",
     },
     isPaid: {
       type: Boolean,
       default: true,
     },
-  },
-  { timestamps: true }
+    photo: { type: String },
+  }
 );
 
 export default mongoose.model("Booking", bookingSchema);

@@ -49,7 +49,14 @@
   max-height: 300px; /* Ensure max height to prevent overflow */
   margin: auto;
 }
-
+.booking_img{
+  width: 40px; /* Ensures image is responsive within the container */
+  height: 35px; /* Maintains aspect ratio */
+  object-fit: cover; /* Ensures image covers the specified dimensions without distortion */
+  max-width: 40px; /* Ensure max width to prevent overflow */
+  max-height: 35px; /* Ensure max height to prevent overflow */
+  margin: auto;
+}
 @media only screen and (max-width: 768px) {
   .navigation {
     width: 100%;
