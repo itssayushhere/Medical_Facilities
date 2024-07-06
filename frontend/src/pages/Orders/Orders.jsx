@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BASE_URL, token } from "../../../config.js";
 import QuantityCounter from "../../components/Compoentsforwebsite/QunatityCounter.jsx";
-import { useSelector, Provider, useDispatch } from "react-redux";
-import store from "../../components/Compoentsforwebsite/Store.jsx";
+import { useSelector, Provider } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Fab from "@mui/material/Fab";
@@ -11,16 +10,17 @@ import { Button } from "@mui/material";
 import { Tooltip } from "@mui/material";
 import CircularIndeterminate from "../../components/Loader/Circular.jsx";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Addtocart } from "../../components/Compoentsforwebsite/UpdateNumber.jsx";
+import store from "../../components/Compoentsforwebsite/Store.jsx";
 const Orders = () => {
   const DisplayNumber = () => {
-    const number = useSelector((state) => state.number); // Access the current state
+    const number = useSelector((state) => state.total.number); // Access the current state
     return <p>₹{number}</p>;
   };
-
   // const [error, setError] = useState(null);
   const [cartDetails, setCartDetails] = useState([]);
   const [loading, setloading] = useState(true);
-
+  const [Medicines, setMedicines] = useState([]);
   const fetchCartDetails = async () => {
     try {
       const response = await fetch(`${BASE_URL}/users/cart/getcart`, {
@@ -36,8 +36,8 @@ const Orders = () => {
         setCartDetails(data); // Assuming data is an array of cart items
         setloading(false);
       } else {
-        throw new Error("Failed to fetch cart details");
         setloading(false);
+        throw new Error("Failed to fetch cart details");
       }
     } catch (error) {
       console.error("Error fetching cart details:", error);
@@ -54,8 +54,15 @@ const Orders = () => {
   useEffect(() => {
     fetchCartDetails();
   }, []);
-
+  const DisplayMedicines = () => {
+    const medicines = useSelector((state) => state.medicines);
+    useEffect(()=>{
+      setMedicines(medicines)
+    },[medicines])
+    return null
+  };
   const checkoutStripe = async () => {
+    fetchCartDetails();
     try {
       const res = await fetch(`${BASE_URL}/buyout/now`, {
         method: "POST",
@@ -63,12 +70,12 @@ const Orders = () => {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(cartDetails),
+        body: JSON.stringify(Medicines),
       });
 
       if (res.ok) {
         const data = await res.json(); // Parse the response body
-        toast.success("Checkout Successful");
+        console.log(data);
         // Redirect to Stripe checkout
         window.location.href = data.url;
       } else {
@@ -116,9 +123,14 @@ const Orders = () => {
                       productName={item.productName}
                       price={item.price}
                       id={item._id}
-                      photo={item.productphoto}
+                      productphoto={item.productphoto}
                       onItemDeleted={fetchCartDetails}
                     />
+                    <Addtocart                        productName={item.productName}
+                      price={item.price}
+                      id={item._id}
+                      photo={item.productphoto}
+                      quantity={item.quantity} />
                   </Provider>
                 </div>
               ))
@@ -144,6 +156,7 @@ const Orders = () => {
           Total :
           <Provider store={store}>
             <DisplayNumber />
+            <DisplayMedicines />
           </Provider>
         </div>
         <div>

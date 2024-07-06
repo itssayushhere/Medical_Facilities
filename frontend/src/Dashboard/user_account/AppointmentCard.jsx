@@ -4,7 +4,7 @@ import videoIcon from "../../assets/images/video-icon.webp";
 
 const AppointmentCard = () => {
   return (
-    <div className=" border  border-black  rounded-xl bg-white  shadow-xl">
+    <div className=" border    rounded-2xl bg-white  shadow-xl ">
       <div className="">
         <div className="flex justify-between bg-sky-200 items-center gap-2 m-3 p-2 border-b-2 border-gray-600 rounded-xl ">
           <div className="flex items-center justify-start gap-1 ">

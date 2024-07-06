@@ -1,40 +1,40 @@
-import React, { useEffect, useState, useRef } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import UpdateNumber from "./UpdateNumber";
 import store from "./Store";
 import { Provider, useDispatch } from "react-redux";
 import { BASE_URL, token } from "../../../config";
 import { toast } from "react-toastify";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
-const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
+const QuantityCounter = ({ productName, price, id, productphoto,onItemDeleted }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
-  const theme = useTheme();
-
+  const medicine = {
+    price,
+    productName,
+    productphoto,
+    quantity:quantity+1,
+    id,
+  }
   const handleIncrement = (price) => {
     setQuantity((prevQuantity) => prevQuantity + 1);
     dispatch({ type: "Increase", payload: price });
+    dispatch({ type: "UPDATE_ITEM",
+      payload: { productName, medicine },
+    })
   };
-
+  
   const handleDecrement = (price) => {
     setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
     if (quantity > 1) {
       dispatch({ type: "Decrease", payload: price });
+      dispatch({ type: "UPDATE_ITEM",
+        payload: { productName, medicine },
+      })
     }
+
   };
 
   const Delete = async (id) => {
@@ -67,41 +67,6 @@ const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
     }
   };
 
-  const handleQuantity = async (id, quantity) => {
-    try {
-      const response = await fetch(`${BASE_URL}/users/updatecart/${id}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json", // Optional, but good practice
-        },
-        body: JSON.stringify({ quantity: quantity }),
-      });
-      const result = await response.json();
-      if (response.ok) {
-        // toast.success("updated");
-        // console.log(result);
-      } else {
-        toast.error("Not updated");
-        console.log(result);
-      }
-    } catch (error) {
-      toast.error("error");
-    }
-  };
-
-  const hasMounted = useRef(false);
-  useEffect(() => {
-    if (!hasMounted.current) {
-      handleQuantity(id, quantity);
-      hasMounted.current = true;
-    }
-  }, [id]);
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  // const handledelete = (id, price) => {
-  //   Delete(id);
-  //   dispatch({ type: "Decrease", payload: price });
-  // };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid
@@ -123,7 +88,6 @@ const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
                 className="bg-blue-500 text-white font-bold py-1 px-2 rounded"
                 onClick={() => {
                   handleIncrement(price);
-                  handleQuantity(id, parseInt(quantity + 1));
                 }}
               >
                 +
@@ -138,7 +102,6 @@ const QuantityCounter = ({ productName, price, id, onItemDeleted }) => {
                 className="bg-red-500 text-white font-bold py-1 px-2 rounded"
                 onClick={() => {
                   handleDecrement(price);
-                  handleQuantity(id, parseInt(quantity));
                 }}
               >
                 -
