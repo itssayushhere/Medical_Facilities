@@ -129,7 +129,7 @@ const Orders = () => {
                     <Addtocart                        productName={item.productName}
                       price={item.price}
                       id={item._id}
-                      photo={item.productphoto}
+                      productphoto={item.productphoto}
                       quantity={item.quantity} />
                   </Provider>
                 </div>
