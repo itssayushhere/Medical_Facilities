@@ -1,5 +1,5 @@
 // routes/Routers.js
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "../pages/Home";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
@@ -16,10 +16,21 @@ import MentalHealth from "../pages/MentalHealth";
 import Success from "../pages/Success";
 import { AuthContextProvider } from "../context/AuthContext";
 import OrderTabs from "../pages/Orders/OrderTabs.jsx";
+import { useEffect } from "react";
 
 const Routers = () => {
+  const ScrollToTop = () => {
+    const { pathname } = useLocation();
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  
+    return null;
+  };  
   return (
     <AuthContextProvider>
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
