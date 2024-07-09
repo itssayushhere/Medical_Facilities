@@ -1,14 +1,19 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 // Define the reply schema
 const replySchema = new mongoose.Schema(
   {
-    username: {
+    userAdd: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      refPath: 'refType'  // Dynamic reference
+    },
+    refType: {
       type: String,
       required: true,
-      trim: true,
+      enum: ['User', 'Doctor'],
     },
-    review: {
+    Reply: {
       type: String,
       required: true,
       trim: true,
@@ -18,17 +23,17 @@ const replySchema = new mongoose.Schema(
 );
 
 // Define the community schema with embedded replies
-const CommunitySchema = new mongoose.Schema(
+const communitySchema = new mongoose.Schema(
   {
-    username: {
-      type: String,
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
-      trim: true,
+      refPath: 'refType'  // Dynamic reference
     },
-    name: {
+    refType: {
       type: String,
       required: true,
-      trim: true,
+      enum: ['User', 'Doctor'],
     },
     question: {
       type: String,
@@ -39,4 +44,4 @@ const CommunitySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Question", CommunitySchema);
+export default mongoose.model("Question", communitySchema);

@@ -12,11 +12,11 @@ import {
 
 const router = express.Router();
 // Routes
-router.post('/', createQuestion);
+router.post('/',authenticate, createQuestion);
 router.get('/', getQuestions);
 router.get('/:id', getQuestionById);
 router.put('/:id', updateQuestion);
 router.delete('/:id', deleteQuestion);
-router.post('/:id/reviews', createReply);
+router.post('/reply/:id',authenticate,createReply);
 // router.get('/profile/me', authenticate, fetch_details);
 export default router;

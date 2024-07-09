@@ -66,10 +66,10 @@ export const getUserBookingDetails = async (req, res) => {
     const user = await User.findById(userId).populate({
       path: "appointments",
       populate: {
-        path: "doctor", // Assuming 'doctor' is populated in Booking
-        select: "name specialization hospital photo", // Select fields to populate from doctor
+        path: "doctor", 
+        select: "name specialization hospital photo", 
       },
-      select: "doctor ticketPrice status isPaid appointmentDate meeting ", // Select fields from Booking
+      select: "doctor ticketPrice status isPaid appointmentDate meeting ",
     });
 
     if (!user) {

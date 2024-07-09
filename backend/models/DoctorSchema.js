@@ -1,5 +1,4 @@
 import mongoose from "mongoose"
-import Booking from "./BookingSchema.js";
 
 const DoctorSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
@@ -42,6 +41,7 @@ const DoctorSchema = new mongoose.Schema({
     default: "pending",
   },
   appointments: [{ type: mongoose.Types.ObjectId, ref: "Booking" }],
+  Community: [{ type: mongoose.Types.ObjectId, ref: "Question" }],
 });
 
 export default mongoose.model("Doctor", DoctorSchema);
