@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import checkupImage1 from "../../assets/images/example.webp"; // Import your checkup images
 import checkupImage2 from "../../assets/images/example.webp";
 import checkupImage3 from "../../assets/images/example.webp";
@@ -9,7 +9,6 @@ import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
 import { TimePicker } from "@mui/x-date-pickers";
 import { BASE_URL, token } from "../../../config";
-import { stringify } from "postcss";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 const Checkup = () => {
@@ -138,7 +137,7 @@ const Checkup = () => {
         date: picker.date?.format("DD/MM/YYYY"),
       });
     }
-  }, [picker.date]);
+  }, [picker.date,checkupdetails]);
   useEffect(() => {
     if (picker.time != null) {
       setCheckupdetails({
@@ -146,7 +145,7 @@ const Checkup = () => {
         time: picker.time?.format("HH:mm"),
       });
     }
-  }, [picker.time]);
+  }, [picker.time,checkupdetails]);
 
   const [currentdate, setcurrentDate] = useState("");
   useEffect(() => {

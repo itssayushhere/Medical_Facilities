@@ -1,7 +1,12 @@
+/* eslint-disable react/prop-types */
 
 const SidePanel = ({ timeslots, ticketPrice }) => {
   const bookappointment = () => {
-    
+    try {
+      
+    } catch (error) {
+      
+    }
   }
   return (
     <div className="shadow p-3 lg:p-5 rounded-md">

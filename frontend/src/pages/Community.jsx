@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import  { useState, useEffect, useContext } from "react";
 import usefetchData from "../hooks/usefetchData.jsx";
-import { BASE_URL, role } from "../../config.js";
+import { BASE_URL} from "../../config.js";
 import { toast } from "react-toastify";
 import { authContext } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
@@ -71,7 +71,6 @@ const Community = () => {
         }
       );
       if (response.ok) {
-        const result = await response.json();
         toast.success("Reply submitted");
 
         setReview({ username: "", review: "" });

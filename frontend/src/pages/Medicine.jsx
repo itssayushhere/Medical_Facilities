@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { BASE_URL, token } from "../../config";
+import { useContext, useState } from "react";
+import { BASE_URL} from "../../config";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../context/AuthContext";
@@ -115,7 +115,7 @@ const Medicine = () => {
         "Gabapentin is used with other medications to prevent and control seizures. It is also used to relieve nerve pain following shingles (a painful rash due to herpes zoster infection) in adults. Gabapentin works by affecting the transmission of nerve signals in the brain. It is important to follow the prescribed dosing schedule and not abruptly discontinue the medication to avoid withdrawal symptoms and potential seizure recurrence.",
     },
   ];
-  const { user, role, token } = useContext(authContext);
+  const { user,  token } = useContext(authContext);
   const [loading, setLoading] = useState(false);
   const [currentId, setCurrentId] = useState("");
   const addToCart = async (m) => {

@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import heroImg01 from "../assets/images/hero-img01.webp";
 import heroImg02 from "../assets/images/hero-img02.webp";

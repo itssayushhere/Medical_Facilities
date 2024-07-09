@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { formatDate } from "../../utils/formatDate";
 
 const DoctorAbout = ({ name, about, qualifications, experiences }) => {

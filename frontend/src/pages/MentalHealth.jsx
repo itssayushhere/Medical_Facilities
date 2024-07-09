@@ -1,4 +1,3 @@
-import React from "react";
 import articleImg1 from "../assets/images/anxiety_disorders.webp";
 import articleImg2 from "../assets/images/stress.webp";
 const MentalHealthPage = () => {
@@ -8,7 +7,7 @@ const MentalHealthPage = () => {
         Mental Health Resources
       </h1>
       <p className="text-lg text-gray-700 mb-8 text-center">
-        Welcome to our mental health resources page. Here, you'll find helpful
+        Welcome to our mental health resources page. Here, you&apos;ll find helpful
         information, articles, and tools to support your mental well-being.
       </p>
 
