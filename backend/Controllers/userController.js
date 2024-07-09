@@ -3,19 +3,31 @@ import Booking from "../models/BookingSchema.js";
 import Doctor from "../models/DoctorSchema.js";
 export const updateUser = async (req, res) => {
   const id = req.params.id;
+  const { username } = req.body;
+
   try {
+    const existingUser = await User.findOne({ username, _id: { $ne: id } });
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "Username already exists",
+      });
+    }
+
+    // Proceed with the update
     const updatedUser = await User.findByIdAndUpdate(
       id,
       { $set: req.body },
       { new: true }
     );
+
     res.status(200).json({
       success: true,
       message: "Successfully Updated",
       data: updatedUser,
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: "failed to update" });
+    res.status(500).json({ success: false, message: "Failed to update" });
   }
 };
 

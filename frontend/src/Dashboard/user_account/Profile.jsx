@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import bcrypt from "bcryptjs"; // Ensure bcryptjs is installed and imported
 import uploadImageToCloudinary from "../../utils/uploadCLoudinary.js";

@@ -65,7 +65,6 @@ export const register = async (req, res) => {
 
     // Save the user to the database
     await user.save();
-    console.log(user);
     res
       .status(200)
       .json({ success: true, message: "User successfully created" });

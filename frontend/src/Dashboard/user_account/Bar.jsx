@@ -1,4 +1,4 @@
-import * as React from "react";
+/* eslint-disable react/prop-types */
 import { styled } from "@mui/system";
 import { Tabs } from "@mui/base/Tabs";
 import { TabsList as BaseTabsList } from "@mui/base/TabsList";
@@ -9,7 +9,6 @@ import MyBookings from "./MyBookings";
 
 import Profile from "./Profile";
 
-import { useDispatch } from "react-redux";
 
 
 export default function Bar({ userData }) {

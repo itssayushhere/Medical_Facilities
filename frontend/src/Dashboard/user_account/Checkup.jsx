@@ -1,4 +1,3 @@
-import React from "react";
 import useFetchData from "../../hooks/usefetchData";
 import { BASE_URL } from "../../../config";
 import Loading from "../../components/Loader/Loading";
@@ -38,7 +37,7 @@ const Checkup = () => {
             !loading &&
             !userData && (
               <div>
-                <h1>You don't have any Checkup booking</h1>
+                <h1>You don&apos;t have any Checkup booking</h1>
                 <button type="button" onClick={handlenavigation}>Book Now</button>
               </div>
             )

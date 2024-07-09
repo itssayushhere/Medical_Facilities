@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import  { useContext } from "react";
 import { authContext } from "./../../context/AuthContext.jsx";
-import { useState } from "react";
 import useFetchData from "../../hooks/usefetchData.jsx";
 import { BASE_URL } from "../../../config.js";
 import Loading from "../../components/Loader/Loading.jsx";
@@ -10,7 +9,6 @@ import Avatars from "./Avatar.jsx";
 
 const MyAccount = () => {
   const { dispatch } = useContext(authContext); // for logout
-  const [tab, setTab] = useState("orders"); // tab for profile and my booking
   const [userData, loading, error] = useFetchData(
     `${BASE_URL}/users/profile/me`
   );

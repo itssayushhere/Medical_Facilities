@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { BASE_URL } from "../../../config";
 import useFetchData from "../../hooks/usefetchData";
 import Loading from "../../components/Loader/Loading";
