@@ -19,7 +19,7 @@ export const getCheckoutSession = async (req, res) => {
 
     const lineItems = items.map((item) => ({
       price_data: {
-        currency: "usd",
+        currency: "inr",
         unit_amount: item.price * 100,
         product_data: {
           name: item.productName,
@@ -46,11 +46,11 @@ export const getCheckoutSession = async (req, res) => {
     );
     const checkout = new Checkout({
       user: user._id,
-      Medicine: items.map((item) => item.productName).join(", "), // concatenating product names
-      Quantity: items.reduce((total, item) => total + item.quantity, 0), // summing up quantities
+      Medicine: items.map((item) => ({ Name: item.productName, Quantity: item.quantity })), // mapping items to objects with Name and Quantity
       Total: totalAmount,
       session: session.id,
     });
+    
     await checkout.save();
 
     // Return the session URL to the client
