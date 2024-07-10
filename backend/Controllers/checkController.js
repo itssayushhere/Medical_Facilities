@@ -54,7 +54,6 @@ export const getCheckoutSession = async (req, res) => {
       session: session.id,
     });
     await checkout.save();
-
     // Return the session URL to the client
     res
       .status(200)
@@ -67,3 +66,16 @@ export const getCheckoutSession = async (req, res) => {
     });
   }
 };
+
+export const getOrdered = async (req, res) => {
+  const userId = req.userId;
+  try {
+    const checkout = await Checkout.find({ user: userId })
+    if (!checkout) {
+      return res.status(400).json({ success: false, message: "User not found" });
+    }
+    res.status(200).json({ success: true, message: "Checkout", data: checkout });
+  } catch (error) {
+    res.status(400).json({ success: false, message: "Error getting checkout", error });
+  }
+}
