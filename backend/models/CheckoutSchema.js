@@ -15,7 +15,7 @@ const CheckoutSchema = new mongoose.Schema(
     },
     isPaid: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     Status: {
       type: String,
