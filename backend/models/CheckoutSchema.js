@@ -7,15 +7,8 @@ const CheckoutSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    Medicine: {
-      type: String,
-      required: true,
-    },
-    Quantity: {
-      type: Number,
-      default: 0,
-      required: true,
-    },
+    Product:[{Name: { type: String },
+      Quantity: { type: Number, default: 1 }, }],
     Total: {
       type: Number,
       required: true,
