@@ -20,7 +20,7 @@ export const getCheckoutSession = async (req, res) => {
     const lineItems = items.map((item) => ({
       price_data: {
         currency: "inr",
-        unit_amount: item.price * 100,
+        unit_amount: item.price * 100, // Stripe expects the amount in the smallest currency unit (i.e., paise for INR)
         product_data: {
           name: item.productName,
           description: item.description,
@@ -46,11 +46,13 @@ export const getCheckoutSession = async (req, res) => {
     );
     const checkout = new Checkout({
       user: user._id,
-      Medicine:[ items.map((item) => ({ Name: item.productName, Quantity: item.quantity }))], // mapping items to objects with Name and Quantity
+      Medicine: items.map((item) => ({
+        Name: item.productName,
+        Quantity: item.quantity,
+      })), // mapping items to objects with Name and Quantity
       Total: totalAmount,
       session: session.id,
     });
-    
     await checkout.save();
 
     // Return the session URL to the client
