@@ -22,6 +22,7 @@ const Orders = () => {
   const [loading, setloading] = useState(true);
   const [Medicines, setMedicines] = useState([]);
   const fetchCartDetails = async () => {
+
     try {
       const response = await fetch(`${BASE_URL}/users/cart/getcart`, {
         method: "GET",

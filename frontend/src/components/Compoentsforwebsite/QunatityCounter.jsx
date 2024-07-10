@@ -11,6 +11,7 @@ import Grid from "@mui/material/Grid";
 const QuantityCounter = ({ productName, price, id, productphoto,onItemDeleted }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const [deleting,setDeleting] =useState(false)
   const medicine = {
     price,
     productName,
@@ -39,6 +40,7 @@ const QuantityCounter = ({ productName, price, id, productphoto,onItemDeleted })
 
   const Delete = async (id) => {
     try {
+      setDeleting(true)
       const response = await fetch(`${BASE_URL}/users/cart/${id}`, {
         method: "DELETE",
         headers: {
@@ -54,6 +56,7 @@ const QuantityCounter = ({ productName, price, id, productphoto,onItemDeleted })
         });
         onItemDeleted();
         dispatch({ type: "Decrease", payload: price * quantity });
+        setDeleting(false)
       } else {
         // Handle the case where the response is not ok
         const errorMessage = await response.text();
@@ -61,9 +64,11 @@ const QuantityCounter = ({ productName, price, id, productphoto,onItemDeleted })
           autoClose: 600, // Toast duration in milliseconds
           position: "bottom-center",
         });
+        setDeleting(false)
       }
     } catch (error) {
       toast.error("Error removing item");
+      setDeleting(false)
     }
   };
 
@@ -118,7 +123,7 @@ const QuantityCounter = ({ productName, price, id, productphoto,onItemDeleted })
           </Grid>
         </Grid>
         <Grid item xs={12} sm={2} container justifyContent={"center"}>
-          <button className="ml-2">
+          <button className="ml-2" disabled={deleting && true}>
             <DeleteIcon
               className="text-red-300 hover:text-red-500"
               onClick={() => Delete(id)}
