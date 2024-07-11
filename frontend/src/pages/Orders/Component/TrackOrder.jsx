@@ -62,7 +62,7 @@ export default function TrackOrder({status}) {
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
-            Save changes
+            Okay
           </Button>
         </DialogActions>
       </BootstrapDialog>
