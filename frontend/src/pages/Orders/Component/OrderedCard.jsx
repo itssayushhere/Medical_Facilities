@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
-import defaultphoto from "../../../assets/images/user.webp";
 import FlightIcon from "@mui/icons-material/Flight";
-const OrderedCard = ({items}) => {
+import { formatDate } from "../../../utils/formatDate.js";
+const OrderedCard = ({ items }) => {
   return (
     <div className="p-7 lg:w-[860px] md:w-[400px] bg-white rounded-lg shadow-2xl mt-7 ">
       <div className="flex flex-col justify-center items-center ">
@@ -10,7 +10,9 @@ const OrderedCard = ({items}) => {
           <div className="flex justify-between items-end w-full mb-3">
             <div>
               <p className=" font-light">Order ID: </p>
-              <p className="font-medium text-2xl">#{items._id.substring(16,24)}</p>
+              <p className="font-medium text-2xl">
+                #{items._id.substring(16, 24)}
+              </p>
             </div>
             <button className="bg-sky-500 font-medium text-white px-2 py-0.5 mt-1 rounded-lg flex items-center">
               Track order <GpsFixedIcon />
@@ -19,7 +21,7 @@ const OrderedCard = ({items}) => {
           <div className="flex gap-3">
             <div className="flex items-center">
               <p className=" font-extralight">Order date :</p>
-              <p>{items.createdAt}</p>
+              <p>{formatDate(items.createdAt)}</p>
             </div>
             <div className="flex items-center text-green-600 font-semibold">
               <FlightIcon fontSize="small" />
@@ -36,15 +38,20 @@ const OrderedCard = ({items}) => {
               >
                 <div className="flex gap-2 items-center">
                   <img
-                    src={defaultphoto}
+                    src={items.Photo}
                     alt="Medicine Photo"
                     width={60}
                     className=" bg-gray-200 p-2 rounded"
                   />
-                  <p className="font-medium">{items.Name}</p>
+                  <div>
+                    <p className="font-medium">{items.Name}</p>
+                    <p className="font-extralight">Price:{items.Price}</p>
+                  </div>
                 </div>
                 <div className="flex flex-col items-end">
-                  <p className=" font-medium text-lg ">₹{items.price}</p>
+                  <p className=" font-medium text-lg ">
+                    ₹{items.Price * items.Quantity}
+                  </p>
                   <p className=" font-extralight">Qty:{items.Quantity}</p>
                 </div>
               </div>
