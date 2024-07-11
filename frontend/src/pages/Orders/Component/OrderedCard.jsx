@@ -1,8 +1,13 @@
 /* eslint-disable react/prop-types */
-import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import FlightIcon from "@mui/icons-material/Flight";
 import { formatDate } from "../../../utils/formatDate.js";
+import TrackOrder from "./TrackOrder.jsx";
+import { useMediaQuery } from "@mui/system";
+import { useTheme } from "@mui/material/styles";
+
 const OrderedCard = ({ items }) => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <div className="p-7 lg:w-[860px] md:w-[400px] bg-white rounded-lg shadow-2xl mt-7 ">
       <div className="flex flex-col justify-center items-center ">
@@ -14,9 +19,7 @@ const OrderedCard = ({ items }) => {
                 #{items._id.substring(16, 24)}
               </p>
             </div>
-            <button className="bg-sky-500 font-medium text-white px-2 py-0.5 mt-1 rounded-lg flex items-center">
-              Track order <GpsFixedIcon />
-            </button>
+            <TrackOrder status={items.Status}/>
           </div>
           <div className="flex gap-3">
             <div className="flex items-center">
@@ -57,13 +60,20 @@ const OrderedCard = ({ items }) => {
               </div>
             ))}
         </div>
-        <div className="grid grid-cols-2 w-full p-2">
+        <div className={isSmallScreen?"flex flex-col w-full p-2":"grid  grid-cols-2 w-full p-2"}>
           <div className="">
             <p className="font-bold text-base">Payment Mode</p>
-            <p className="">Cash ON Delivery</p>
+            <div className="flex items-center justify-center mt-3">
+              <button
+                className=" bg-green-500 p-2 text-green-950 rounded-lg font-bold "
+                disabled
+              >
+                Cash on Delivery
+              </button>
+            </div>
           </div>
           <div className="">
-            <p className="font-bold text-base">Delivery</p>
+            <p className="font-bold text-base ">Delivery</p>
             <p className="font-extralight">Address</p>
             <p>
               Ayushman Bhojnalaya , Near Durga Mandir ,B.N.D Compound , Sakinaka
