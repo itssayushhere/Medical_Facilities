@@ -47,6 +47,7 @@ export const getCheckoutSession = async (req, res) => {
     const checkout = new Checkout({
       user: user._id,
       Product: items.map((item) => ({
+        Photo : item.productphoto,
         Name: item.productName,
         Quantity: item.quantity,
       })), // mapping items to objects with Name and Quantity

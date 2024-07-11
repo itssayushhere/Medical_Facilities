@@ -7,7 +7,8 @@ const CheckoutSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    Product:[{Name: { type: String },
+    Product:[{Photo: { type: String },
+      Name: { type: String },
       Quantity: { type: Number, default: 1 }, }],
     Total: {
       type: Number,

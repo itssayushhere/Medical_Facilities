@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import starIcon from "../../assets/images/Star.webp";
 import { Link } from "react-router-dom";
 import doctor_male from '../../assets/images/doctor_male.avif'
