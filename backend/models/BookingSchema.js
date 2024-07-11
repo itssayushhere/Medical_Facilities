@@ -32,7 +32,8 @@ const bookingSchema = new mongoose.Schema(
       default: true,
     },
     photo: { type: String },
-  }
+  },
+  {timestamps:true}
 );
 
 export default mongoose.model("Booking", bookingSchema);

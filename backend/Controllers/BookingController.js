@@ -1,6 +1,7 @@
 import Booking from "../models/BookingSchema.js";
 import User from "../models/UserSchema.js";
 import Doctor from "../models/DoctorSchema.js";
+import { Stripe } from "stripe";
 
 export const createBooking = async (req, res) => {
   const userId = req.userId;
@@ -59,6 +60,78 @@ export const createBooking = async (req, res) => {
       .json({ success: false, message: "Error during booking", error });
   }
 };
+
+export const BookDoctor = async (req, res) => {
+  const userId = req.userId;
+  const { doctorName, doctorPhoto, DoctorDescription, ticketPrice, meeting, appointmentDate, time } = req.body;
+  const doctorId = req.params.id;
+  
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  try {
+    // Fetch the user
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Fetch the doctor
+    const doctor = await Doctor.findById(doctorId);
+    if (!doctor) {
+      return res.status(404).json({ success: false, message: "Doctor not found" });
+    }
+
+    // Create a checkout session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      mode: "payment",
+      success_url: `${process.env.SUCCESS_SITE_URL}`,
+      cancel_url: `${process.env.CANCEL_SITE_URL}`,
+      customer_email: user.email,
+      line_items: [
+        {
+          price_data: {
+            currency: "inr",
+            unit_amount: ticketPrice * 100,
+            product_data: {
+              name: doctorName,
+              description: DoctorDescription,
+              images: [doctorPhoto],
+            },
+          },
+          quantity: 1,
+        },
+      ],
+    });
+
+    // Create a new booking
+    const newBooking = new Booking({
+      user: user._id,
+      doctor: doctor._id,
+      ticketPrice,
+      appointmentDate,
+      time,
+      meeting,
+    });
+
+    await newBooking.save();
+
+    // Optionally, add the booking to the user's and doctor's appointments arrays
+    user.appointments.push(newBooking._id);
+    doctor.appointments.push(newBooking._id);
+
+    await user.save();
+    await doctor.save();
+
+    res.status(200).json({ success: true, message: "Session created", url: session.url });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "Error creating checkout session",
+      error: error.message,
+    });
+  }
+};
+
 export const getUserBookingDetails = async (req, res) => {
   const userId = req.userId;
 
