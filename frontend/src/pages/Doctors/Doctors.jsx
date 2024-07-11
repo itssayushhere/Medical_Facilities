@@ -11,7 +11,6 @@ import { useTheme } from "@mui/material/styles";
 const Doctors = () => {
   const theme = useTheme();
   const [data, loading, error] = useFectchData(`${BASE_URL}/doctors`);
-
   // Search state
   const [searchby, setSearchby] = useState("name");
   const [searchinput, setSearchinput] = useState("");

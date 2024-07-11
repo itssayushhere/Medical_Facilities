@@ -1,20 +1,16 @@
+/* eslint-disable react/prop-types */
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import defaultphoto from "../../../assets/images/user.webp";
-import FlightIcon from '@mui/icons-material/Flight';
-const OrderedCard = () => {
-  const data = [
-    { Name: "Ayushman", price: 1000, quantity: 2 },
-    { Name: "Ayushman", price: 1000, quantity: 2 },
-    { Name: "Ayushman", price: 1000, quantity: 2 },
-  ];
+import FlightIcon from "@mui/icons-material/Flight";
+const OrderedCard = ({items}) => {
   return (
     <div className="p-7 lg:w-[860px] md:w-[400px] bg-white rounded-lg shadow-2xl mt-7 ">
       <div className="flex flex-col justify-center items-center ">
-        <div className=" border-b-2 pb-4">
-          <div className="flex justify-between items-end w-full mb-3   gap-20">
+        <div className="w-full border-b-2 pb-4">
+          <div className="flex justify-between items-end w-full mb-3">
             <div>
-            <p className=" font-light">Order ID: </p>
-            <p className="font-medium text-2xl">#{12321412}</p>
+              <p className=" font-light">Order ID: </p>
+              <p className="font-medium text-2xl">#{items._id.substring(16,24)}</p>
             </div>
             <button className="bg-sky-500 font-medium text-white px-2 py-0.5 mt-1 rounded-lg flex items-center">
               Track order <GpsFixedIcon />
@@ -22,27 +18,51 @@ const OrderedCard = () => {
           </div>
           <div className="flex gap-3">
             <div className="flex items-center">
-            <p className=" font-extralight">Order date :</p>
-            <p>Feb 16, 2020</p>
+              <p className=" font-extralight">Order date :</p>
+              <p>{items.createdAt}</p>
             </div>
             <div className="flex items-center text-green-600 font-semibold">
-            <FlightIcon fontSize="small"/>Estimated delivery:May 14,2020
+              <FlightIcon fontSize="small" />
+              Estimated delivery:May 14,2020
             </div>
           </div>
         </div>
-        <div className="w-full  mt-5 ">
-          {data.map((items, index) => (
-            <div
-              key={index}
-              className="flex justify-between mb-2 p-2 bg-slate-400 "
-            >
-              <div className="flex gap-2">
-                <img src={defaultphoto} alt="" width={30} />
-                <p>{items.Name}</p>
+        <div className="w-full  mt-5 border-b-2 ">
+          {items.Product &&
+            items.Product.map((items, index) => (
+              <div
+                key={index}
+                className="flex justify-between p-2 items-center "
+              >
+                <div className="flex gap-2 items-center">
+                  <img
+                    src={defaultphoto}
+                    alt="Medicine Photo"
+                    width={60}
+                    className=" bg-gray-200 p-2 rounded"
+                  />
+                  <p className="font-medium">{items.Name}</p>
+                </div>
+                <div className="flex flex-col items-end">
+                  <p className=" font-medium text-lg ">₹{items.price}</p>
+                  <p className=" font-extralight">Qty:{items.Quantity}</p>
+                </div>
               </div>
-              <p>{items.price}</p>
-            </div>
-          ))}
+            ))}
+        </div>
+        <div className="grid grid-cols-2 w-full p-2">
+          <div className="">
+            <p className="font-bold text-base">Payment Mode</p>
+            <p className="">Cash ON Delivery</p>
+          </div>
+          <div className="">
+            <p className="font-bold text-base">Delivery</p>
+            <p className="font-extralight">Address</p>
+            <p>
+              Ayushman Bhojnalaya , Near Durga Mandir ,B.N.D Compound , Sakinaka
+              , Kherani road ,Mumbai-400072
+            </p>
+          </div>
         </div>
       </div>
     </div>

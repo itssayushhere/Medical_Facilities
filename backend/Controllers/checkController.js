@@ -50,6 +50,7 @@ export const getCheckoutSession = async (req, res) => {
         Photo : item.productphoto,
         Name: item.productName,
         Quantity: item.quantity,
+        Price: item.price,
       })), // mapping items to objects with Name and Quantity
       Total: totalAmount,
       session: session.id,

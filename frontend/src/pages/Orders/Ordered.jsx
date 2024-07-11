@@ -27,7 +27,11 @@ const Ordered = () => {
                 </button>
               </div>
             ) : (
-              <OrderedCard/>
+              data.map((item) =>
+                <div key={item._id}>
+                  <OrderedCard items={item}/>
+                </div>
+            )
             )}
           </div>
         )}
