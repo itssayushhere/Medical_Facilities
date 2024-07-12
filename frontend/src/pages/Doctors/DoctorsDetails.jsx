@@ -89,7 +89,6 @@ const DoctorsDetails = () => {
                 {tab === "feedback" && <Feedback />}
               </div>
             </div>
-
             <div>
               <SidePanel
               Name={doctor.name}
