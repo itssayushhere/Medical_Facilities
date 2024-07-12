@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import * as React from "react";
 import Button from "@mui/material/Button";
@@ -12,6 +11,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import defaultPhoto from "../../assets/images/user.webp";
 import { toast } from "react-toastify";
 import { BASE_URL, token } from "../../../config";
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -29,11 +29,12 @@ export default function BookingForm({
   ticketPrice,
   timeSlots,
   Description,
+  id
 }) {
   const [open, setOpen] = React.useState(false);
   const [meetingType, setMeetingType] = React.useState("video");
-  const [appointmentDate, setAppointmentDate] = React.useState("");
   const [time, setTime] = React.useState();
+  const [booking,setBooking] = React.useState(false)
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -42,62 +43,57 @@ export default function BookingForm({
     setOpen(false);
   };
 
- const AppDate = (day) => {
-  const date = new Date();
-  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  
-  const targetDayIndex = daysOfWeek.indexOf(day);
-  const currentDayIndex = date.getDay();
-  
-  if (targetDayIndex === currentDayIndex) {
-    return date.toDateString();
-  }
-  
-  return null; // or some default value if the day doesn't match
-}
+  const AppDate = (day) => {
+    const date = new Date();
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const targetDayIndex = daysOfWeek.indexOf(day);
+    const currentDayIndex = date.getDay();
+    
+    const daysToAdd = (targetDayIndex + 7 - currentDayIndex) % 7;
+    date.setDate(date.getDate() + daysToAdd);
 
-React.useEffect(() => {
-  const date = AppDate("Monday");
-    console.log(date);
-}, []);
-console.log(time.day)
-  const booking = {
-    doctorName: Name,
-    doctorPhoto: photo,
-    DoctorDescription: Description,
-    ticketPrice: ticketPrice,
-    meeting: meetingType,
-    appointmentDate: appointmentDate,
-    time: time,
+    return date.toISOString();
   };
 
   const handleBooking = async () => {
-    // try {
-    //   const res = await fetch(`${BASE_URL}/buyout/now`, {
-    //     method: "POST",
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(Medicines),
-    //   });
+    setBooking(true)
+    const date = AppDate(time.day);
+    const booking = {
+      doctorName: Name,
+      doctorPhoto: photo || "https://res.cloudinary.com/do6ys5rlf/image/upload/v1720817961/ekdasi8l2gzdejg8ydkr.webp",
+      doctorDescription: Description,
+      ticketPrice,
+      meeting: meetingType,
+      appointmentDate: date,
+      time: time ? `${time.startingTime}-${time.endingTime}` : time,
+    };
 
-    //   if (res.ok) {
-    //     const data = await res.json(); // Parse the response body
-    //     console.log(data);
-    //     // Redirect to Stripe checkout
-    //     window.location.href = data.url;
-    //   } else {
-    //     const errorData = await res.json(); // Parse the error response
-    //     toast.error(errorData.message || "Some weird error");
-    //   }
-    // } catch (error) {
-    //   console.error(error); // Log the error for debugging
-    //   toast.error("Checkout Error");
-    // }
-    console.log(booking);
-    handleClose();
+    try {
+      const res = await fetch(`${BASE_URL}/book/${id}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(booking),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        window.location.href = data.url;
+        setBooking(false)
+      } else {
+        const errorData = await res.json();
+        toast.error(errorData.message || "Some weird error");
+        setBooking(false)
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Checkout Error");
+      setBooking(false)
+      
+    }
   };
+
   return (
     <React.Fragment>
       <button className="btn px-2 w-full rounded-md" onClick={handleClickOpen}>
@@ -172,6 +168,7 @@ console.log(time.day)
                   className="border-2 border-blue-500 rounded"
                   value={meetingType}
                   onChange={(e) => setMeetingType(e.target.value)}
+                  required
                 >
                   <option value="video">Video Conference</option>
                   <option value="hospital">At Hospital</option>
@@ -188,7 +185,8 @@ console.log(time.day)
                           name="timeslots"
                           id=""
                           value={items}
-                          onChange={(e) => setTime(items)}
+                          onChange={() => setTime(items)}
+                          required
                         />
                         <p>{items.day}</p>
                         <p>{items.startingTime}</p>
@@ -202,9 +200,9 @@ console.log(time.day)
           </div>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleBooking}>
+          <button autoFocus disabled={booking && true} onClick={handleBooking}>
             Book Appointment
-          </Button>
+          </button>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </BootstrapDialog>

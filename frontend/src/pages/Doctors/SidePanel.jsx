@@ -9,7 +9,8 @@ const SidePanel = ({
   speicalization,
   timeslots,
   ticketPrice,
-  Description
+  Description,
+  id
 }) => {
   return (
     <div className="shadow p-3 lg:p-5 rounded-md">
@@ -44,6 +45,7 @@ const SidePanel = ({
         ticketPrice={ticketPrice}
         timeSlots={timeslots}
         Description={Description}
+        id={id}
       />
     </div>
   );

@@ -99,6 +99,7 @@ const DoctorsDetails = () => {
                 timeslots={doctor.timeSlots}
                 ticketPrice={doctor.ticketPrice}
                 Description={doctor.bio}
+                id ={id}
               />
             </div>
           </div>
