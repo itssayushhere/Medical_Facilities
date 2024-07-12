@@ -48,6 +48,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "hint": "^2.0.0",
     "postcss": "^8.4.35",
+    "rollup-plugin-terser": "^7.0.2",
     "tailwindcss": "^3.4.1",
     "vite": "^5.1.4"
   }
