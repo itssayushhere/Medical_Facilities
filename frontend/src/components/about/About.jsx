@@ -1,4 +1,3 @@
-import React from "react";
 import aboutImg from "../../assets/images/about.webp";
 import aboutCardImg from "../../assets/images/about-card.webp";
 import { Link } from "react-router-dom";

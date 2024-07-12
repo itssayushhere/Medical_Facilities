@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 
 const MedicineCard = ({ medicine }) => {
   const { name, description, price, photo } = medicine;

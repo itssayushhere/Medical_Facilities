@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
-import { Radio, Tabs } from "antd";
+import { Tabs } from "antd";
 import { useMediaQuery } from "@mui/system";
 import Orders from "./Orders.jsx";
 import Ordered from "./Ordered.jsx";
@@ -18,7 +18,6 @@ const items = [
 ];
 const OrderTabs = () => {
   const theme = useTheme();
-  const [mode, setMode] = useState("top");
   const [direction, setDirection] = useState("left");
   
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));

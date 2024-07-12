@@ -33,6 +33,6 @@ export const Addtocart = ({productName,productphoto,price,quantity,id}) => {
       dispatch(addMedicine({productName,productphoto,price,quantity,id}));
       hasMounted.current = true;
     }
-  }, [dispatch, {productName,productphoto,price,quantity,id}]);
+  }, [dispatch, productName,productphoto,price,quantity,id]);
   return null;
 };

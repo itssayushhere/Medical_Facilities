@@ -1,7 +1,7 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import starIcon from "../../assets/images/Star.webp";
 const DiagnosticCard = ({ feature }) => {
-  const { Name, Description, photo, person, totalrating } = feature;
+  const { Name,  photo, person, totalrating } = feature;
 
   return (
     <>

@@ -1,4 +1,3 @@
-import React from "react";
 import { medicines } from "./../../assets/data/medicines.js"; // Assuming you have a file with medicine data
 import MedicineCard from "./MedicineCard.jsx"; // Assuming you have a MedicineCard component
 

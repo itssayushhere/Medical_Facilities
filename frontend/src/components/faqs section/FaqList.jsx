@@ -1,4 +1,3 @@
-import React from "react";
 import { faqs } from "../../assets/data/faqs";
 import Faqitems from "./Faqitems";
 

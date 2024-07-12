@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import  { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 // AddNumber component to dispatch an action to add a number
+// eslint-disable-next-line react/prop-types
 const AddNumber = ({ number }) => {
     const dispatch = useDispatch(); // Get the dispatch function
     const hasMounted = useRef(false);

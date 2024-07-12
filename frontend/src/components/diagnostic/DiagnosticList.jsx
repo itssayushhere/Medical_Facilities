@@ -1,4 +1,3 @@
-import React from "react";
 import { feature } from "../../assets/data/feature";
 import DiagnosticCard from "./DiagnosticCard";
 const DiagnosticList = () => {

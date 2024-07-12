@@ -1,5 +1,5 @@
-import React from "react";
 
+// eslint-disable-next-line react/prop-types
 const Error = ({ errMessage }) => {
   return (
     <div className="flex items-center justify-center w-full h-full ">
