@@ -12,7 +12,7 @@ const Doctorsapp = () => {
     return <Loading />;
   }
   return (
-    <div className="container">
+    <div className="mb-10">
       {data && data.length > 0 ? (
         data.map((item) => (
           <div key={item._id}>

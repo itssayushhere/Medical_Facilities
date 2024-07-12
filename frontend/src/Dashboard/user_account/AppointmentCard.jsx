@@ -5,7 +5,7 @@ import { formatDate } from "../../utils/formatDate";
 
 const AppointmentCard = ({data}) => {
   return (
-    <div className=" border    rounded-2xl bg-white  shadow-xl ">
+    <div className=" border rounded-2xl bg-white  shadow-xl ">
       <div className="">
         <div className="flex justify-between bg-sky-200 items-center gap-2 m-3 p-2 border-b-2 border-gray-600 rounded-xl ">
           <div className="flex items-center justify-start gap-1 ">
@@ -34,10 +34,12 @@ const AppointmentCard = ({data}) => {
             <p>{data.doctor.specialization}</p>
           </div>
         </div>
-        <div className="flex gap-2 justify-center items-center">
+        <div className="flex flex-col gap-2 justify-center items-center">
           <p>Appointment Date:</p>
+          <div className="flex justify-center items-center gap-2">
           <p>{formatDate(data.appointmentDate)}</p>
           <p className="font-bold">10:10</p>
+          </div>
         </div>
         <div className="flex gap-2 m-2 p-2 items-center justify-center">
           <div className="bg-blue-700 p-1 rounded">
