@@ -63,7 +63,7 @@ export const createBooking = async (req, res) => {
 
 export const BookDoctor = async (req, res) => {
   const userId = req.userId;
-  const { doctorName, doctorPhoto, DoctorDescription, ticketPrice, meeting, appointmentDate, time } = req.body;
+  const booking = req.body
   const doctorId = req.params.id;
   
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -91,11 +91,11 @@ export const BookDoctor = async (req, res) => {
         {
           price_data: {
             currency: "inr",
-            unit_amount: ticketPrice * 100,
+            unit_amount: booking.ticketPrice * 100,
             product_data: {
-              name: doctorName,
-              description: DoctorDescription,
-              images: [doctorPhoto],
+              name: booking.doctorName,
+              description: booking.DoctorDescription,
+              images: [booking.doctorPhoto],
             },
           },
           quantity: 1,
@@ -107,10 +107,10 @@ export const BookDoctor = async (req, res) => {
     const newBooking = new Booking({
       user: user._id,
       doctor: doctor._id,
-      ticketPrice,
-      appointmentDate,
-      time,
-      meeting,
+      ticketPrice:booking.ticketPrice,
+      appointmentDate:booking.appointmentDate,
+      time:booking.time,
+      meeting:booking.meeting,
     });
 
     await newBooking.save();

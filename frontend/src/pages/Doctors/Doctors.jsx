@@ -16,9 +16,7 @@ const Doctors = () => {
   const [searchinput, setSearchinput] = useState("");
   const [filterdata, setFilterdata] = useState([]);
   const [searched, setSearched] = useState(false);
-
   const handlesearch = () => {
-
     setCurrentpage(1)
     setSearched(true);
     const filtered = data.filter((item) => {
@@ -111,14 +109,12 @@ const Doctors = () => {
               type="radio"
               name="search"
               value="name"
-
               checked={searchby === "name"}
               onChange={handleOptionChange}
             />
             <span className="">Name</span>
             <input
               type="radio"
-
               name="search"
               value="specialization"
               checked={searchby === "specialization"}
