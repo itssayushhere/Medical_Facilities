@@ -84,8 +84,8 @@ export const BookDoctor = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: `${process.env.SUCCESS_SITE_URL}`,
-      cancel_url: `${process.env.CANCEL_SITE_URL}`,
+      success_url: `https://amazingmedical.netlify.app/users/profile/me`,
+      cancel_url: `https://amazingmedical.netlify.app/doctors`,
       customer_email: user.email,
       line_items: [
         {
