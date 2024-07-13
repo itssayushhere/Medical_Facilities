@@ -3,7 +3,7 @@ import defaultphoto from "../../assets/images/user.webp";
 import videoIcon from "../../assets/images/video-icon.webp";
 import { formatDate } from "../../utils/formatDate";
 
-const AppointmentCard = ({data}) => {
+const AppointmentCard = ({ data }) => {
   return (
     <div className=" border rounded-2xl bg-white  shadow-xl ">
       <div className="">
@@ -37,30 +37,30 @@ const AppointmentCard = ({data}) => {
         <div className="flex flex-col gap-2 justify-center items-center">
           <p>Appointment Date:</p>
           <div className="flex justify-center items-center gap-2">
-          <p>{formatDate(data.appointmentDate)}</p>
-          <p className="font-bold">10:10</p>
+            <p>{formatDate(data.appointmentDate)}</p>
+            <p className="font-bold">10:10</p>
           </div>
         </div>
         <div className="flex gap-2 m-2 p-2 items-center justify-center">
-          <div className="bg-blue-700 p-1 rounded">
-            <img
-              loading="lazy"
-              src={videoIcon}
-              alt="Video Icon"
-              width="16"
-              height="16"
-            />
-          </div>
           <div>
             {data.meeting == "video" ? (
-              <>
+              <div className="flex justify-center items-center">
+                <div className="bg-blue-700 p-1 rounded">
+                  <img
+                    loading="lazy"
+                    src={videoIcon}
+                    alt="Video Icon"
+                    width="16"
+                    height="16"
+                  />
+                </div>
                 <p>Video Meeting on</p>
                 <a href="https://meet.google.com/fkx-eevg-fyz">Google Meet</a>
-              </>
+              </div>
             ) : (
               <>
-              <p>Hospital Address :</p>
-              <p>{data.doctor.hospital}</p>
+                <p>Hospital Address :</p>
+                <p>{data.doctor.hospital}</p>
               </>
             )}
           </div>
@@ -88,7 +88,6 @@ const AppointmentCard = ({data}) => {
               Cancelled
             </p>
           )}
-          
         </div>
       </div>
     </div>

@@ -51,7 +51,7 @@ export default function BasicTabs() {
           aria-label="basic tabs example"
         >
           <Tab label="Checkup " {...a11yProps(0)} />
-          <Tab label="Booking " {...a11yProps(1)} />
+          <Tab label="Doctor " {...a11yProps(1)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>

@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import * as React from "react";
-import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -105,7 +104,9 @@ export default function BookingForm({
         open={open}
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          <h1 className="font-bold border-b-4 border-blue-800 mr-14">
           Appointment Booking
+          </h1>
         </DialogTitle>
         <IconButton
           aria-label="close"
@@ -158,14 +159,14 @@ export default function BookingForm({
               </div>
               <div className="flex justify-center items-center pb-1">
                 <p className="font-semibold">Charges of Appointment:</p>
-                <p className="font-bold text-green-600">{ticketPrice}</p>
+                <p className="font-bold text-green-600">₹{ticketPrice}</p>
               </div>
-              <div className="flex flex-col justify-center items-center font-medium">
+              <div className="flex justify-center items-center font-medium">
                 <p className="font-bold">Select Meeting Type:</p>
                 <select
                   name="meeting"
                   id=""
-                  className="border-2 border-blue-500 rounded"
+                  className="border-b border-black rounded"
                   value={meetingType}
                   onChange={(e) => setMeetingType(e.target.value)}
                   required
@@ -174,12 +175,12 @@ export default function BookingForm({
                   <option value="hospital">At Hospital</option>
                 </select>
               </div>
-              <div>
-                <h1>TimeSlots</h1>
+              <div className="flex mt-2">
+                <h1 className=" mr-2 font-extrabold">TimeSlots</h1>
                 {timeSlots &&
                   timeSlots.map((items, index) => (
                     <div key={index}>
-                      <div className="flex justify-start items-center gap-2 pl-10">
+                      <div className="flex justify-start items-center gap-1 font-medium">
                         <input
                           type="radio"
                           name="timeslots"
@@ -200,10 +201,12 @@ export default function BookingForm({
           </div>
         </DialogContent>
         <DialogActions>
-          <button autoFocus disabled={booking && true} onClick={handleBooking}>
+          <div className="flex items-center gap-2 font-bold">
+          <button autoFocus disabled={booking && true} onClick={handleBooking} className=" text-blue-600">
             Book Appointment
           </button>
-          <Button onClick={handleClose}>Cancel</Button>
+          <button onClick={handleClose} className="text-blue-600">Cancel</button>
+          </div>
         </DialogActions>
       </BootstrapDialog>
     </React.Fragment>
