@@ -222,7 +222,7 @@ const Community = () => {
                           </h6>
                         )}
                       </div>
-                      <p className="mt-2">{q.question}</p>
+                      <p className="mt-2 break-all overflow-auto">{q.question}</p>
                     </div>
                     <div className="flex justify-between items-center">
                       {q.reviews && q.reviews.length > 0 ? (

@@ -7,7 +7,6 @@ const DiagnosticList = () => {
         {feature.map((feature) => (
           <DiagnosticCard key={feature.Name} feature={feature} />
         ))}
-
       </div>
     </>
   );
