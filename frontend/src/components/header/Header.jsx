@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext } from "react";
+import {   useContext } from "react";
 import logo from "../../assets/images/logo.webp";
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { authContext } from "../../context/AuthContext";
@@ -20,24 +20,7 @@ const navLinks2 = [
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const headerRef = useRef(null);
   const { user, role, token } = useContext(authContext);
-
-  const handleStickyHeader = () => {
-    if (
-      document.body.scrollTop > 80 ||
-      document.documentElement.scrollTop > 80
-    ) {
-      headerRef.current.classList.add("sticky__header");
-    } else {
-      headerRef.current.classList.remove("sticky__header");
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleStickyHeader);
-    return () => window.removeEventListener("scroll", handleStickyHeader);
-  }, []);
 
   const handleCart = () => {
     navigate("/orders");
@@ -45,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header flex items-center" ref={headerRef}>
+    <header className=" sticky top-0 header flex items-center bg-white z-50" >
       <div className="container">
         <div className="flex items-center justify-between">
           {/* Logo and Mobile Navigation */}
