@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoute from "./Routes/auth.js";
 import userRoute from "./Routes/user.js";
@@ -37,7 +37,7 @@ app.use(cookieParser());
 app.use(cors(corsOption));
 app.use("/api/v1/auth", authRoute); ///imp
 app.use("/api/v1/users", userRoute); ///imp
-app.use("/api/v1/doctors", DoctorRoute); ///imp
+app.use("/api/v1/doctors" , DoctorRoute); ///imp
 app.use("/api/v1/reviews", reviewRoute);
 app.use("/api/v1/questions", questionRoute);
 app.use("/api/v1/buyout", buyoutRoute);
