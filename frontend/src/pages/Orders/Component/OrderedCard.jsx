@@ -28,7 +28,7 @@ const OrderedCard = ({ items }) => {
             </div>
             <div className="flex items-center text-green-600 font-semibold">
               <FlightIcon fontSize="small" />
-              Estimated delivery:May 14,2020
+              Estimated delivery:May 14
             </div>
           </div>
         </div>
@@ -76,8 +76,7 @@ const OrderedCard = ({ items }) => {
             <p className="font-bold text-base ">Delivery</p>
             <p className="font-extralight">Address</p>
             <p>
-              Ayushman Bhojnalaya , Near Durga Mandir ,B.N.D Compound , Sakinaka
-              , Kherani road ,Mumbai-400072
+              please add
             </p>
           </div>
         </div>
