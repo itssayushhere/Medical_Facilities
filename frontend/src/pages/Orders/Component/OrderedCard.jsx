@@ -76,7 +76,7 @@ const OrderedCard = ({ items }) => {
             <p className="font-bold text-base ">Delivery</p>
             <p className="font-extralight">Address</p>
             <p>
-              please add
+              please add Address
             </p>
           </div>
         </div>
