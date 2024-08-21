@@ -1,6 +1,6 @@
 # A Vite-React Based Website
 
-Welcome to our Vite-React based website. This platform offers a comprehensive set of features aimed at providing seamless healthcare services. Below is an overview of the key functionalities available on the website.
+Welcome to My Vite-React based website. This platform offers a comprehensive set of features aimed at providing seamless healthcare services. Below is an overview of the key functionalities available on the website.
 
 ## Features
 
