@@ -7,8 +7,9 @@ const MentalHealthPage = () => {
         Mental Health Resources
       </h1>
       <p className="text-lg text-gray-700 mb-8 text-center">
-        Welcome to our mental health resources page. Here, you&apos;ll find helpful
-        information, articles, and tools to support your mental well-being.
+        Welcome to our mental health resources page. Here, you&apos;ll find
+        helpful information, articles, and tools to support your mental
+        well-being.
       </p>
 
       <section className="">
@@ -148,19 +149,27 @@ const MentalHealthPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
             <iframe
-              src="https://www.youtube.com/embed/video1"
-              title="Video 1"
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/y6hk7er4fto?si=MWKnlo1PYaN7Z-rw"
+              title="YouTube video player"
               frameBorder="0"
-              allowFullScreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowfullscreen
               className="w-full h-64"
             ></iframe>
           </div>
           <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
             <iframe
-              src="https://www.youtube.com/embed/video2"
-              title="Video 2"
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/tsmPCi7NKrg?si=WurU_TBEK-LOrdZV"
+              title="YouTube video player"
               frameBorder="0"
-              allowFullScreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowfullscreen
               className="w-full h-64"
             ></iframe>
           </div>
