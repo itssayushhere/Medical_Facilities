@@ -71,10 +71,5 @@ Visit our website at [amazingmedical.netlify.app](https://amazingmedical.netlify
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-## Contact
-
-If you have any questions or feedback, please feel free to reach out to us at [email@example.com].
-
----
 
 Thank you for using our Vite-React based healthcare website!
