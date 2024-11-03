@@ -31,6 +31,7 @@ const connectDB = async () => {
     console.log("Mongo databse is connection failure");
   }
 };
+
 //middleware
 app.use(express.json());
 app.use(cookieParser());
